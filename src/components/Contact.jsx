@@ -1,78 +1,82 @@
-import { motion } from 'framer-motion'
-import { useIsMobile } from '../hooks/useIsMobile'
-
 const links = [
-  { label: 'Email', href: 'mailto:Parkerscottfawcett@gmail.com', icon: '✉' },
-  { label: 'GitHub', href: 'https://github.com/Parker-Fawcett', icon: '⌂' },
-  { label: 'Website', href: 'https://www.parkerfawcett.com', icon: '◯' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/parker-fawcett', icon: '⊞' },
+  { label: 'Email', href: 'mailto:Parkerscottfawcett@gmail.com', display: 'Parkerscottfawcett@gmail.com' },
+  { label: 'GitHub', href: 'https://github.com/Parker-Fawcett', display: 'github.com/Parker-Fawcett' },
+  { label: 'Website', href: 'https://www.parkerfawcett.com', display: 'parkerfawcett.com' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/parker-fawcett', display: 'linkedin.com/in/parker-fawcett' },
 ]
 
 export default function Contact() {
-  const isMobile = useIsMobile()
-
   return (
-    <section id="contact" className="section-container">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        style={{ textAlign: 'center' }}
-      >
-        <p className="section-label" style={{ justifyContent: 'center' }}>Contact</p>
-        <h2 className="section-title" style={{ marginBottom: 18 }}>
-          Get in <span className="gradient-text">touch</span>
-        </h2>
-        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', maxWidth: 520, margin: '0 auto 14px', lineHeight: 1.7 }}>
-          Fastest way to reach me is email. Open to research collaborations, freelance builds, or talking shop about agent infrastructure.
-        </p>
-        <p style={{ fontSize: '0.8rem', fontFamily: "'Space Grotesk', sans-serif", color: 'var(--text-muted)', letterSpacing: '0.04em', marginBottom: 44 }}>
-          Herriman, UT&ensp;·&ensp;
-          <a href="tel:+18015002924" style={{ color: 'var(--accent-bright)', textDecoration: 'none' }}>801-500-2924</a>
-          &ensp;·&ensp;
-          <a href="https://www.parkerfawcett.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-bright)', textDecoration: 'none' }}>parkerfawcett.com</a>
+    <section id="contact" className="section-container" style={{ borderTop: '1px solid var(--line)' }}>
+      <p className="section-label">Contact</p>
+      <h2 className="section-title">Get in touch</h2>
+
+      <div style={{ maxWidth: 640 }}>
+        <p style={{ fontSize: '0.95rem', color: 'var(--ink-secondary)', lineHeight: 1.75, marginBottom: 30 }}>
+          Fastest way to reach me is email. Open to research collaborations, freelance
+          builds, or talking shop about agent infrastructure.
         </p>
 
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', flexDirection: isMobile ? 'column' : 'row', alignItems: 'stretch' }}>
+        <ul style={{ listStyle: 'none', display: 'grid', gap: 12, marginBottom: 30 }}>
           {links.map((link) => (
-            <motion.a
-              key={link.label}
-              href={link.href}
-              {...(link.label !== 'Email' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              className="glass"
-              whileHover={{ y: -3 }}
-              style={{
-                padding: isMobile ? '13px 22px' : '15px 30px',
-                borderRadius: 100,
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 9,
-                fontSize: '0.85rem',
-                fontWeight: 500,
-                color: 'var(--text-secondary)',
-                transition: 'color 0.2s, border-color 0.2s, background 0.2s',
-                borderColor: 'var(--border)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#fff'
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.6)'
-                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'var(--text-secondary)'
-                e.currentTarget.style.borderColor = 'var(--border)'
-                e.currentTarget.style.background = ''
-              }}
-            >
-              <span style={{ fontSize: '1rem' }}>{link.icon}</span>
-              {link.label === 'Email' ? 'Parkerscottfawcett@gmail.com' : link.href.replace('https://', '')}
-            </motion.a>
+            <li key={link.label}>
+              <a
+                href={link.href}
+                {...(link.label !== 'Email' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'baseline',
+                  gap: 12,
+                  textDecoration: 'none',
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.66rem',
+                    fontWeight: 600,
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: 'var(--ink-muted)',
+                    minWidth: 72,
+                  }}
+                >
+                  {link.label}
+                </span>
+                <span
+                  className="contact-link"
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.82rem',
+                    color: 'var(--accent-deep)',
+                    textDecoration: 'underline',
+                    textUnderlineOffset: 3,
+                    transition: 'color 0.15s ease',
+                    overflowWrap: 'anywhere',
+                  }}
+                >
+                  {link.display}
+                </span>
+              </a>
+            </li>
           ))}
-        </div>
-      </motion.div>
+        </ul>
+
+        <p
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.74rem',
+            letterSpacing: '0.04em',
+            color: 'var(--ink-muted)',
+          }}
+        >
+          Herriman, Utah · <a href="tel:+18015002924" style={{ color: 'var(--ink-muted)' }}>801-500-2924</a>
+        </p>
+      </div>
+
+      <style>{`
+        .contact-link:hover { color: var(--accent) !important; }
+      `}</style>
     </section>
   )
 }

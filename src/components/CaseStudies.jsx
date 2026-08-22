@@ -1,22 +1,15 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import CaseStudyCard from './CaseStudyCard'
 import ProjectModal from './ProjectModal'
-import { useIsMobile } from '../hooks/useIsMobile'
 
 const projects = [
   {
     name: 'Rebuild Dossier',
     type: 'Open-source research',
-    color: 'purple',
     image: '/images/rebuild-dossier.png',
     description:
       'A test harness for rebuilding apps with AI. 512 tests across 83 files pin down the interfaces so a rebuild either matches the original or fails loudly. The paper behind it is submitted to Empirical Software Engineering.',
-    stack: [
-      'Python', { label: 'AST parsing', colorClass: 'tag-cyan' },
-      'Playwright', { label: 'Mutation testing', colorClass: 'tag-orange' },
-      'Docker', 'PostgreSQL',
-    ],
+    stack: ['Python', 'AST parsing', 'Playwright', 'Mutation testing', 'Docker', 'PostgreSQL'],
     metrics: [
       'AI code migrations used to score 0% behavioral equivalence; AST-based mutation checks verify behavior without touching the source',
       '512 unit tests across 83 files act as executable specs, so model drift shows up as hard failures instead of quiet regressions',
@@ -38,17 +31,10 @@ const projects = [
   {
     name: 'Skora',
     type: 'B2B SaaS',
-    color: 'cyan',
     image: '/images/skora.png',
     description:
       'College counseling software, currently in beta. The interesting piece is Project Hermes, an outbound engine that covers about 95% of what $3K to $15K/mo enterprise platforms do, with zero marginal operating cost. It started through a JATC partnership after a cold pitch.',
-    stack: [
-      'Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM',
-      { label: 'Clerk Auth', colorClass: 'tag-cyan' },
-      'Redis',
-      { label: 'Groq AI', colorClass: 'tag-orange' },
-      { label: 'Stripe', colorClass: 'tag-green' },
-    ],
+    stack: ['Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM', 'Clerk Auth', 'Redis', 'Groq AI', 'Stripe'],
     metrics: [
       'Beta pilot running now; early users come in through a Product Hunt launch and Trustpilot reviews',
       'Hermes validates every contact through a 4-provider waterfall and tests 26 outreach angles on Docker/Caddy, CAN-SPAM compliant',
@@ -70,15 +56,10 @@ const projects = [
   {
     name: 'CatchAndTrade',
     type: 'Marketplace',
-    color: 'green',
     image: '/images/catch-and-trade.png',
     description:
       'Trading-card marketplace under Fawcett Capital, my holding company. Tracks 20,000+ collectibles with sub-200ms queries, plus OCR scanning for grading physical cards.',
-    stack: [
-      'Next.js', 'React', { label: 'Supabase PostgreSQL', colorClass: 'tag-green' },
-      { label: 'Tesseract.js OCR', colorClass: 'tag-orange' },
-      'Google OAuth', 'TailwindCSS',
-    ],
+    stack: ['Next.js', 'React', 'Supabase PostgreSQL', 'Tesseract.js OCR', 'Google OAuth', 'TailwindCSS'],
     metrics: [
       'Schema tracks 20,000+ unique collectibles',
       'Most queries return in under 200ms',
@@ -100,17 +81,10 @@ const projects = [
   {
     name: 'MyNexusAI',
     type: 'AI SaaS',
-    color: 'orange',
     image: '/images/mynexusai.png',
     description:
       'An AI receptionist that handles voice and text support channels automatically. Live in production with paying users.',
-    stack: [
-      'Node.js', 'pgvector', 'ChromaDB',
-      { label: 'OpenRouter API', colorClass: 'tag-orange' },
-      { label: 'Twilio Voice/SMS', colorClass: 'tag-cyan' },
-      { label: 'ElevenLabs', colorClass: 'tag-pink' },
-      { label: 'AssemblyAI', colorClass: 'tag-green' },
-    ],
+    stack: ['Node.js', 'pgvector', 'ChromaDB', 'OpenRouter API', 'Twilio Voice/SMS', 'ElevenLabs', 'AssemblyAI'],
     metrics: [
       'RAG pipeline grounds answers in domain knowledge instead of guessing',
       'Multi-model fallback through OpenRouter keeps uptime at 100%',
@@ -132,16 +106,10 @@ const projects = [
   {
     name: 'Alvien',
     type: 'B2B BI SaaS',
-    color: 'orange',
     image: '/images/alvien.png',
     description:
       'Point it at a competitor site and get back a structured strategic brief. Scraping and summarization run automatically.',
-    stack: [
-      'Python', 'FastAPI',
-      { label: 'Firecrawl API', colorClass: 'tag-cyan' },
-      { label: 'Groq LLMs', colorClass: 'tag-orange' },
-      'TailwindCSS',
-    ],
+    stack: ['Python', 'FastAPI', 'Firecrawl API', 'Groq LLMs', 'TailwindCSS'],
     metrics: [
       'Firecrawl pulls competitor pages even behind anti-scraping protections',
       'Raw HTML comes back as structured JSON tokens for the LLM',
@@ -163,14 +131,10 @@ const projects = [
   {
     name: 'Code Elevation',
     type: 'Youth tech initiative',
-    color: 'pink',
     image: '/images/code-elevation.png',
     description:
       'A coding competition I ran for high schoolers in my area, built to feel like real software engineering rather than a school club.',
-    stack: [
-      'Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM',
-      'Cold outreach', 'Sponsorship',
-    ],
+    stack: ['Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM', 'Cold outreach', 'Sponsorship'],
     metrics: [
       '30+ student participants and competitors',
       'Pluralsight and CHG Healthcare signed on as sponsors after cold outreach',
@@ -192,24 +156,14 @@ const projects = [
 ]
 
 export default function CaseStudies() {
-  const isMobile = useIsMobile()
   const [selectedProject, setSelectedProject] = useState(null)
 
   return (
     <section id="case-studies" className="section-container">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        <p className="section-label">Projects</p>
-        <h2 className="section-title">
-          Selected <span className="gradient-text">work</span>
-        </h2>
-      </motion.div>
+      <p className="section-label">Projects</p>
+      <h2 className="section-title">Selected work</h2>
 
-      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(320px, 1fr))', gap: isMobile ? 20 : 24 }}>
+      <div style={{ borderBottom: '1px solid var(--line)' }}>
         {projects.map((project, i) => (
           <CaseStudyCard key={project.name} project={project} index={i} onViewDetails={setSelectedProject} />
         ))}

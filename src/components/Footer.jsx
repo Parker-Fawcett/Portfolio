@@ -1,17 +1,44 @@
 export default function Footer() {
   return (
-    <footer
-      style={{
-        textAlign: 'center',
-        padding: '36px 24px',
-        fontSize: '0.7rem',
-        fontFamily: "'Space Grotesk', sans-serif",
-        letterSpacing: '0.04em',
-        color: 'var(--text-muted)',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
-      }}
-    >
-      &copy; {new Date().getFullYear()} Parker Fawcett&ensp;·&ensp;Built with React & Framer Motion
+    <footer style={{ borderTop: '1px solid var(--line)' }}>
+      <div
+        style={{
+          maxWidth: 1120,
+          margin: '0 auto',
+          padding: '24px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: 16,
+          flexWrap: 'wrap',
+        }}
+      >
+        <span
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.7rem',
+            letterSpacing: '0.05em',
+            color: 'var(--ink-muted)',
+          }}
+        >
+          © {new Date().getFullYear()} Parker Fawcett
+        </span>
+        <a
+          href="#hero"
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.7rem',
+            letterSpacing: '0.05em',
+            color: 'var(--ink-muted)',
+            textDecoration: 'none',
+            whiteSpace: 'nowrap',
+          }}
+          onMouseEnter={(e) => { e.target.style.color = 'var(--accent-deep)' }}
+          onMouseLeave={(e) => { e.target.style.color = 'var(--ink-muted)' }}
+        >
+          Back to top ↑
+        </a>
+      </div>
     </footer>
   )
 }

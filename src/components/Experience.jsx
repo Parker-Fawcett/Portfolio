@@ -1,6 +1,3 @@
-import { motion } from 'framer-motion'
-import { useIsMobile } from '../hooks/useIsMobile'
-
 const experiences = [
   {
     role: 'AI Skills Engineer',
@@ -14,7 +11,6 @@ const experiences = [
       'Automated the data ingestion pipelines (Python, SQL, Snowflake), which let us drop manual PR review for the whole division.',
       'Promoted from intern to full-time AI engineer before junior year of high school, by the VP of Data & AI.',
     ],
-    accent: '#a78bfa',
   },
   {
     role: 'Freelance technical consultant',
@@ -24,7 +20,6 @@ const experiences = [
       'Design and build web apps, API integrations, and storefronts for SMB clients in several countries (React, Node.js).',
       "Rebuilt an apparel brand's social funnel around short video, which turned passive views into verified leads instead of bounce-offs.",
     ],
-    accent: '#22d3ee',
   },
   {
     role: 'Founder & managing director',
@@ -34,152 +29,237 @@ const experiences = [
       'An LLC that keeps financial reporting, compliance, and payments in one place across my ventures.',
       'Grew CatchAndTrade into a marketplace tracking 20k+ trading cards with sub-200ms queries, OCR scanning, and live grading.',
     ],
-    accent: '#34d399',
   },
 ]
 
 const leadership = [
   {
     title: 'JATC & Cypress Credit Union Summit',
-    role: 'Lead event coordinator',
-    period: '2026 – Present',
+    role: 'Lead event coordinator · 2026 – Present',
     desc: 'Put together a district-wide entrepreneurship conference with Cypress Credit Union: hundreds of students, all logistics, branding, and budget handled by me.',
   },
   {
     title: 'Code Elevation',
-    role: 'Founder & executive director',
-    period: '2025 – 2026',
+    role: 'Founder & executive director · 2025 – 2026',
     desc: 'Started a coding competition that pulled in 30+ students. Pluralsight and CHG sponsored; $1,650 in prizes plus donated software licenses.',
   },
   {
     title: "Angel's Hands Foundation (501c3)",
-    role: 'Head of digital marketing',
-    period: '2025 – Present',
+    role: 'Head of digital marketing · 2025 – Present',
     desc: 'Handle digital marketing for a small non-profit. Mostly SEO and social, aimed at bringing in recurring donors.',
   },
 ]
 
 export default function Experience() {
-  const isMobile = useIsMobile()
   return (
     <section id="experience" className="section-container">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        <p className="section-label">Background</p>
-        <h2 className="section-title">
-          <span className="gradient-text">Experience</span>
-        </h2>
-      </motion.div>
+      <p className="section-label">Background</p>
+      <h2 className="section-title">Experience</h2>
 
-      <div style={{ position: 'relative', paddingLeft: isMobile ? 24 : 36, marginBottom: 72 }}>
-        <div
-          style={{
-            position: 'absolute',
-            left: isMobile ? 7 : 11,
-            top: 8,
-            bottom: 8,
-            width: 1,
-            background: 'linear-gradient(to bottom, rgba(139,92,246,0.5), rgba(34,211,238,0.25), transparent)',
-          }}
-        />
-        <div style={{ display: 'grid', gap: 24 }}>
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={exp.org}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
-              style={{ position: 'relative' }}
+      <div>
+        {experiences.map((exp, i) => (
+          <article
+            key={exp.org}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'minmax(0, 56px) minmax(0, 1fr)',
+              gap: 20,
+              padding: '32px 0',
+              borderTop: i === 0 ? 'none' : '1px solid var(--line)',
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.78rem',
+                fontWeight: 600,
+                color: 'var(--accent)',
+                paddingTop: 4,
+              }}
             >
+              {String(i + 1).padStart(2, '0')}
+            </span>
+
+            <div>
               <div
                 style={{
-                  position: 'absolute',
-                  left: isMobile ? -24 : -36,
-                  top: 26,
-                  width: 15,
-                  height: 15,
-                  transform: 'translateX(-50%)',
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  justifyContent: 'space-between',
+                  alignItems: 'baseline',
+                  gap: 10,
+                  marginBottom: 14,
                 }}
               >
-                <div
+                <div>
+                  <h3 style={{ fontSize: '1.08rem', fontWeight: 600, letterSpacing: '-0.01em' }}>{exp.role}</h3>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--ink-secondary)', marginTop: 2 }}>
+                    {exp.org}
+                    {exp.location ? ` · ${exp.location}` : ''}
+                  </p>
+                </div>
+                <span
                   style={{
-                    width: 9,
-                    height: 9,
-                    borderRadius: '50%',
-                    background: exp.accent,
-                    boxShadow: `0 0 12px ${exp.accent}`,
-                    margin: '3px auto',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.7rem',
+                    letterSpacing: '0.06em',
+                    color: 'var(--ink-muted)',
+                    whiteSpace: 'nowrap',
                   }}
-                />
+                >
+                  {exp.period}
+                </span>
               </div>
 
-              <div className="card" style={{ padding: isMobile ? '22px 20px' : '30px 32px' }}>
-                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 8, marginBottom: 16 }}>
-                  <div>
-                    <h3 style={{ fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text)' }}>{exp.role}</h3>
-                    <p style={{ fontSize: '0.85rem', color: exp.accent, fontWeight: 600 }}>{exp.org}</p>
-                    {exp.location && <p style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>{exp.location}</p>}
-                  </div>
-                  <span className="tag" style={{ alignSelf: 'flex-start', fontSize: '0.65rem', whiteSpace: 'nowrap' }}>{exp.period}</span>
-                </div>
-                <ul style={{ listStyle: 'none', padding: 0 }}>
-                  {exp.highlights.map((h, idx) => (
-                    <li key={idx} style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', paddingLeft: 18, position: 'relative', marginBottom: 8, lineHeight: 1.65 }}>
-                      <span style={{ position: 'absolute', left: 0, color: exp.accent, fontWeight: 700 }}>→</span>{h}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
+              <ul style={{ listStyle: 'disc', paddingLeft: 18, display: 'grid', gap: 8 }}>
+                {exp.highlights.map((h, idx) => (
+                  <li
+                    key={idx}
+                    style={{
+                      fontSize: '0.88rem',
+                      color: 'var(--ink-secondary)',
+                      lineHeight: 1.65,
+                    }}
+                  >
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <h3 style={{ fontSize: '1.05rem', fontWeight: 600, margin: '56px 0 8px', letterSpacing: '-0.01em' }}>
+        Leadership &amp; ecosystem
+      </h3>
+      <div>
+        {leadership.map((item, i) => (
+          <div
+            key={item.title}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'minmax(0, 280px) minmax(0, 1fr)',
+              gap: 24,
+              padding: '22px 0',
+              borderTop: i === 0 ? '1px solid var(--line)' : '1px solid var(--line)',
+              alignItems: 'baseline',
+            }}
+            className="leadership-row"
+          >
+            <div>
+              <p style={{ fontSize: '0.9rem', fontWeight: 600 }}>{item.title}</p>
+              <p
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.68rem',
+                  letterSpacing: '0.05em',
+                  color: 'var(--ink-muted)',
+                  marginTop: 4,
+                }}
+              >
+                {item.role}
+              </p>
+            </div>
+            <p style={{ fontSize: '0.86rem', color: 'var(--ink-secondary)', lineHeight: 1.65 }}>{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div
+        style={{
+          marginTop: 56,
+          background: 'var(--paper-raised)',
+          border: '1px solid var(--line)',
+          borderRadius: 4,
+          padding: '28px 30px',
+        }}
+        className="edu-card"
+      >
+        <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 18 }}>Education &amp; skills</h3>
+        <div
+          style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 0.9fr) minmax(0, 1.1fr)', gap: 28 }}
+          className="edu-grid"
+        >
+          <div>
+            <p style={{ fontSize: '0.87rem', fontWeight: 600 }}>
+              Herriman High School &amp; Jordan Applied Technology Center (JATC)
+            </p>
+            <p style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', marginTop: 2 }}>
+              Expected June 2028 · GPA 3.8
+            </p>
+            <p style={{ fontSize: '0.79rem', color: 'var(--ink-secondary)', marginTop: 10, lineHeight: 1.7 }}>
+              AP Lang, AP World, AP Human Geo, plus concurrent enrollment at SLCC (AutoCAD,
+              business fundamentals, personal finance). BYU faculty are using me as a case study
+              for research on young people starting businesses and building automated systems.
+            </p>
+          </div>
+          <div style={{ fontSize: '0.79rem', lineHeight: 1.9 }}>
+            <p>
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.66rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color: 'var(--ink-muted)',
+                  marginRight: 8,
+                }}
+              >
+                Business:
+              </span>
+              <span style={{ color: 'var(--ink-secondary)' }}>
+                GTM strategy, B2B sales, market research, Agile/Scrum, financial modeling
+              </span>
+            </p>
+            <p>
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.66rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color: 'var(--ink-muted)',
+                  marginRight: 8,
+                }}
+              >
+                Stack:
+              </span>
+              <span style={{ color: 'var(--ink-secondary)' }}>
+                Python, SQL, TypeScript, Next.js 14, React, Node.js, PostgreSQL, Snowflake, Redis
+              </span>
+            </p>
+            <p>
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.66rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color: 'var(--ink-muted)',
+                  marginRight: 8,
+                }}
+              >
+                AI &amp; infra:
+              </span>
+              <span style={{ color: 'var(--ink-secondary)' }}>
+                Claude Code, Groq AI, OpenRouter, RAG pipelines, Docker, Vercel, Supabase, Twilio, MCP
+              </span>
+            </p>
+          </div>
         </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: 20, letterSpacing: '-0.02em', color: 'var(--text)' }}>Leadership & ecosystem</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 16, marginBottom: 64 }}>
-          {leadership.map((item) => (
-            <div key={item.title} className="card" style={{ padding: '22px 20px' }}>
-              <p style={{ fontSize: '0.82rem', fontWeight: 700, marginBottom: 6, color: 'var(--text)' }}>{item.title}</p>
-              <p style={{ fontSize: '0.71rem', color: 'var(--accent-bright)', fontWeight: 600, marginBottom: 8 }}>{item.role} · {item.period}</p>
-              <p style={{ fontSize: '0.76rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="glass-card"
-        style={{ padding: isMobile ? '24px 20px' : '30px 34px' }}
-      >
-        <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: 18, color: 'var(--text)' }}>Education & skills</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 28 }}>
-          <div>
-            <p style={{ fontSize: '0.87rem', fontWeight: 600, color: 'var(--text)' }}>Herriman High School & Jordan Applied Technology Center (JATC)</p>
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 2 }}>Expected June 2028 · GPA 3.8</p>
-            <p style={{ fontSize: '0.77rem', color: 'var(--text-secondary)', marginTop: 10, lineHeight: 1.7 }}>AP Lang, AP World, AP Human Geo, plus concurrent enrollment at SLCC (AutoCAD, business fundamentals, personal finance). BYU faculty are using me as a case study for research on young people starting businesses and building automated systems.</p>
-          </div>
-          <div style={{ fontSize: '0.78rem', lineHeight: 1.8 }}>
-            <p><strong style={{ color: 'var(--accent-bright)' }}>Business:</strong><span style={{ color: 'var(--text-secondary)' }}> GTM strategy, B2B sales, market research, Agile/Scrum, financial modeling</span></p>
-            <p><strong style={{ color: 'var(--cyan)' }}>Stack:</strong><span style={{ color: 'var(--text-secondary)' }}> Python, SQL, TypeScript, Next.js 14, React, Node.js, PostgreSQL, Snowflake, Redis</span></p>
-            <p><strong style={{ color: 'var(--green)' }}>AI & infra:</strong><span style={{ color: 'var(--text-secondary)' }}> Claude Code, Groq AI, OpenRouter, RAG pipelines, Docker, Vercel, Supabase, Twilio, MCP</span></p>
-          </div>
-        </div>
-      </motion.div>
+      <style>{`
+        @media (max-width: 720px) {
+          .leadership-row { grid-template-columns: 1fr !important; gap: 8px !important; }
+          .edu-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   )
 }
