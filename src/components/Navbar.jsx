@@ -4,6 +4,7 @@ import { useIsMobile } from '../hooks/useIsMobile'
 
 const navItems = [
   { label: 'Home', href: '#hero' },
+  { label: 'Experience', href: '#experience' },
   { label: 'Work', href: '#case-studies' },
   { label: 'Spotlight', href: '#data-spotlight' },
   { label: 'Contact', href: '#contact' },
@@ -19,7 +20,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const visibleItems = isMobile ? navItems.filter((_, i) => i < 2) : navItems
+  const visibleItems = isMobile ? navItems.filter((item) => ['Home', 'Work'].includes(item.label)) : navItems
 
   return (
     <div style={{ position: 'fixed', top: isMobile ? 8 : 16, left: 0, right: 0, display: 'flex', justifyContent: scrolled ? 'flex-end' : 'center', padding: '0 12px', pointerEvents: 'none', zIndex: 1000 }}>

@@ -6,12 +6,42 @@ import { useIsMobile } from '../hooks/useIsMobile'
 
 const projects = [
   {
+    name: 'Rebuild Dossier',
+    type: 'Open-Source Research',
+    color: 'purple',
+    image: '/images/rebuild-dossier.png',
+    description:
+      'MIT-licensed evaluation tool with 512 unit tests across 83 files — mechanically-enforced interface contracts that guarantee reliable AI code generation. Sole-author paper submitted to Empirical Software Engineering (EMSE) after arXiv endorsement by Presset Lutz.',
+    stack: [
+      'Python', { label: 'AST Parsing', colorClass: 'tag-cyan' },
+      'Playwright', { label: 'Mutation Testing', colorClass: 'tag-orange' },
+      'Docker', 'PostgreSQL',
+    ],
+    metrics: [
+      'Solved the “0% behavioral equivalence” bottleneck in AI code migration with a zero-destruction mutation testing pipeline',
+      '512 unit tests across 83 files enforce interface contracts — reliable agentic rebuilds by construction',
+      'Applied for LTFF research grant to expand benchmarking and evaluate structural failure modes of higher-tier models',
+    ],
+    architecture: {
+      summary: 'A mechanically-enforced spec system for agentic app rebuilds: AST parsing + Playwright verification ensures higher-tier models fail structurally, not silently. Documented in “Mechanically-Enforced Specs for Agentic App Rebuilds, and What Model-Tier Failures Reveal.”',
+      highlights: [
+        'AST parsing generates zero-destruction mutations — behavioral equivalence checked without destroying source semantics',
+        'Playwright pipeline verifies end-to-end behavior against mechanically-enforced contracts',
+        '512 tests serve as executable spec: any model-tier drift is caught as a hard failure, not a soft regression',
+        'Benchmarking pipeline designed for LTFF-funded expansion to larger model tiers and longer-horizon tasks',
+        'MIT-licensed, sole-authored and maintained — arXiv → EMSE submission track',
+      ],
+    },
+    liveUrl: 'https://github.com/Parker-Fawcett/rebuild-dossier',
+    githubUrl: 'https://github.com/Parker-Fawcett/rebuild-dossier',
+  },
+  {
     name: 'Skora',
     type: 'B2B SaaS',
-    color: 'purple',
+    color: 'cyan',
     image: '/images/skora.png',
     description:
-      'A B2B college counseling management platform designed to streamline counselor workflows and student tracking. Successfully incubated via a formal partnership with the Jordan Applied Technology Center (JATC) after a blind enterprise pitch.',
+      'B2B college counseling SaaS in beta pilot — engineered Project Hermes, a GTM engine with 95% feature parity to tier-1 outreach platforms ($3K–$15K/mo) at $0 marginal operating cost. Incubated via JATC partnership after a blind enterprise pitch.',
     stack: [
       'Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM',
       { label: 'Clerk Auth', colorClass: 'tag-cyan' },
@@ -20,30 +50,30 @@ const projects = [
       { label: 'Stripe', colorClass: 'tag-green' },
     ],
     metrics: [
-      'Integrated Groq AI for low-latency client communication tools',
+      'Beta pilot validating core SaaS infra; driving early-adopter acquisition via Product Hunt launch + Trustpilot reputation pipelines',
+      'Project Hermes: 4-provider waterfall data validation + 26 dynamic conversion angles via Docker/Caddy with automated CAN-SPAM compliance',
       'Scaled infrastructure to support multiple active Stripe subscription tiers ($49–$199/mo)',
-      <a key="code-elevation" href="https://codeelevation.org" target="_blank" rel="noopener noreferrer" style={{color:'rgba(139,92,246,0.8)',textDecoration:'underline',textUnderlineOffset:2}}>Built and launched the core engine live for 30+ students at Code Elevation hackathon</a>,
     ],
     architecture: {
-      summary: 'Architected as a full-stack Next.js application with a serverless PostgreSQL backend, real-time Redis caching layer, and AI-powered communication tools via Groq.',
+      summary: 'Full-stack Next.js + serverless PostgreSQL with Project Hermes GTM engine: 4-provider waterfall enrichment and 26-angle conversion pipelines orchestrated via Docker/Caddy.',
       highlights: [
-        'Drizzle ORM for type-safe database queries against Neon PostgreSQL with connection pooling',
-        'Clerk Auth handles multi-tenant authentication with organization-based access control',
-        'Redis caching layer reduces latency for frequently accessed counselor-student data',
-        'Groq AI integration powers low-latency communication suggestions and automated follow-ups',
-        'Stripe subscription tiers ($49/$99/$199 per month) with feature gating per plan',
+        'Drizzle ORM for type-safe queries against Neon PostgreSQL with connection pooling',
+        'Clerk Auth multi-tenant auth with organization-based access control',
+        'Redis caching layer for counselor-student data',
+        '4-provider waterfall validation + Docker/Caddy for CAN-SPAM compliant outreach at $0 marginal cost',
+        'Groq AI for low-latency communication tools; Stripe tiers ($49/$99/$199) with feature gating',
       ],
     },
     liveUrl: 'https://skoraadmit.com',
-    githubUrl: 'https://github.com/businessfawcett-cloud/AdmitPath',
+    githubUrl: 'https://github.com/Parker-Fawcett/AdmitPath',
   },
   {
     name: 'CatchAndTrade',
-    type: 'Marketplace',
-    color: 'cyan',
+    type: 'Marketplace · Fawcett Capital LLC',
+    color: 'green',
     image: '/images/catch-and-trade.png',
     description:
-      'A high-performance monorepo trading card marketplace engineered for the TCG community, featuring real-time card scanning and instant grading.',
+      'Venture under Fawcett Capital LLC — a scalable trading card marketplace tracking 20,000+ collectibles with sub-200ms query times, real-time grading engines and OCR scanning. Holding entity centralizes compliance and merchant processing for SaaS + e-commerce portfolio.',
     stack: [
       'Next.js', 'React', { label: 'Supabase PostgreSQL', colorClass: 'tag-green' },
       { label: 'Tesseract.js OCR', colorClass: 'tag-orange' },
@@ -55,7 +85,7 @@ const projects = [
       'Integrated client-side OCR scanning engine to process physical cards seamlessly',
     ],
     architecture: {
-      summary: 'Built as a monorepo with a Next.js frontend and Supabase backend, featuring real-time OCR card scanning and a deeply optimized database schema for sub-200ms queries across 20k+ collectibles.',
+      summary: 'Monorepo Next.js + Supabase backend with real-time OCR card scanning and deeply optimized schema for sub-200ms queries across 20k+ collectibles. Operated under Fawcett Capital LLC holding structure.',
       highlights: [
         'Supabase PostgreSQL with strategic indexing and materialized views for fast card lookups',
         'Tesseract.js OCR runs entirely client-side — no server costs for card scanning',
@@ -65,7 +95,7 @@ const projects = [
       ],
     },
     liveUrl: 'https://catchandtrade.com',
-    githubUrl: 'https://github.com/businessfawcett-cloud/catchandtrade',
+    githubUrl: 'https://github.com/Parker-Fawcett/catchandtrade',
   },
   {
     name: 'MyNexusAI',
@@ -97,7 +127,7 @@ const projects = [
       ],
     },
     liveUrl: 'https://mynexusai.org',
-    githubUrl: 'https://github.com/businessfawcett-cloud/mynexusai-support',
+    githubUrl: 'https://github.com/Parker-Fawcett/mynexusai-support',
   },
   {
     name: 'Alvien',

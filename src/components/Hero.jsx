@@ -61,7 +61,7 @@ export default function Hero() {
             className="tag tag-purple"
             style={{ fontSize: '0.75rem', marginBottom: 20 }}
           >
-            Full-Stack Engineer & AI Skills Engineer
+            Enterprise AI Skills Engineer @ CHG Healthcare
           </span>
         </motion.div>
 
@@ -89,13 +89,29 @@ export default function Hero() {
           style={{
             fontSize: 'clamp(1rem, 2vw, 1.15rem)',
             color: '#6b6b80',
-            maxWidth: 600,
-            margin: '0 auto 36px',
+            maxWidth: 620,
+            margin: '0 auto 12px',
             lineHeight: 1.7,
           }}
         >
-          Building scalable data pipelines, enterprise automations,
-          and production SaaS platforms that bridge AI and real-world impact.
+          Enterprise AI Skills Engineer and independent researcher specializing in
+          agentic software engineering and LLM migrations — architecting enterprise-grade
+          AI infrastructure and scaling B2B SaaS platforms.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.25, ease: 'easeOut' }}
+          style={{
+            fontSize: '0.85rem',
+            color: '#9a9ab0',
+            maxWidth: 600,
+            margin: '0 auto 36px',
+            lineHeight: 1.6,
+          }}
+        >
+          Herriman, UT &nbsp;·&nbsp; CHG Healthcare — Enterprise Data & AI &nbsp;·&nbsp; 512 tests, 83 files, zero-drift agentic tooling
         </motion.p>
 
         <motion.div

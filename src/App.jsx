@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import Experience from './components/Experience'
 import CaseStudies from './components/CaseStudies'
 import DataSpotlight from './components/DataSpotlight'
 import Contact from './components/Contact'
@@ -10,6 +11,7 @@ function App() {
     <>
       <Navbar />
       <Hero />
+      <Experience />
       <CaseStudies />
       <DataSpotlight />
       <Contact />

@@ -2,9 +2,10 @@ import { motion } from 'framer-motion'
 import { useIsMobile } from '../hooks/useIsMobile'
 
 const links = [
-  { label: 'Email', href: 'mailto:parkerscottfawcett@gmail.com', icon: '✉' },
-  { label: 'GitHub', href: 'https://github.com/businessfawcett-cloud', icon: '⌂' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/placeholder', icon: '⊞' },
+  { label: 'Email', href: 'mailto:Parkerscottfawcett@gmail.com', icon: '✉' },
+  { label: 'GitHub', href: 'https://github.com/Parker-Fawcett', icon: '⌂' },
+  { label: 'Website', href: 'https://www.parkerfawcett.com', icon: '◯' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/parker-fawcett', icon: '⊞' },
 ]
 
 export default function Contact() {
@@ -23,8 +24,11 @@ export default function Contact() {
         <h2 className="section-title" style={{ marginBottom: 16 }}>
           Let's Build Something
         </h2>
-        <p style={{ fontSize: '0.9rem', color: '#475569', marginBottom: 40, maxWidth: 480, margin: '0 auto 40px' }}>
+        <p style={{ fontSize: '0.9rem', color: '#475569', marginBottom: 12, maxWidth: 520, margin: '0 auto 12px' }}>
           Open to research collaboration, enterprise architecture discussions, and building the next generation of AI-powered tools.
+        </p>
+        <p style={{ fontSize: '0.8rem', color: '#9a9ab0', marginBottom: 40 }}>
+          Herriman, UT &nbsp;·&nbsp; <a href="tel:+18015002924" style={{ color: '#7c3aed', textDecoration: 'none' }}>801-500-2924</a> &nbsp;·&nbsp; <a href="https://www.parkerfawcett.com" target="_blank" rel="noopener noreferrer" style={{ color: '#7c3aed', textDecoration: 'none' }}>parkerfawcett.com</a>
         </p>
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center' }}>
