@@ -7,7 +7,7 @@ const steps = [
 export default function DataSpotlight() {
   return (
     <section id="data-spotlight" className="section-container" style={{ borderTop: '1px solid var(--line)' }}>
-      <p className="section-label">Data spotlight</p>
+      <p className="section-label">03 · Data spotlight</p>
       <h2 className="section-title">From scrape to brief</h2>
 
       <div

@@ -160,7 +160,7 @@ export default function CaseStudies() {
 
   return (
     <section id="case-studies" className="section-container">
-      <p className="section-label">Projects</p>
+      <p className="section-label">02 · Projects</p>
       <h2 className="section-title">Selected work</h2>
 
       <div style={{ borderBottom: '1px solid var(--line)' }}>

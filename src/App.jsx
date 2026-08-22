@@ -17,9 +17,11 @@ function App() {
       <Experience />
       <CaseStudies />
       <DataSpotlight />
-      <SignOff />
-      <Contact />
-      <Footer />
+      <div style={{ background: 'var(--ink)', marginTop: 48 }}>
+        <SignOff />
+        <Contact />
+        <Footer />
+      </div>
     </>
   )
 }

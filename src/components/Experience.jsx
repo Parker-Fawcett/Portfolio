@@ -56,7 +56,7 @@ const leadership = [
 export default function Experience() {
   return (
     <section id="experience" className="section-container">
-      <p className="section-label">Background</p>
+      <p className="section-label">01 · Background</p>
       <h2 className="section-title">Experience</h2>
 
       <div>

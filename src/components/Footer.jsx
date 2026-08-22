@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer style={{ borderTop: '1px solid var(--line)', background: 'var(--ink)' }}>
+    <footer style={{ borderTop: '1px solid rgba(246, 246, 244, 0.12)' }}>
       <div
         style={{
           maxWidth: 1120,

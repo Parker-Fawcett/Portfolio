@@ -1,15 +1,11 @@
 const navItems = [
-  { label: 'Experience', href: '#experience' },
-  { label: 'Work', href: '#case-studies' },
-  { label: 'Spotlight', href: '#data-spotlight' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Experience', href: '#experience', desktopOnly: true },
+  { label: 'Work', href: '#case-studies', desktopOnly: false },
+  { label: 'Spotlight', href: '#data-spotlight', desktopOnly: true },
+  { label: 'Contact', href: '#contact', desktopOnly: false },
 ]
 
 export default function Navbar() {
-  const items = window.innerWidth < 640
-    ? navItems.filter((item) => ['Work', 'Contact'].includes(item.label))
-    : navItems
-
   return (
     <header
       style={{
@@ -52,10 +48,11 @@ export default function Navbar() {
           Parker Fawcett
         </a>
         <nav style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
-          {items.map((item) => (
+          {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
+              className={item.desktopOnly ? 'nav-desktop' : undefined}
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.72rem',
@@ -76,6 +73,11 @@ export default function Navbar() {
           ))}
         </nav>
       </div>
+      <style>{`
+        @media (max-width: 640px) {
+          .nav-desktop { display: none !important; }
+        }
+      `}</style>
     </header>
   )
 }
