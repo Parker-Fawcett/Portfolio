@@ -204,7 +204,9 @@ export default function CaseStudies() {
         transition={{ duration: 0.5 }}
       >
         <p className="section-label">Case Studies</p>
-        <h2 className="section-title">Engineering in Production</h2>
+        <h2 className="section-title">
+          Engineering in <span className="gradient-text">Production</span>
+        </h2>
       </motion.div>
 
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(320px, 1fr))', gap: isMobile ? 20 : 24 }}>

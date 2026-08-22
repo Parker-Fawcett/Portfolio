@@ -3,13 +3,15 @@ export default function Footer() {
     <footer
       style={{
         textAlign: 'center',
-        padding: '32px 24px',
+        padding: '36px 24px',
         fontSize: '0.7rem',
-        color: 'rgba(255,255,255,0.2)',
-        borderTop: '1px solid rgba(255,255,255,0.04)',
+        fontFamily: "'Space Grotesk', sans-serif",
+        letterSpacing: '0.04em',
+        color: 'var(--text-muted)',
+        borderTop: '1px solid rgba(255,255,255,0.05)',
       }}
     >
-      &copy; {new Date().getFullYear()} Parker Fawcett. Built with React & Framer Motion.
+      &copy; {new Date().getFullYear()} Parker Fawcett&ensp;·&ensp;Built with React & Framer Motion
     </footer>
   )
 }

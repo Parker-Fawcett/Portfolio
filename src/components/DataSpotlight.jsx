@@ -19,29 +19,31 @@ export default function DataSpotlight() {
         transition={{ duration: 0.5 }}
       >
         <p className="section-label">Data & Automation</p>
-        <h2 className="section-title">The Pipeline</h2>
+        <h2 className="section-title">
+          The <span className="gradient-text">Pipeline</span>
+        </h2>
       </motion.div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 20 : 32, alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 20 : 28, alignItems: 'start' }}>
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <div className="glass-card" style={{ padding: '32px 28px' }}>
+          <div className="glass-card" style={{ padding: '34px 30px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-              <h3 style={{ fontSize: '1.3rem', fontWeight: 700, letterSpacing: '-0.02em' }}>Alvien</h3>
-              <span className="tag" style={{ fontSize: '0.65rem' }}>B2B BI SaaS</span>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text)' }}>Alvien</h3>
+              <span className="tag tag-cyan" style={{ fontSize: '0.62rem' }}>B2B BI SaaS</span>
             </div>
 
-            <p style={{ fontSize: '0.85rem', color: '#475569', lineHeight: 1.7, marginBottom: 20 }}>
+            <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.75, marginBottom: 22 }}>
               A B2B business intelligence and competitor analysis SaaS that automates the extraction of public market data to generate structured strategic briefs.
             </p>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 24 }}>
               {['Python', 'FastAPI', { label: 'Firecrawl API', colorClass: 'tag-cyan' }, { label: 'Groq LLMs', colorClass: 'tag-orange' }, 'TailwindCSS'].map((tech) => (
-                <span key={typeof tech === 'string' ? tech : tech.label} className={`tag ${typeof tech === 'string' ? '' : tech.colorClass}`} style={{ fontSize: '0.65rem' }}>
+                <span key={typeof tech === 'string' ? tech : tech.label} className={`tag ${typeof tech === 'string' ? '' : tech.colorClass}`} style={{ fontSize: '0.63rem' }}>
                   {typeof tech === 'string' ? tech : tech.label}
                 </span>
               ))}
@@ -52,14 +54,11 @@ export default function DataSpotlight() {
                 href="https://alvien.onrender.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass"
-                style={{ padding: '8px 18px', borderRadius: 100, textDecoration: 'none', color: '#1a1a2e', fontSize: '0.75rem', fontWeight: 600, border: '1px solid rgba(139, 92, 246, 0.3)', background: 'rgba(139, 92, 246, 0.08)', transition: 'all 0.2s' }}
-                onMouseEnter={(e) => (e.target.style.background = 'rgba(139, 92, 246, 0.12)')}
-                onMouseLeave={(e) => (e.target.style.background = '')}
+                className="btn btn-primary"
+                style={{ padding: '9px 22px', fontSize: '0.75rem' }}
               >
                 Live Site
               </a>
-
             </div>
           </div>
         </motion.div>
@@ -70,25 +69,44 @@ export default function DataSpotlight() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
         >
-          <div className="glass-card" style={{ padding: '32px 28px' }}>
-            <h4 style={{ fontSize: '0.85rem', fontWeight: 600, color: '#334155', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 24 }}>
+          <div className="glass-card" style={{ padding: '34px 30px' }}>
+            <h4 style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 26 }}>
               Architecture Flow
             </h4>
 
             <div style={{ position: 'relative' }}>
               {steps.map((step, i) => (
-                <div key={step.label} style={{ display: 'flex', gap: 16, marginBottom: i < steps.length - 1 ? 0 : 0 }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 24 }}>
-                    <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(139, 92, 246, 0.2)', border: '2px solid rgba(139, 92, 246, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: 700, color: 'rgba(139, 92, 246, 0.9)', flexShrink: 0 }}>
+                <div key={step.label} style={{ display: 'flex', gap: 18 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 26 }}>
+                    <div style={{
+                      width: 26,
+                      height: 26,
+                      borderRadius: '50%',
+                      background: 'rgba(139, 92, 246, 0.15)',
+                      border: '1px solid rgba(139, 92, 246, 0.5)',
+                      boxShadow: '0 0 16px rgba(139, 92, 246, 0.25)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.68rem',
+                      fontWeight: 700,
+                      color: 'var(--accent-bright)',
+                      flexShrink: 0,
+                    }}>
                       {i + 1}
                     </div>
                     {i < steps.length - 1 && (
-                      <div style={{ width: 1, flex: 1, background: 'linear-gradient(to bottom, rgba(139, 92, 246, 0.3), transparent)', minHeight: 28 }} />
+                      <div style={{
+                        width: 1,
+                        flex: 1,
+                        minHeight: 32,
+                        background: 'linear-gradient(to bottom, rgba(139, 92, 246, 0.45), rgba(139, 92, 246, 0.08))',
+                      }} />
                     )}
                   </div>
-                  <div style={{ paddingBottom: i < steps.length - 1 ? 16 : 0 }}>
-                    <p style={{ fontSize: '0.85rem', fontWeight: 600, color: '#1e293b', marginBottom: 4 }}>{step.label}</p>
-                    <p style={{ fontSize: '0.75rem', color: '#475569', lineHeight: 1.6 }}>{step.desc}</p>
+                  <div style={{ paddingBottom: i < steps.length - 1 ? 24 : 0 }}>
+                    <p style={{ fontSize: '0.87rem', fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>{step.label}</p>
+                    <p style={{ fontSize: '0.77rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>{step.desc}</p>
                   </div>
                 </div>
               ))}

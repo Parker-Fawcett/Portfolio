@@ -23,50 +23,59 @@ export default function Navbar() {
   const visibleItems = isMobile ? navItems.filter((item) => ['Home', 'Work'].includes(item.label)) : navItems
 
   return (
-    <div style={{ position: 'fixed', top: isMobile ? 8 : 16, left: 0, right: 0, display: 'flex', justifyContent: scrolled ? 'flex-end' : 'center', padding: '0 12px', pointerEvents: 'none', zIndex: 1000 }}>
+    <div style={{ position: 'fixed', top: isMobile ? 10 : 18, left: 0, right: 0, display: 'flex', justifyContent: scrolled ? 'flex-end' : 'center', padding: '0 14px', pointerEvents: 'none', zIndex: 1000 }}>
       <motion.nav
         layout
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 200, damping: 25, duration: 0.5 }}
-        className="card"
         style={{
           pointerEvents: 'auto',
-          padding: isMobile ? '8px 16px' : '10px 24px',
+          padding: isMobile ? '9px 18px' : '11px 26px',
           display: 'flex',
           alignItems: 'center',
-          gap: isMobile ? 16 : 32,
-          background: '#ffffff',
+          gap: isMobile ? 16 : 30,
+          background: scrolled ? 'rgba(12, 12, 21, 0.85)' : 'rgba(12, 12, 21, 0.6)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
           borderRadius: 100,
-          border: '3px solid #1a1a2e',
-          boxShadow: '6px 6px 0px #1a1a2e',
+          border: `1px solid ${scrolled ? 'rgba(255,255,255,0.14)' : 'rgba(255,255,255,0.09)'}`,
+          boxShadow: scrolled ? '0 8px 40px rgba(0,0,0,0.5)' : 'none',
+          transition: 'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
         }}
       >
-        <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: isMobile ? '0.85rem' : '1rem', color: '#1a1a2e' }}>
-          PF<span style={{ color: '#7c3aed' }}>.</span>
-        </span>
-        <div style={{ display: 'flex', gap: isMobile ? 12 : 20 }}>
+        <a
+          href="#hero"
+          style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontWeight: 700,
+            fontSize: isMobile ? '0.85rem' : '1rem',
+            color: 'var(--text)',
+            textDecoration: 'none',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          PF<span style={{ color: 'var(--accent-bright)' }}>.</span>
+        </a>
+        <div style={{ width: 1, height: 14, background: 'rgba(255,255,255,0.1)' }} />
+        <div style={{ display: 'flex', gap: isMobile ? 14 : 22 }}>
           {visibleItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
               style={{
-                color: '#6b6b80',
+                color: 'var(--text-secondary)',
                 textDecoration: 'none',
                 fontSize: isMobile ? '0.72rem' : '0.8rem',
-                fontWeight: 600,
+                fontWeight: 500,
                 fontFamily: "'Space Grotesk', sans-serif",
                 transition: 'color 0.15s',
-                padding: '4px 0',
-                borderBottom: '2px solid transparent',
               }}
               onMouseEnter={(e) => {
-                e.target.style.color = '#7c3aed'
-                e.target.style.borderBottomColor = '#7c3aed'
+                e.target.style.color = '#fff'
               }}
               onMouseLeave={(e) => {
-                e.target.style.color = '#6b6b80'
-                e.target.style.borderBottomColor = 'transparent'
+                e.target.style.color = 'var(--text-secondary)'
               }}
             >
               {item.label}

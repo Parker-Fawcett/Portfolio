@@ -20,51 +20,55 @@ export default function Contact() {
         transition={{ duration: 0.5 }}
         style={{ textAlign: 'center' }}
       >
-        <p className="section-label">Contact</p>
-        <h2 className="section-title" style={{ marginBottom: 16 }}>
-          Let's Build Something
+        <p className="section-label" style={{ justifyContent: 'center' }}>Contact</p>
+        <h2 className="section-title" style={{ marginBottom: 18 }}>
+          Let&apos;s Build <span className="gradient-text">Something</span>
         </h2>
-        <p style={{ fontSize: '0.9rem', color: '#475569', marginBottom: 12, maxWidth: 520, margin: '0 auto 12px' }}>
+        <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', maxWidth: 520, margin: '0 auto 14px', lineHeight: 1.7 }}>
           Open to research collaboration, enterprise architecture discussions, and building the next generation of AI-powered tools.
         </p>
-        <p style={{ fontSize: '0.8rem', color: '#9a9ab0', marginBottom: 40 }}>
-          Herriman, UT &nbsp;·&nbsp; <a href="tel:+18015002924" style={{ color: '#7c3aed', textDecoration: 'none' }}>801-500-2924</a> &nbsp;·&nbsp; <a href="https://www.parkerfawcett.com" target="_blank" rel="noopener noreferrer" style={{ color: '#7c3aed', textDecoration: 'none' }}>parkerfawcett.com</a>
+        <p style={{ fontSize: '0.8rem', fontFamily: "'Space Grotesk', sans-serif", color: 'var(--text-muted)', letterSpacing: '0.04em', marginBottom: 44 }}>
+          Herriman, UT&ensp;·&ensp;
+          <a href="tel:+18015002924" style={{ color: 'var(--accent-bright)', textDecoration: 'none' }}>801-500-2924</a>
+          &ensp;·&ensp;
+          <a href="https://www.parkerfawcett.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-bright)', textDecoration: 'none' }}>parkerfawcett.com</a>
         </p>
 
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', flexDirection: isMobile ? 'column' : 'row', alignItems: 'stretch' }}>
           {links.map((link) => (
             <motion.a
               key={link.label}
               href={link.href}
               {...(link.label !== 'Email' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               className="glass"
-              whileHover={{ y: -2 }}
+              whileHover={{ y: -3 }}
               style={{
-                padding: isMobile ? '12px 20px' : '14px 28px',
+                padding: isMobile ? '13px 22px' : '15px 30px',
                 borderRadius: 100,
                 textDecoration: 'none',
                 display: 'flex',
                 alignItems: 'center',
-                gap: 8,
+                justifyContent: 'center',
+                gap: 9,
                 fontSize: '0.85rem',
                 fontWeight: 500,
-                color: '#334155',
-                transition: 'all 0.2s',
-                border: '1px solid #cbd5e1',
+                color: 'var(--text-secondary)',
+                transition: 'color 0.2s, border-color 0.2s, background 0.2s',
+                borderColor: 'var(--border)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#1a1a2e'
-                e.currentTarget.style.borderColor = '#7c3aed'
-                e.currentTarget.style.background = 'rgba(124, 58, 237, 0.04)'
+                e.currentTarget.style.color = '#fff'
+                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.6)'
+                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.color = '#334155'
-                e.currentTarget.style.borderColor = '#cbd5e1'
+                e.currentTarget.style.color = 'var(--text-secondary)'
+                e.currentTarget.style.borderColor = 'var(--border)'
                 e.currentTarget.style.background = ''
               }}
             >
               <span style={{ fontSize: '1rem' }}>{link.icon}</span>
-              {link.label === 'Email' ? 'parkerscottfawcett@gmail.com' : link.href.replace('https://', '')}
+              {link.label === 'Email' ? 'Parkerscottfawcett@gmail.com' : link.href.replace('https://', '')}
             </motion.a>
           ))}
         </div>

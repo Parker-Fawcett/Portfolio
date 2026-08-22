@@ -14,7 +14,7 @@ const experiences = [
       'Automated data ingestion pipelines (Python, SQL, Snowflake) — eliminated manual human PR review bottleneck, exponential time savings',
       'Promoted from intern to full-time AI Engineer prior to junior year by VP of Data & AI',
     ],
-    accent: '#7c3aed',
+    accent: '#a78bfa',
   },
   {
     role: 'Freelance Technical Consultant',
@@ -24,7 +24,7 @@ const experiences = [
       'Architect and deploy custom web apps, API integrations, and e-commerce infra (React, Node.js) for international SMB clients',
       'Re-engineered social marketing funnel for apparel client — restructured video content, converted passive traffic to verified leads, mitigated attrition',
     ],
-    accent: '#06b6d4',
+    accent: '#22d3ee',
   },
   {
     role: 'Founder & Managing Director',
@@ -34,7 +34,7 @@ const experiences = [
       'Holding entity centralizing financial reporting, compliance, and merchant processing for SaaS + e-commerce portfolio',
       'Venture scaling: CatchAndTrade marketplace — 20,000+ collectibles, sub-200ms queries, real-time grading + OCR',
     ],
-    accent: '#10b981',
+    accent: '#34d399',
   },
 ]
 
@@ -55,37 +55,74 @@ export default function Experience() {
         transition={{ duration: 0.5 }}
       >
         <p className="section-label">Experience</p>
-        <h2 className="section-title">Where I&apos;ve Built</h2>
+        <h2 className="section-title">
+          Where I&apos;ve <span className="gradient-text">Built</span>
+        </h2>
       </motion.div>
 
-      <div style={{ display: 'grid', gap: 20, marginBottom: 56 }}>
-        {experiences.map((exp, i) => (
-          <motion.div
-            key={exp.org}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: i * 0.08 }}
-            className="card"
-            style={{ padding: isMobile ? '20px 18px' : '28px 28px', borderLeft: `6px solid ${exp.accent}` }}
-          >
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 8, marginBottom: 12 }}>
-              <div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, letterSpacing: '-0.02em' }}>{exp.role}</h3>
-                <p style={{ fontSize: '0.85rem', color: exp.accent, fontWeight: 600 }}>{exp.org}</p>
-                {exp.location && <p style={{ fontSize: '0.75rem', color: '#9a9ab0' }}>{exp.location}</p>}
+      <div style={{ position: 'relative', paddingLeft: isMobile ? 24 : 36, marginBottom: 72 }}>
+        <div
+          style={{
+            position: 'absolute',
+            left: isMobile ? 7 : 11,
+            top: 8,
+            bottom: 8,
+            width: 1,
+            background: 'linear-gradient(to bottom, rgba(139,92,246,0.5), rgba(34,211,238,0.25), transparent)',
+          }}
+        />
+        <div style={{ display: 'grid', gap: 24 }}>
+          {experiences.map((exp, i) => (
+            <motion.div
+              key={exp.org}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              style={{ position: 'relative' }}
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  left: isMobile ? -24 : -36,
+                  top: 26,
+                  width: 15,
+                  height: 15,
+                  transform: 'translateX(-50%)',
+                }}
+              >
+                <div
+                  style={{
+                    width: 9,
+                    height: 9,
+                    borderRadius: '50%',
+                    background: exp.accent,
+                    boxShadow: `0 0 12px ${exp.accent}`,
+                    margin: '3px auto',
+                  }}
+                />
               </div>
-              <span className="tag" style={{ alignSelf: 'flex-start', fontSize: '0.65rem', whiteSpace: 'nowrap' }}>{exp.period}</span>
-            </div>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-              {exp.highlights.map((h, idx) => (
-                <li key={idx} style={{ fontSize: '0.82rem', color: '#4a4a5e', paddingLeft: 16, position: 'relative', marginBottom: 6, lineHeight: 1.6 }}>
-                  <span style={{ position: 'absolute', left: 0, color: exp.accent, fontWeight: 700 }}>→</span>{h}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ))}
+
+              <div className="card" style={{ padding: isMobile ? '22px 20px' : '30px 32px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 8, marginBottom: 16 }}>
+                  <div>
+                    <h3 style={{ fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text)' }}>{exp.role}</h3>
+                    <p style={{ fontSize: '0.85rem', color: exp.accent, fontWeight: 600 }}>{exp.org}</p>
+                    {exp.location && <p style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>{exp.location}</p>}
+                  </div>
+                  <span className="tag" style={{ alignSelf: 'flex-start', fontSize: '0.65rem', whiteSpace: 'nowrap' }}>{exp.period}</span>
+                </div>
+                <ul style={{ listStyle: 'none', padding: 0 }}>
+                  {exp.highlights.map((h, idx) => (
+                    <li key={idx} style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', paddingLeft: 18, position: 'relative', marginBottom: 8, lineHeight: 1.65 }}>
+                      <span style={{ position: 'absolute', left: 0, color: exp.accent, fontWeight: 700 }}>→</span>{h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       <motion.div
@@ -94,13 +131,13 @@ export default function Experience() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: 16, letterSpacing: '-0.02em' }}>Leadership & Ecosystem</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 16, marginBottom: 56 }}>
+        <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: 20, letterSpacing: '-0.02em', color: 'var(--text)' }}>Leadership & Ecosystem</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 16, marginBottom: 64 }}>
           {leadership.map((item) => (
-            <div key={item.title} className="card" style={{ padding: '18px 16px' }}>
-              <p style={{ fontSize: '0.8rem', fontWeight: 700, marginBottom: 4 }}>{item.title}</p>
-              <p style={{ fontSize: '0.72rem', color: '#7c3aed', fontWeight: 600, marginBottom: 4 }}>{item.role} · {item.period}</p>
-              <p style={{ fontSize: '0.76rem', color: '#6b6b80', lineHeight: 1.6 }}>{item.desc}</p>
+            <div key={item.title} className="card" style={{ padding: '22px 20px' }}>
+              <p style={{ fontSize: '0.82rem', fontWeight: 700, marginBottom: 6, color: 'var(--text)' }}>{item.title}</p>
+              <p style={{ fontSize: '0.71rem', color: 'var(--accent-bright)', fontWeight: 600, marginBottom: 8 }}>{item.role} · {item.period}</p>
+              <p style={{ fontSize: '0.76rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>{item.desc}</p>
             </div>
           ))}
         </div>
@@ -111,20 +148,20 @@ export default function Experience() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="card"
-        style={{ padding: isMobile ? '20px 18px' : '24px 28px', background: '#faf7f2' }}
+        className="glass-card"
+        style={{ padding: isMobile ? '24px 20px' : '30px 34px' }}
       >
-        <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 12 }}>Education & Skills</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 20 }}>
+        <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: 18, color: 'var(--text)' }}>Education & Skills</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 28 }}>
           <div>
-            <p style={{ fontSize: '0.85rem', fontWeight: 600 }}>Herriman High School & Jordan Applied Technology Center (JATC)</p>
-            <p style={{ fontSize: '0.75rem', color: '#6b6b80' }}>Expected June 2028 · GPA 3.8</p>
-            <p style={{ fontSize: '0.75rem', color: '#6b6b80', marginTop: 6, lineHeight: 1.6 }}>AP Language, AP World History, AP Human Geography; Concurrent Enrollment (SLCC: AutoCAD, Business Fundamentals, Personal Finance). BYU quantitative research case-study subject on youth pioneers in automated systems.</p>
+            <p style={{ fontSize: '0.87rem', fontWeight: 600, color: 'var(--text)' }}>Herriman High School & Jordan Applied Technology Center (JATC)</p>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 2 }}>Expected June 2028 · GPA 3.8</p>
+            <p style={{ fontSize: '0.77rem', color: 'var(--text-secondary)', marginTop: 10, lineHeight: 1.7 }}>AP Language, AP World History, AP Human Geography; Concurrent Enrollment (SLCC: AutoCAD, Business Fundamentals, Personal Finance). BYU quantitative research case-study subject on youth pioneers in automated systems.</p>
           </div>
-          <div style={{ fontSize: '0.76rem', color: '#4a4a5e', lineHeight: 1.7 }}>
-            <p><strong>Business:</strong> GTM Strategy, B2B Sales, Market Research, Agile/Scrum, Financial Modeling</p>
-            <p><strong>Stack:</strong> Python, SQL, TypeScript, Next.js 14, React, Node.js, PostgreSQL, Snowflake, Redis</p>
-            <p><strong>AI & Infra:</strong> Claude Code, Groq AI, OpenRouter, RAG Pipelines, Docker, Vercel, Supabase, Twilio, MCP</p>
+          <div style={{ fontSize: '0.78rem', lineHeight: 1.8 }}>
+            <p><strong style={{ color: 'var(--accent-bright)' }}>Business</strong><span style={{ color: 'var(--text-secondary)' }}> — GTM Strategy, B2B Sales, Market Research, Agile/Scrum, Financial Modeling</span></p>
+            <p><strong style={{ color: 'var(--cyan)' }}>Stack</strong><span style={{ color: 'var(--text-secondary)' }}> — Python, SQL, TypeScript, Next.js 14, React, Node.js, PostgreSQL, Snowflake, Redis</span></p>
+            <p><strong style={{ color: 'var(--green)' }}>AI & Infra</strong><span style={{ color: 'var(--text-secondary)' }}> — Claude Code, Groq AI, OpenRouter, RAG Pipelines, Docker, Vercel, Supabase, Twilio, MCP</span></p>
           </div>
         </div>
       </motion.div>
