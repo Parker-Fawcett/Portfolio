@@ -7,29 +7,29 @@ import { useIsMobile } from '../hooks/useIsMobile'
 const projects = [
   {
     name: 'Rebuild Dossier',
-    type: 'Open-Source Research',
+    type: 'Open-source research',
     color: 'purple',
     image: '/images/rebuild-dossier.png',
     description:
-      'MIT-licensed evaluation tool with 512 unit tests across 83 files — mechanically-enforced interface contracts that guarantee reliable AI code generation. Sole-author paper submitted to Empirical Software Engineering (EMSE) after arXiv endorsement by Presset Lutz.',
+      'A test harness for rebuilding apps with AI. 512 tests across 83 files pin down the interfaces so a rebuild either matches the original or fails loudly. The paper behind it is submitted to Empirical Software Engineering.',
     stack: [
-      'Python', { label: 'AST Parsing', colorClass: 'tag-cyan' },
-      'Playwright', { label: 'Mutation Testing', colorClass: 'tag-orange' },
+      'Python', { label: 'AST parsing', colorClass: 'tag-cyan' },
+      'Playwright', { label: 'Mutation testing', colorClass: 'tag-orange' },
       'Docker', 'PostgreSQL',
     ],
     metrics: [
-      'Solved the “0% behavioral equivalence” bottleneck in AI code migration with a zero-destruction mutation testing pipeline',
-      '512 unit tests across 83 files enforce interface contracts — reliable agentic rebuilds by construction',
-      'Applied for LTFF research grant to expand benchmarking and evaluate structural failure modes of higher-tier models',
+      'AI code migrations used to score 0% behavioral equivalence; AST-based mutation checks verify behavior without touching the source',
+      '512 unit tests across 83 files act as executable specs, so model drift shows up as hard failures instead of quiet regressions',
+      'Applied for an LTFF grant to push the benchmarks to higher-tier models',
     ],
     architecture: {
-      summary: 'A mechanically-enforced spec system for agentic app rebuilds: AST parsing + Playwright verification ensures higher-tier models fail structurally, not silently. Documented in “Mechanically-Enforced Specs for Agentic App Rebuilds, and What Model-Tier Failures Reveal.”',
+      summary: 'The idea is to treat specs as mechanically enforced contracts. Instead of hoping a rebuild matches intent, you check it: parse the AST, mutate without destroying, replay behavior through Playwright. The paper is "Mechanically-enforced specs for agentic app rebuilds, and what model-tier failures reveal", sole-authored after an arXiv endorsement from Presset Lutz.',
       highlights: [
-        'AST parsing generates zero-destruction mutations — behavioral equivalence checked without destroying source semantics',
-        'Playwright pipeline verifies end-to-end behavior against mechanically-enforced contracts',
-        '512 tests serve as executable spec: any model-tier drift is caught as a hard failure, not a soft regression',
-        'Benchmarking pipeline designed for LTFF-funded expansion to larger model tiers and longer-horizon tasks',
-        'MIT-licensed, sole-authored and maintained — arXiv → EMSE submission track',
+        'AST-based mutations check behavioral equivalence without corrupting the source under test',
+        'Playwright replays end-to-end flows against the enforced contracts',
+        'When a higher-tier model gets something structurally wrong, tests catch it as a failure rather than letting it slide',
+        'Benchmark pipeline is built to scale up to larger models and longer tasks',
+        'MIT licensed, maintained solo',
       ],
     },
     liveUrl: 'https://github.com/Parker-Fawcett/rebuild-dossier',
@@ -41,7 +41,7 @@ const projects = [
     color: 'cyan',
     image: '/images/skora.png',
     description:
-      'B2B college counseling SaaS in beta pilot — engineered Project Hermes, a GTM engine with 95% feature parity to tier-1 outreach platforms ($3K–$15K/mo) at $0 marginal operating cost. Incubated via JATC partnership after a blind enterprise pitch.',
+      'College counseling software, currently in beta. The interesting piece is Project Hermes, an outbound engine that covers about 95% of what $3K to $15K/mo enterprise platforms do, with zero marginal operating cost. It started through a JATC partnership after a cold pitch.',
     stack: [
       'Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM',
       { label: 'Clerk Auth', colorClass: 'tag-cyan' },
@@ -50,18 +50,18 @@ const projects = [
       { label: 'Stripe', colorClass: 'tag-green' },
     ],
     metrics: [
-      'Beta pilot validating core SaaS infra; driving early-adopter acquisition via Product Hunt launch + Trustpilot reputation pipelines',
-      'Project Hermes: 4-provider waterfall data validation + 26 dynamic conversion angles via Docker/Caddy with automated CAN-SPAM compliance',
-      'Scaled infrastructure to support multiple active Stripe subscription tiers ($49–$199/mo)',
+      'Beta pilot running now; early users come in through a Product Hunt launch and Trustpilot reviews',
+      'Hermes validates every contact through a 4-provider waterfall and tests 26 outreach angles on Docker/Caddy, CAN-SPAM compliant',
+      'Stripe subscriptions run $49 to $199/mo',
     ],
     architecture: {
-      summary: 'Full-stack Next.js + serverless PostgreSQL with Project Hermes GTM engine: 4-provider waterfall enrichment and 26-angle conversion pipelines orchestrated via Docker/Caddy.',
+      summary: 'Next.js on serverless Postgres, Redis for hot paths, Groq for fast drafting. Hermes handles outbound: enrichment waterfall, angle rotation, compliance.',
       highlights: [
-        'Drizzle ORM for type-safe queries against Neon PostgreSQL with connection pooling',
-        'Clerk Auth multi-tenant auth with organization-based access control',
-        'Redis caching layer for counselor-student data',
-        '4-provider waterfall validation + Docker/Caddy for CAN-SPAM compliant outreach at $0 marginal cost',
-        'Groq AI for low-latency communication tools; Stripe tiers ($49/$99/$199) with feature gating',
+        'Drizzle ORM against Neon Postgres, typed queries end to end',
+        'Clerk handles multi-tenant auth with org-level access control',
+        'Redis caches counselor-student data',
+        'Groq powers low-latency message drafting',
+        'Three Stripe tiers ($49/$99/$199) with per-plan feature gating',
       ],
     },
     liveUrl: 'https://skoraadmit.com',
@@ -69,29 +69,29 @@ const projects = [
   },
   {
     name: 'CatchAndTrade',
-    type: 'Marketplace · Fawcett Capital LLC',
+    type: 'Marketplace',
     color: 'green',
     image: '/images/catch-and-trade.png',
     description:
-      'Venture under Fawcett Capital LLC — a scalable trading card marketplace tracking 20,000+ collectibles with sub-200ms query times, real-time grading engines and OCR scanning. Holding entity centralizes compliance and merchant processing for SaaS + e-commerce portfolio.',
+      'Trading-card marketplace under Fawcett Capital, my holding company. Tracks 20,000+ collectibles with sub-200ms queries, plus OCR scanning for grading physical cards.',
     stack: [
       'Next.js', 'React', { label: 'Supabase PostgreSQL', colorClass: 'tag-green' },
       { label: 'Tesseract.js OCR', colorClass: 'tag-orange' },
       'Google OAuth', 'TailwindCSS',
     ],
     metrics: [
-      'Designed a database architecture tracking 20,000+ unique collectibles',
-      'Achieved optimized, sub-200ms query response times',
-      'Integrated client-side OCR scanning engine to process physical cards seamlessly',
+      'Schema tracks 20,000+ unique collectibles',
+      'Most queries return in under 200ms',
+      'OCR runs client-side, so scanning physical cards costs nothing server-side',
     ],
     architecture: {
-      summary: 'Monorepo Next.js + Supabase backend with real-time OCR card scanning and deeply optimized schema for sub-200ms queries across 20k+ collectibles. Operated under Fawcett Capital LLC holding structure.',
+      summary: 'Monorepo: Next.js in front, Supabase underneath. Most of the work went into the schema, which models the TCG domain specifically.',
       highlights: [
-        'Supabase PostgreSQL with strategic indexing and materialized views for fast card lookups',
-        'Tesseract.js OCR runs entirely client-side — no server costs for card scanning',
-        'Database schema optimized for the TCG domain: cards, variants, condition grading, price history',
-        'Google OAuth for frictionless authentication with rate-limited API access',
-        'Sub-200ms query performance through composite indexes and denormalized price snapshots',
+        'Strategic indexing and materialized views keep card lookups fast',
+        'Tesseract.js runs entirely in the browser',
+        'Schema covers cards, variants, condition grading, and price history',
+        'Google OAuth with rate-limited API access',
+        'Sub-200ms comes from composite indexes plus denormalized price snapshots',
       ],
     },
     liveUrl: 'https://catchandtrade.com',
@@ -100,10 +100,10 @@ const projects = [
   {
     name: 'MyNexusAI',
     type: 'AI SaaS',
-    color: 'green',
+    color: 'orange',
     image: '/images/mynexusai.png',
     description:
-      'A production customer support SaaS and enterprise receptionist platform capable of handling automated, real-time voice and text multi-channel communication.',
+      'An AI receptionist that handles voice and text support channels automatically. Live in production with paying users.',
     stack: [
       'Node.js', 'pgvector', 'ChromaDB',
       { label: 'OpenRouter API', colorClass: 'tag-orange' },
@@ -112,18 +112,18 @@ const projects = [
       { label: 'AssemblyAI', colorClass: 'tag-green' },
     ],
     metrics: [
-      'Configured a robust Retrieval-Augmented Generation (RAG) pipeline for domain-specific knowledge extraction',
-      'Implemented multi-LLM fallback routing via OpenRouter to ensure 100% uptime',
-      'Scaled to active production users across tiered models ($29–$299/mo)',
+      'RAG pipeline grounds answers in domain knowledge instead of guessing',
+      'Multi-model fallback through OpenRouter keeps uptime at 100%',
+      'Tiered plans from $29 to $299/mo',
     ],
     architecture: {
-      summary: 'A multi-channel AI receptionist platform combining RAG pipelines, real-time voice processing, and intelligent LLM routing for enterprise-grade customer support automation.',
+      summary: 'Hybrid vector search feeds a routing layer that switches LLM providers instantly when one fails.',
       highlights: [
-        'RAG pipeline uses pgvector (PostgreSQL) + ChromaDB for hybrid vector search across domain knowledge bases',
-        'OpenRouter API provides multi-LLM fallback routing — if one model fails, another takes over instantly',
-        'Twilio Voice/SMS handles inbound and outbound multi-channel communication',
-        'ElevenLabs for ultra-realistic voice synthesis, AssemblyAI for real-time speech-to-text transcription',
-        'Tiered pricing ($29/$99/$299 per month) with usage-based limits per plan',
+        'pgvector plus ChromaDB cover hybrid search across knowledge bases',
+        'OpenRouter routes around provider outages automatically',
+        'Twilio carries inbound and outbound voice/SMS',
+        'ElevenLabs does voices, AssemblyAI does transcription',
+        'Usage limits per tier ($29/$99/$299)',
       ],
     },
     liveUrl: 'https://mynexusai.org',
@@ -135,7 +135,7 @@ const projects = [
     color: 'orange',
     image: '/images/alvien.png',
     description:
-      'A B2B business intelligence and competitor analysis SaaS that automates the extraction of public market data to generate structured strategic briefs.',
+      'Point it at a competitor site and get back a structured strategic brief. Scraping and summarization run automatically.',
     stack: [
       'Python', 'FastAPI',
       { label: 'Firecrawl API', colorClass: 'tag-cyan' },
@@ -143,18 +143,18 @@ const projects = [
       'TailwindCSS',
     ],
     metrics: [
-      'Automates real-time extraction from competitor domains via Firecrawl API, bypassing anti-scraping protections',
-      'Converts unstructured web data into structured JSON tokens processed by Groq LLMs',
-      'Near-zero latency strategic brief generation from raw public market data',
+      'Firecrawl pulls competitor pages even behind anti-scraping protections',
+      'Raw HTML comes back as structured JSON tokens for the LLM',
+      'Briefs generate in near real time',
     ],
     architecture: {
-      summary: 'A lightweight Python/FastAPI backend orchestrating a two-stage pipeline: Firecrawl for intelligent web scraping, then Groq LLMs for real-time structured brief generation.',
+      summary: 'Small Python/FastAPI backend running a two-stage pipeline: Firecrawl scrapes, Groq writes the brief.',
       highlights: [
-        'Firecrawl API intelligently bypasses anti-scraping measures and parses semantic HTML into clean markdown',
-        'Groq LLMs provide near-instantaneous inference for converting scraped data into structured business briefs',
-        'FastAPI async endpoints handle concurrent scraping jobs with minimal resource overhead',
-        'Pipeline designed for idempotent re-scraping — incremental updates without duplicating data',
-        'Outputs structured strategic briefs ready for dashboards, reports, or downstream analytics',
+        'Firecrawl handles anti-bot measures and returns semantic markdown',
+        'Groq converts scraped data into briefs in seconds',
+        'Async endpoints run concurrent scraping jobs cheaply',
+        'Re-scrapes are idempotent, so updates never duplicate rows',
+        'Output lands ready for dashboards or downstream analytics',
       ],
     },
     liveUrl: 'https://alvien.onrender.com',
@@ -162,28 +162,28 @@ const projects = [
   },
   {
     name: 'Code Elevation',
-    type: 'Youth Tech Initiative',
+    type: 'Youth tech initiative',
     color: 'pink',
     image: '/images/code-elevation.png',
     description:
-      'A regional youth technology initiative and competitive hackathon founded to bridge the gap between high school students and professional software engineering workflows. Designed to foster high-agency technical execution among student developers.',
+      'A coding competition I ran for high schoolers in my area, built to feel like real software engineering rather than a school club.',
     stack: [
       'Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM',
-      'Cold Outreach Strategy', 'Corporate Sponsorship',
+      'Cold outreach', 'Sponsorship',
     ],
     metrics: [
-      'Scaled the regional initiative to support 30+ active student participants and competitors',
-      'Executed cold outreach campaigns to secure Pluralsight and CHG Healthcare as headline corporate sponsors',
-      'Negotiated and managed a $1,650 cash prize pool alongside professional developer software license donations',
+      '30+ student participants and competitors',
+      'Pluralsight and CHG Healthcare signed on as sponsors after cold outreach',
+      '$1,650 prize pool plus donated software licenses',
     ],
     architecture: {
-      summary: 'Orchestrated end-to-end event logistics, engineered the web presence, and managed cross-functional corporate relations. Built and presented a live full-stack Next.js/PostgreSQL SaaS architecture demo to train participants in modern production frameworks.',
+      summary: 'I handled everything: event ops, the website, sponsor relationships, and a live walkthrough of a production Next.js/Postgres stack during the event.',
       highlights: [
-        'Engineered the full web presence using Next.js, Neon PostgreSQL, and Drizzle ORM for event registration and management',
-        'Cold outreach campaigns targeted enterprise tech companies — secured Pluralsight and CHG Healthcare as headline sponsors',
-        'Managed a $1,650 cash prize pool with additional professional software license donations from corporate partners',
-        'Designed and presented a live, end-to-end full-stack architecture demonstration during the hackathon',
-        'Built cross-functional relationships bridging high school education with real-world software engineering workflows',
+        'Built the event site on Next.js, Neon Postgres, and Drizzle for registration',
+        'Cold outreach landed Pluralsight and CHG Healthcare as headline sponsors',
+        'Managed the $1,650 pool and license donations from partners',
+        'Presented a full-stack architecture demo live during the hackathon',
+        'Connected students to workflows they would hit in real jobs',
       ],
     },
     liveUrl: 'https://codeelevation.org',
@@ -203,9 +203,9 @@ export default function CaseStudies() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <p className="section-label">Case Studies</p>
+        <p className="section-label">Projects</p>
         <h2 className="section-title">
-          Engineering in <span className="gradient-text">Production</span>
+          Selected <span className="gradient-text">work</span>
         </h2>
       </motion.div>
 

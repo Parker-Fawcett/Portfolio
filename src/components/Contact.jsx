@@ -22,10 +22,10 @@ export default function Contact() {
       >
         <p className="section-label" style={{ justifyContent: 'center' }}>Contact</p>
         <h2 className="section-title" style={{ marginBottom: 18 }}>
-          Let&apos;s Build <span className="gradient-text">Something</span>
+          Get in <span className="gradient-text">touch</span>
         </h2>
         <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', maxWidth: 520, margin: '0 auto 14px', lineHeight: 1.7 }}>
-          Open to research collaboration, enterprise architecture discussions, and building the next generation of AI-powered tools.
+          Fastest way to reach me is email. Open to research collaborations, freelance builds, or talking shop about agent infrastructure.
         </p>
         <p style={{ fontSize: '0.8rem', fontFamily: "'Space Grotesk', sans-serif", color: 'var(--text-muted)', letterSpacing: '0.04em', marginBottom: 44 }}>
           Herriman, UT&ensp;·&ensp;

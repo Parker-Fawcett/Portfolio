@@ -120,9 +120,9 @@ export default function Hero() {
             lineHeight: 1.75,
           }}
         >
-          Enterprise AI Skills Engineer and independent researcher specializing in
-          agentic software engineering and LLM migrations — architecting enterprise-grade
-          AI infrastructure and scaling B2B SaaS platforms.
+          I build AI developer tooling at CHG Healthcare. Outside of that I run a few
+          SaaS products, a holding company, and an open-source research project on
+          how AI rebuilds of software go wrong.
         </motion.p>
 
         <motion.p
@@ -137,7 +137,7 @@ export default function Hero() {
             margin: '0 auto 44px',
           }}
         >
-          Herriman, UT&ensp;·&ensp;512 tests, 83 files&ensp;·&ensp;zero-drift agentic tooling
+          Herriman, Utah&ensp;·&ensp;still in high school
         </motion.p>
 
         <motion.div
@@ -147,10 +147,10 @@ export default function Hero() {
           style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}
         >
           <a href="#case-studies" className="btn btn-primary">
-            View My Work
+            See the work
           </a>
           <a href="#contact" className="btn btn-secondary">
-            Get In Touch
+            Get in touch
           </a>
         </motion.div>
       </div>

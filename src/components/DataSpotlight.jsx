@@ -2,9 +2,9 @@ import { motion } from 'framer-motion'
 import { useIsMobile } from '../hooks/useIsMobile'
 
 const steps = [
-  { label: 'Firecrawl API', desc: 'Bypasses anti-scraping protection, parses raw semantic HTML from competitor domains' },
-  { label: 'Structured JSON', desc: 'Converts unstructured web data into clean, structured JSON tokens' },
-  { label: 'Groq LLMs', desc: 'Processes tokens through Groq for near-zero latency brief generation' },
+  { label: 'Firecrawl API', desc: 'Gets past anti-scraping measures and returns clean markdown from competitor pages' },
+  { label: 'Structured JSON', desc: 'Scraped content comes back as structured JSON tokens' },
+  { label: 'Groq LLMs', desc: 'Groq turns the tokens into a finished brief with near-zero latency' },
 ]
 
 export default function DataSpotlight() {
@@ -18,9 +18,9 @@ export default function DataSpotlight() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <p className="section-label">Data & Automation</p>
+        <p className="section-label">Data spotlight</p>
         <h2 className="section-title">
-          The <span className="gradient-text">Pipeline</span>
+          From scrape to <span className="gradient-text">brief</span>
         </h2>
       </motion.div>
 
@@ -38,7 +38,7 @@ export default function DataSpotlight() {
             </div>
 
             <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.75, marginBottom: 22 }}>
-              A B2B business intelligence and competitor analysis SaaS that automates the extraction of public market data to generate structured strategic briefs.
+              Watches competitor domains and turns what it finds into structured strategic briefs, automatically.
             </p>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 24 }}>
@@ -57,7 +57,7 @@ export default function DataSpotlight() {
                 className="btn btn-primary"
                 style={{ padding: '9px 22px', fontSize: '0.75rem' }}
               >
-                Live Site
+                Live site
               </a>
             </div>
           </div>
@@ -71,7 +71,7 @@ export default function DataSpotlight() {
         >
           <div className="glass-card" style={{ padding: '34px 30px' }}>
             <h4 style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 26 }}>
-              Architecture Flow
+              Architecture flow
             </h4>
 
             <div style={{ position: 'relative' }}>

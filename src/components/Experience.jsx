@@ -4,44 +4,59 @@ import { useIsMobile } from '../hooks/useIsMobile'
 const experiences = [
   {
     role: 'AI Skills Engineer',
-    org: 'CHG Healthcare — Enterprise Data & AI',
+    org: 'CHG Healthcare, Enterprise Data & AI',
     period: 'June 2026 – Present',
-    location: 'Enterprise Division (60+ members)',
+    location: 'Division of 60+',
     highlights: [
-      'Engineered centralized repository eliminating cross-repo drift; auto-provisioning updates to downstream daughter repos',
-      'Architected context-aware plugins with MCP servers, automated hooks, and sub-agents integrating central taxonomy into dev workflow',
-      'Enabled proactive skill suggestion: Claude answers natural-language queries and suggests relevant repo skills in real-time',
-      'Automated data ingestion pipelines (Python, SQL, Snowflake) — eliminated manual human PR review bottleneck, exponential time savings',
-      'Promoted from intern to full-time AI Engineer prior to junior year by VP of Data & AI',
+      'Built a central repo of AI skills and configs so downstream teams stop drifting apart. Updates propagate to daughter repos automatically.',
+      'Wrote Claude Code plugins around MCP servers, hooks, and sub-agents so the company taxonomy shows up in context while you code.',
+      'Claude can now suggest relevant repo skills on its own and answer plain-English questions about them mid-task.',
+      'Automated the data ingestion pipelines (Python, SQL, Snowflake), which let us drop manual PR review for the whole division.',
+      'Promoted from intern to full-time AI engineer before junior year of high school, by the VP of Data & AI.',
     ],
     accent: '#a78bfa',
   },
   {
-    role: 'Freelance Technical Consultant',
-    org: 'Upwork & Independent Consulting',
+    role: 'Freelance technical consultant',
+    org: 'Upwork & independent clients',
     period: '2025 – Present',
     highlights: [
-      'Architect and deploy custom web apps, API integrations, and e-commerce infra (React, Node.js) for international SMB clients',
-      'Re-engineered social marketing funnel for apparel client — restructured video content, converted passive traffic to verified leads, mitigated attrition',
+      'Design and build web apps, API integrations, and storefronts for SMB clients in several countries (React, Node.js).',
+      "Rebuilt an apparel brand's social funnel around short video, which turned passive views into verified leads instead of bounce-offs.",
     ],
     accent: '#22d3ee',
   },
   {
-    role: 'Founder & Managing Director',
+    role: 'Founder & managing director',
     org: 'Fawcett Capital LLC',
     period: '2024 – Present',
     highlights: [
-      'Holding entity centralizing financial reporting, compliance, and merchant processing for SaaS + e-commerce portfolio',
-      'Venture scaling: CatchAndTrade marketplace — 20,000+ collectibles, sub-200ms queries, real-time grading + OCR',
+      'An LLC that keeps financial reporting, compliance, and payments in one place across my ventures.',
+      'Grew CatchAndTrade into a marketplace tracking 20k+ trading cards with sub-200ms queries, OCR scanning, and live grading.',
     ],
     accent: '#34d399',
   },
 ]
 
 const leadership = [
-  { title: 'JATC & Cypress Credit Union Summit', role: 'Lead Event Coordinator', period: '2026 – Present', desc: 'District-wide entrepreneurship conference for hundreds of students — end-to-end logistics, branding, budgeting with Cypress Credit Union.' },
-  { title: 'Code Elevation', role: 'Founder & Executive Director', period: '2025 – 2026', desc: 'Regional youth coding competition for 30+ participants. Sponsors: Pluralsight, CHG Healthcare. $1,650 prize pool + software licenses.' },
-  { title: "Angel's Hands Foundation (501c3)", role: 'Head of Digital Marketing', period: '2025 – Present', desc: 'Core digital systems & omnichannel campaigns (SEO, social) accelerating recurring donor acquisition.' },
+  {
+    title: 'JATC & Cypress Credit Union Summit',
+    role: 'Lead event coordinator',
+    period: '2026 – Present',
+    desc: 'Put together a district-wide entrepreneurship conference with Cypress Credit Union: hundreds of students, all logistics, branding, and budget handled by me.',
+  },
+  {
+    title: 'Code Elevation',
+    role: 'Founder & executive director',
+    period: '2025 – 2026',
+    desc: 'Started a coding competition that pulled in 30+ students. Pluralsight and CHG sponsored; $1,650 in prizes plus donated software licenses.',
+  },
+  {
+    title: "Angel's Hands Foundation (501c3)",
+    role: 'Head of digital marketing',
+    period: '2025 – Present',
+    desc: 'Handle digital marketing for a small non-profit. Mostly SEO and social, aimed at bringing in recurring donors.',
+  },
 ]
 
 export default function Experience() {
@@ -54,9 +69,9 @@ export default function Experience() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <p className="section-label">Experience</p>
+        <p className="section-label">Background</p>
         <h2 className="section-title">
-          Where I&apos;ve <span className="gradient-text">Built</span>
+          <span className="gradient-text">Experience</span>
         </h2>
       </motion.div>
 
@@ -131,7 +146,7 @@ export default function Experience() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: 20, letterSpacing: '-0.02em', color: 'var(--text)' }}>Leadership & Ecosystem</h3>
+        <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: 20, letterSpacing: '-0.02em', color: 'var(--text)' }}>Leadership & ecosystem</h3>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 16, marginBottom: 64 }}>
           {leadership.map((item) => (
             <div key={item.title} className="card" style={{ padding: '22px 20px' }}>
@@ -151,17 +166,17 @@ export default function Experience() {
         className="glass-card"
         style={{ padding: isMobile ? '24px 20px' : '30px 34px' }}
       >
-        <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: 18, color: 'var(--text)' }}>Education & Skills</h3>
+        <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: 18, color: 'var(--text)' }}>Education & skills</h3>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 28 }}>
           <div>
             <p style={{ fontSize: '0.87rem', fontWeight: 600, color: 'var(--text)' }}>Herriman High School & Jordan Applied Technology Center (JATC)</p>
             <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 2 }}>Expected June 2028 · GPA 3.8</p>
-            <p style={{ fontSize: '0.77rem', color: 'var(--text-secondary)', marginTop: 10, lineHeight: 1.7 }}>AP Language, AP World History, AP Human Geography; Concurrent Enrollment (SLCC: AutoCAD, Business Fundamentals, Personal Finance). BYU quantitative research case-study subject on youth pioneers in automated systems.</p>
+            <p style={{ fontSize: '0.77rem', color: 'var(--text-secondary)', marginTop: 10, lineHeight: 1.7 }}>AP Lang, AP World, AP Human Geo, plus concurrent enrollment at SLCC (AutoCAD, business fundamentals, personal finance). BYU faculty are using me as a case study for research on young people starting businesses and building automated systems.</p>
           </div>
           <div style={{ fontSize: '0.78rem', lineHeight: 1.8 }}>
-            <p><strong style={{ color: 'var(--accent-bright)' }}>Business</strong><span style={{ color: 'var(--text-secondary)' }}> — GTM Strategy, B2B Sales, Market Research, Agile/Scrum, Financial Modeling</span></p>
-            <p><strong style={{ color: 'var(--cyan)' }}>Stack</strong><span style={{ color: 'var(--text-secondary)' }}> — Python, SQL, TypeScript, Next.js 14, React, Node.js, PostgreSQL, Snowflake, Redis</span></p>
-            <p><strong style={{ color: 'var(--green)' }}>AI & Infra</strong><span style={{ color: 'var(--text-secondary)' }}> — Claude Code, Groq AI, OpenRouter, RAG Pipelines, Docker, Vercel, Supabase, Twilio, MCP</span></p>
+            <p><strong style={{ color: 'var(--accent-bright)' }}>Business:</strong><span style={{ color: 'var(--text-secondary)' }}> GTM strategy, B2B sales, market research, Agile/Scrum, financial modeling</span></p>
+            <p><strong style={{ color: 'var(--cyan)' }}>Stack:</strong><span style={{ color: 'var(--text-secondary)' }}> Python, SQL, TypeScript, Next.js 14, React, Node.js, PostgreSQL, Snowflake, Redis</span></p>
+            <p><strong style={{ color: 'var(--green)' }}>AI & infra:</strong><span style={{ color: 'var(--text-secondary)' }}> Claude Code, Groq AI, OpenRouter, RAG pipelines, Docker, Vercel, Supabase, Twilio, MCP</span></p>
           </div>
         </div>
       </motion.div>

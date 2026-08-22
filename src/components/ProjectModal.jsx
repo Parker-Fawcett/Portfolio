@@ -146,7 +146,7 @@ export default function ProjectModal({ project, onClose }) {
                 letterSpacing: '0.1em',
                 marginBottom: 12,
               }}>
-                Full Tech Stack
+                Full tech stack
               </h4>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                 {project.stack.map((tech) => (
@@ -168,7 +168,7 @@ export default function ProjectModal({ project, onClose }) {
                   letterSpacing: '0.1em',
                   marginBottom: 12,
                 }}>
-                  Architecture & Approach
+                  Architecture & approach
                 </h4>
                 <div style={{
                   background: 'rgba(255,255,255,0.03)',
@@ -208,7 +208,7 @@ export default function ProjectModal({ project, onClose }) {
                 letterSpacing: '0.1em',
                 marginBottom: 12,
               }}>
-                Key Metrics
+                Key metrics
               </h4>
               <ul style={{ listStyle: 'none', padding: 0 }}>
                 {project.metrics.map((m, i) => (
@@ -235,7 +235,7 @@ export default function ProjectModal({ project, onClose }) {
                 className="btn btn-primary"
                 style={{ fontSize: '0.82rem', padding: '12px 28px', textAlign: 'center', justifyContent: 'center' }}
               >
-                Visit Live Site
+                Visit live site
               </a>
               {project.githubUrl && (
                 <a
@@ -245,7 +245,7 @@ export default function ProjectModal({ project, onClose }) {
                   className="btn btn-secondary"
                   style={{ fontSize: '0.82rem', padding: '12px 28px', textAlign: 'center', justifyContent: 'center' }}
                 >
-                  View on GitHub
+                  GitHub
                 </a>
               )}
             </div>
