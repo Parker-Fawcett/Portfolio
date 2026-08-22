@@ -113,7 +113,7 @@ export default function DataSpotlight() {
 
       <style>{`
         @media (max-width: 800px) {
-          .spotlight-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .spotlight-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; }
         }
       `}</style>
     </section>

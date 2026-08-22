@@ -96,8 +96,8 @@ export default function Experience() {
                 }}
               >
                 <div>
-                  <h3 style={{ fontSize: '1.08rem', fontWeight: 600, letterSpacing: '-0.01em' }}>{exp.role}</h3>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--ink-secondary)', marginTop: 2 }}>
+                  <h3 style={{ fontSize: '1.22rem', fontWeight: 600, letterSpacing: '-0.01em' }}>{exp.role}</h3>
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.03em', color: 'var(--ink-muted)', marginTop: 4 }}>
                     {exp.org}
                     {exp.location ? ` · ${exp.location}` : ''}
                   </p>
@@ -262,8 +262,8 @@ export default function Experience() {
 
       <style>{`
         @media (max-width: 720px) {
-          .leadership-row { grid-template-columns: 1fr !important; gap: 8px !important; }
-          .edu-grid { grid-template-columns: 1fr !important; }
+          .leadership-row { grid-template-columns: minmax(0, 1fr) !important; gap: 8px !important; }
+          .edu-grid { grid-template-columns: minmax(0, 1fr) !important; }
         }
       `}</style>
     </section>

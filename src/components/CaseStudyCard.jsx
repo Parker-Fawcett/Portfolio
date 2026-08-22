@@ -32,7 +32,9 @@ export default function CaseStudyCard({ project, index, onViewDetails }) {
           fontWeight: 600,
           color: 'var(--accent)',
           paddingTop: 5,
+          transition: 'color 0.15s ease',
         }}
+        className="work-row-num"
       >
         {String(index + 1).padStart(2, '0')}
       </span>
@@ -84,7 +86,12 @@ export default function CaseStudyCard({ project, index, onViewDetails }) {
         @media (max-width: 720px) {
           .work-row { grid-template-columns: minmax(0, 32px) minmax(0, 1fr) !important; }
         }
-        .work-row:hover .work-row-title { color: var(--accent-deep); }
+        .work-row { padding-left: 20px; padding-right: 20px; margin-left: -20px; margin-right: -20px; transition: background-color 0.15s ease; }
+        .work-row:hover { background: var(--ink); }
+        .work-row:hover .work-row-title { color: var(--paper); }
+        .work-row:hover .tag { color: var(--accent-lift); border-color: var(--accent-lift); }
+        .work-row:hover p { color: rgba(246, 246, 244, 0.78); }
+        .work-row:hover .work-row-num { color: var(--accent-lift); }
       `}</style>
     </article>
   )
