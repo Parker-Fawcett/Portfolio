@@ -35,17 +35,20 @@ const experiences = [
 const leadership = [
   {
     title: 'JATC & Cypress Credit Union Summit',
-    role: 'Lead event coordinator · 2026 – Present',
+    role: 'Lead event coordinator',
+    period: '2026 – Present',
     desc: 'Put together a district-wide entrepreneurship conference with Cypress Credit Union: hundreds of students, all logistics, branding, and budget handled by me.',
   },
   {
     title: 'Code Elevation',
-    role: 'Founder & executive director · 2025 – 2026',
+    role: 'Founder & executive director',
+    period: '2025 – 2026',
     desc: 'Started a coding competition that pulled in 30+ students. Pluralsight and CHG sponsored; $1,650 in prizes plus donated software licenses.',
   },
   {
     title: "Angel's Hands Foundation (501c3)",
-    role: 'Head of digital marketing · 2025 – Present',
+    role: 'Head of digital marketing',
+    period: '2025 – Present',
     desc: 'Handle digital marketing for a small non-profit. Mostly SEO and social, aimed at bringing in recurring donors.',
   },
 ]
@@ -157,9 +160,12 @@ export default function Experience() {
                   letterSpacing: '0.05em',
                   color: 'var(--ink-muted)',
                   marginTop: 4,
+                  lineHeight: 1.7,
                 }}
               >
                 {item.role}
+                <br />
+                {item.period}
               </p>
             </div>
             <p style={{ fontSize: '0.86rem', color: 'var(--ink-secondary)', lineHeight: 1.65 }}>{item.desc}</p>

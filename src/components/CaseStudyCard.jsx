@@ -16,10 +16,10 @@ export default function CaseStudyCard({ project, index, onViewDetails }) {
       aria-label={`Open details for ${project.name}`}
       style={{
         display: 'grid',
-        gridTemplateColumns: 'minmax(0, 44px) minmax(0, 1fr) minmax(0, auto)',
+        gridTemplateColumns: 'minmax(0, 44px) minmax(0, 1fr)',
         gap: 20,
-        alignItems: 'center',
-        padding: '22px 0',
+        alignItems: 'start',
+        padding: '24px 0',
         borderTop: '1px solid var(--line)',
         cursor: 'pointer',
       }}
@@ -31,6 +31,7 @@ export default function CaseStudyCard({ project, index, onViewDetails }) {
           fontSize: '0.75rem',
           fontWeight: 600,
           color: 'var(--accent)',
+          paddingTop: 5,
         }}
       >
         {String(index + 1).padStart(2, '0')}
@@ -79,28 +80,9 @@ export default function CaseStudyCard({ project, index, onViewDetails }) {
         </p>
       </div>
 
-      {project.image && (
-        <img
-          src={project.image}
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          className="work-row-thumb"
-          style={{
-            width: 128,
-            height: 76,
-            objectFit: 'cover',
-            borderRadius: 2,
-            border: '1px solid var(--line)',
-            display: 'block',
-          }}
-        />
-      )}
-
       <style>{`
         @media (max-width: 720px) {
           .work-row { grid-template-columns: minmax(0, 32px) minmax(0, 1fr) !important; }
-          .work-row-thumb { display: none !important; }
         }
         .work-row:hover .work-row-title { color: var(--accent-deep); }
       `}</style>
