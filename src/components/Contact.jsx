@@ -2,7 +2,6 @@ const links = [
   { label: 'Email', href: 'mailto:Parkerscottfawcett@gmail.com', display: 'Parkerscottfawcett@gmail.com' },
   { label: 'GitHub', href: 'https://github.com/Parker-Fawcett', display: 'github.com/Parker-Fawcett' },
   { label: 'Website', href: 'https://www.parkerfawcett.com', display: 'parkerfawcett.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/parker-fawcett', display: 'linkedin.com/in/parker-fawcett' },
 ]
 
 export default function Contact() {
@@ -78,10 +77,7 @@ export default function Contact() {
               color: 'rgba(246, 246, 244, 0.55)',
             }}
           >
-            Herriman, Utah ·{' '}
-            <a href="tel:+18015002924" style={{ color: 'inherit' }} className="contact-phone">
-              801-500-2924
-            </a>
+            Herriman, Utah
           </p>
         </div>
       </div>
