@@ -1,8 +1,8 @@
-﻿const specRows = [
+const specRows = [
   { key: 'Role', value: 'AI Skills Engineer, CHG Healthcare' },
   { key: 'Base', value: 'Herriman, Utah' },
   { key: 'Focus', value: 'Agentic tooling, LLM migrations' },
-  { key: 'Stack', value: 'Python Â· SQL Â· TypeScript Â· Next.js' },
+  { key: 'Stack', value: 'Python · SQL · TypeScript · Next.js' },
   { key: 'Now', value: 'Paper under review at EMSE' },
 ]
 
@@ -112,7 +112,7 @@ export default function Hero() {
                 color: 'var(--ink-muted)',
               }}
             >
-              Herriman, Utah Â· still in high school
+              Herriman, Utah · still in high school
             </p>
           </div>
 
