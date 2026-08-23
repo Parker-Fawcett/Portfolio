@@ -102,6 +102,9 @@ export default function Hero() {
               <a href="#contact" className="btn btn-secondary">
                 Get in touch
               </a>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                Résumé
+              </a>
             </div>
 
             <p
@@ -163,6 +166,7 @@ export default function Hero() {
             grid-template-columns: minmax(0, 1fr) !important;
             gap: 40px !important;
           }
+          .hero-grid > aside { order: -1; }
         }
       `}</style>
     </section>

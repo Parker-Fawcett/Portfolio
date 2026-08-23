@@ -1,14 +1,49 @@
+import { useEffect, useRef } from 'react'
+
 export default function ProjectModal({ project, onClose }) {
-  const handleKey = (e) => {
-    if (e.key === 'Escape') onClose()
-  }
+  const panelRef = useRef(null)
+  const closeBtnRef = useRef(null)
+  const prevActiveRef = useRef(null)
+
+  useEffect(() => {
+    prevActiveRef.current = document.activeElement
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    closeBtnRef.current?.focus()
+
+    const onDocKey = (e) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'Tab' && panelRef.current) {
+        const focusable = panelRef.current.querySelectorAll(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+        if (focusable.length === 0) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
+    document.addEventListener('keydown', onDocKey)
+    return () => {
+      document.removeEventListener('keydown', onDocKey)
+      document.body.style.overflow = prevOverflow
+      if (prevActiveRef.current instanceof HTMLElement) prevActiveRef.current.focus()
+    }
+  }, [onClose])
+
+  const isRebuildDossier = project.name === 'Rebuild Dossier'
 
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-label={project.name}
-      onKeyDown={handleKey}
       onClick={onClose}
       style={{
         position: 'fixed',
@@ -22,6 +57,7 @@ export default function ProjectModal({ project, onClose }) {
       }}
     >
       <div
+        ref={panelRef}
         onClick={(e) => e.stopPropagation()}
         style={{
           width: '100%',
@@ -49,6 +85,7 @@ export default function ProjectModal({ project, onClose }) {
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
             <button
+              ref={closeBtnRef}
               onClick={onClose}
               aria-label="Close"
               style={{
@@ -91,6 +128,7 @@ export default function ProjectModal({ project, onClose }) {
             <h2 style={{ fontSize: '1.5rem', fontWeight: 600, letterSpacing: '-0.02em' }}>{project.name}</h2>
             {!project.image && (
               <button
+                ref={closeBtnRef}
                 onClick={onClose}
                 aria-label="Close"
                 style={{
@@ -167,6 +205,75 @@ export default function ProjectModal({ project, onClose }) {
               ))}
             </ul>
           </section>
+
+          {isRebuildDossier && (
+            <section
+              style={{
+                marginBottom: 30,
+                background: 'var(--accent-wash)',
+                border: '1px solid var(--line)',
+                borderLeft: '3px solid var(--accent)',
+                borderRadius: 4,
+                padding: '18px 20px',
+              }}
+            >
+              <h3 className="modal-h" style={{ color: 'var(--accent-deep)' }}>What broke (and what is still open)</h3>
+              <p style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)', lineHeight: 1.7, marginBottom: 10 }}>
+                The same findings doc that describes the system also documents where it fails. Those failures are the point.
+              </p>
+              <ul style={{ listStyle: 'disc', paddingLeft: 18, display: 'grid', gap: 7 }}>
+                <li style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)', lineHeight: 1.6 }}>
+                  Coverage logic counted weak/unrunnable tests as “covering” a route — so the set of untested contracts shrank to empty on three real apps (79% → 100%). Fixed after being found.
+                </li>
+                <li style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)', lineHeight: 1.6 }}>
+                  A compliant run failed a held-out check (0/1) while a batch-building violator passed (1/1). Pass rate alone rewarded the wrong behavior — a clean Goodhart demo.
+                </li>
+                <li style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)', lineHeight: 1.6 }}>
+                  Self-report and the mechanical log were each wrong once on the same trial, in opposite directions. Only checking both against the filesystem got the true answer.
+                </li>
+                <li style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)', lineHeight: 1.6 }}>
+                  ingest scanned <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem' }}>.next</code> build output as source — same app returned 0 vs 93 signals depending on whether a prior run had left artifacts.
+                </li>
+              </ul>
+              <p style={{ fontSize: '0.78rem', color: 'var(--ink-muted)', marginTop: 12 }}>
+                Sourced from{' '}
+                <a
+                  href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/master/docs/v0-findings.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--accent-deep)', textDecoration: 'underline', textUnderlineOffset: 2 }}
+                >
+                  docs/v0-findings.md
+                </a>
+                . Backlog entries above are open, not resolved.
+              </p>
+            </section>
+          )}
+
+          {project.links && project.links.length > 0 && (
+            <section style={{ marginBottom: 28 }}>
+              <h3 className="modal-h">Links</h3>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
+                {project.links.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.78rem',
+                      color: 'var(--accent-deep)',
+                      textDecoration: 'underline',
+                      textUnderlineOffset: 3,
+                    }}
+                  >
+                    {l.label} ↗
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">

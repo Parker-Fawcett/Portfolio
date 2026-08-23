@@ -1,8 +1,8 @@
 const stats = [
-  { number: '512', label: 'unit tests written' },
-  { number: '83', label: 'files pinned by specs' },
-  { number: '20k+', label: 'collectibles tracked' },
-  { number: '60+', label: 'engineers on my tooling' },
+  { number: '512', label: 'unit tests written', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/test' },
+  { number: '83', label: 'files pinned by specs', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/src' },
+  { number: '20k+', label: 'collectibles tracked', href: 'https://catchandtrade.com' },
+  { number: '60+', label: 'engineers on my tooling', href: 'https://www.chghealthcare.com' },
 ]
 
 export default function StatsBand() {
@@ -20,7 +20,13 @@ export default function StatsBand() {
         className="stats-grid"
       >
         {stats.map((stat) => (
-          <div key={stat.label}>
+          <a
+            key={stat.label}
+            href={stat.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none', display: 'block' }}
+          >
             <div className="stat-number">{stat.number}</div>
             <div
               style={{
@@ -30,11 +36,13 @@ export default function StatsBand() {
                 textTransform: 'uppercase',
                 color: 'var(--ink-muted)',
                 marginTop: 8,
+                textDecoration: 'underline',
+                textUnderlineOffset: 3,
               }}
             >
-              {stat.label}
+              {stat.label} ↗
             </div>
-          </div>
+          </a>
         ))}
       </div>
       <style>{`

@@ -6,7 +6,7 @@ const projects = [
   {
     name: 'Rebuild Dossier',
     type: 'Open-source research',
-    image: '/images/rebuild-dossier.png',
+    image: '/images/rebuild-dossier.webp',
     description:
       'A test harness for rebuilding apps with AI. 512 tests across 83 files pin down the interfaces so a rebuild either matches the original or fails loudly. The paper behind it is submitted to Empirical Software Engineering.',
     stack: ['Python', 'AST parsing', 'Playwright', 'Mutation testing', 'Docker', 'PostgreSQL'],
@@ -27,11 +27,16 @@ const projects = [
     },
     liveUrl: 'https://github.com/Parker-Fawcett/rebuild-dossier',
     githubUrl: 'https://github.com/Parker-Fawcett/rebuild-dossier',
+    links: [
+      { label: 'Findings', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/blob/master/docs/v0-findings.md' },
+      { label: 'Tests', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/test' },
+      { label: 'Mutators', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/src/mutation/mutators' },
+    ],
   },
   {
     name: 'Skora',
     type: 'B2B SaaS',
-    image: '/images/skora.png',
+    image: '/images/skora.webp',
     description:
       'College counseling software, currently in beta. The interesting piece is Project Hermes, an outbound engine that covers about 95% of what $3K to $15K/mo enterprise platforms do, with zero marginal operating cost. It started through a JATC partnership after a cold pitch.',
     stack: ['Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM', 'Clerk Auth', 'Redis', 'Groq AI', 'Stripe'],
@@ -56,7 +61,7 @@ const projects = [
   {
     name: 'CatchAndTrade',
     type: 'Marketplace',
-    image: '/images/catch-and-trade.png',
+    image: '/images/catch-and-trade.webp',
     description:
       'Trading-card marketplace under Fawcett Capital, my holding company. Tracks 20,000+ collectibles with sub-200ms queries, plus OCR scanning for grading physical cards.',
     stack: ['Next.js', 'React', 'Supabase PostgreSQL', 'Tesseract.js OCR', 'Google OAuth', 'TailwindCSS'],
@@ -81,7 +86,7 @@ const projects = [
   {
     name: 'MyNexusAI',
     type: 'AI SaaS',
-    image: '/images/mynexusai.png',
+    image: '/images/mynexusai.webp',
     description:
       'An AI receptionist that handles voice and text support channels automatically. Live in production with paying users.',
     stack: ['Node.js', 'pgvector', 'ChromaDB', 'OpenRouter API', 'Twilio Voice/SMS', 'ElevenLabs', 'AssemblyAI'],
@@ -106,7 +111,7 @@ const projects = [
   {
     name: 'Alvien',
     type: 'B2B BI SaaS',
-    image: '/images/alvien.png',
+    image: '/images/alvien.webp',
     description:
       'Point it at a competitor site and get back a structured strategic brief. Scraping and summarization run automatically.',
     stack: ['Python', 'FastAPI', 'Firecrawl API', 'Groq LLMs', 'TailwindCSS'],
@@ -131,7 +136,7 @@ const projects = [
   {
     name: 'Code Elevation',
     type: 'Youth tech initiative',
-    image: '/images/code-elevation.png',
+    image: '/images/code-elevation.webp',
     description:
       'A coding competition I ran for high schoolers in my area, built to feel like real software engineering rather than a school club.',
     stack: ['Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM', 'Cold outreach', 'Sponsorship'],

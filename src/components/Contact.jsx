@@ -2,6 +2,7 @@ const links = [
   { label: 'Email', href: 'mailto:Parkerscottfawcett@gmail.com', display: 'Parkerscottfawcett@gmail.com' },
   { label: 'GitHub', href: 'https://github.com/Parker-Fawcett', display: 'github.com/Parker-Fawcett' },
   { label: 'Website', href: 'https://www.parkerfawcett.com', display: 'parkerfawcett.com' },
+  { label: 'Résumé', href: '/resume.pdf', display: 'resume.pdf' },
 ]
 
 export default function Contact() {

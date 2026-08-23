@@ -1,14 +1,15 @@
 const steps = [
-  { label: 'Firecrawl API', desc: 'Gets past anti-scraping measures and returns clean markdown from competitor pages' },
-  { label: 'Structured JSON', desc: 'Scraped content comes back as structured JSON tokens' },
-  { label: 'Groq LLMs', desc: 'Groq turns the tokens into a finished brief with near-zero latency' },
+  { label: 'Central taxonomy', desc: 'A single repo of AI skills and configs that every downstream daughter repo tracks — updates propagate automatically, drift disappears.' },
+  { label: 'Plugin provisioning', desc: 'Claude Code plugins around MCP servers, hooks, and sub-agents inject the taxonomy into the editor while you code.' },
+  { label: 'In-flow suggestion', desc: 'Claude suggests the right repo skills on its own and answers plain-English questions about them mid-task.' },
+  { label: 'Auto-ingestion', desc: 'Python/SQL/Snowflake pipelines run ingestion without a human PR review bottleneck — the whole division stops waiting on reviews.' },
 ]
 
 export default function DataSpotlight() {
   return (
     <section id="data-spotlight" className="section-container" style={{ borderTop: '1px solid var(--line)' }}>
-      <p className="section-label">03 · Data spotlight</p>
-      <h2 className="section-title">From scrape to brief</h2>
+      <p className="section-label">03 · How it works at CHG</p>
+      <h2 className="section-title">The tooling flow</h2>
 
       <div
         style={{
@@ -21,13 +22,14 @@ export default function DataSpotlight() {
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 12 }}>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: 600, letterSpacing: '-0.01em' }}>Alvien</h3>
-            <span className="tag">B2B BI SaaS</span>
+            <h3 style={{ fontSize: '1.3rem', fontWeight: 600, letterSpacing: '-0.01em' }}>CHG Healthcare</h3>
+            <span className="tag">Enterprise Data & AI</span>
           </div>
 
           <p style={{ fontSize: '0.9rem', color: 'var(--ink-secondary)', lineHeight: 1.75, marginBottom: 18 }}>
-            Watches competitor domains and turns what it finds into structured strategic
-            briefs, automatically.
+            The work I do day-to-day: standardize how a 60+ person division writes, shares, and
+            discovers AI-assisted development patterns — so ideas survive across repos instead of
+            dying in one.
           </p>
 
           <p
@@ -39,11 +41,11 @@ export default function DataSpotlight() {
               marginBottom: 22,
             }}
           >
-            Python · FastAPI · Firecrawl · Groq · TailwindCSS
+            Python · SQL · Snowflake · Claude Code · MCP · Hooks
           </p>
 
           <a
-            href="https://alvien.onrender.com"
+            href="https://www.chghealthcare.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -56,7 +58,7 @@ export default function DataSpotlight() {
               whiteSpace: 'nowrap',
             }}
           >
-            Live site ↗
+            chghealthcare.com ↗
           </a>
         </div>
 
@@ -72,7 +74,7 @@ export default function DataSpotlight() {
               marginBottom: 18,
             }}
           >
-            Architecture flow
+            How a skill reaches an engineer
           </h4>
 
           <ol style={{ listStyle: 'none', margin: 0 }}>
