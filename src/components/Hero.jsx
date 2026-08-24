@@ -129,6 +129,22 @@ export default function Hero() {
               padding: '20px 22px 12px',
             }}
           >
+            <img
+              src="/images/parker.webp"
+              alt="Parker Fawcett"
+              width="288"
+              height="288"
+              style={{
+                width: '100%',
+                height: 210,
+                objectFit: 'cover',
+                objectPosition: '38% 25%',
+                borderRadius: 3,
+                border: '1px solid var(--line-strong)',
+                marginBottom: 16,
+                display: 'block',
+              }}
+            />
             {specRows.map((row) => (
               <div
                 key={row.key}
