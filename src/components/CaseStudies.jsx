@@ -8,15 +8,15 @@ const projects = [
     type: 'Open-source research',
     image: '/images/rebuild-dossier.webp',
     description:
-      'A test harness for rebuilding apps with AI. 512 tests across 83 files pin down the interfaces so a rebuild either matches the original or fails loudly. The paper behind it is submitted to Empirical Software Engineering.',
-    stack: ['Python', 'AST parsing', 'Playwright', 'Mutation testing', 'Docker', 'PostgreSQL'],
+      'An MCP server that reverse-engineers a locked rebuild spec (CLAUDE.md, .claude/ config, mutation-tested tests) from an existing app, so any coding agent can rebuild it cleanly against that spec instead of guessing. 512 tests across 83 files. The paper behind it is submitted to Empirical Software Engineering.',
+    stack: ['TypeScript', 'ts-morph AST', 'Playwright', 'Mutation testing', 'Vitest', 'MCP'],
     metrics: [
-      'AI code migrations used to score 0% behavioral equivalence; AST-based mutation checks verify behavior without touching the source',
+      'Prior research scored 0% behavioral equivalence with no feedback loop (arXiv:2605.17535); this tool locks contracts before tests to close that gap',
       '512 unit tests across 83 files act as executable specs, so model drift shows up as hard failures instead of quiet regressions',
       'Applied for an LTFF grant to push the benchmarks to higher-tier models',
     ],
     architecture: {
-      summary: 'The idea is to treat specs as mechanically enforced contracts. Instead of hoping a rebuild matches intent, you check it: parse the AST, mutate without destroying, replay behavior through Playwright. The paper is "Mechanically-enforced specs for agentic app rebuilds, and what model-tier failures reveal", sole-authored after an arXiv endorsement from Presset Lutz.',
+      summary: 'Ships as an MCP server: point it at a repo and it reverse-engineers a locked CLAUDE.md, .claude/ config, and mutation-tested suite. It deliberately does not rebuild the app — it produces the spec a coding agent consumes. The paper is "Mechanically-enforced specs for agentic app rebuilds, and what model-tier failures reveal", sole-authored after an arXiv endorsement from Presset Lutz.',
       highlights: [
         'AST-based mutations check behavioral equivalence without corrupting the source under test',
         'Playwright replays end-to-end flows against the enforced contracts',
@@ -31,6 +31,7 @@ const projects = [
       { label: 'Findings', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/blob/master/docs/v0-findings.md' },
       { label: 'Tests', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/test' },
       { label: 'Mutators', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/src/mutation/mutators' },
+      { label: 'DOI', href: 'https://doi.org/10.5281/zenodo.22036801' },
     ],
   },
   {
@@ -57,6 +58,9 @@ const projects = [
     },
     liveUrl: 'https://skoraadmit.com',
     githubUrl: 'https://github.com/Parker-Fawcett/AdmitPath',
+    links: [
+      { label: 'hermes-agent', href: 'https://github.com/Parker-Fawcett/hermes-agent' },
+    ],
   },
   {
     name: 'CatchAndTrade',
@@ -131,7 +135,7 @@ const projects = [
       ],
     },
     liveUrl: 'https://alvien.onrender.com',
-    githubUrl: null,
+    githubUrl: 'https://github.com/Parker-Fawcett/alvien',
   },
   {
     name: 'Code Elevation',
