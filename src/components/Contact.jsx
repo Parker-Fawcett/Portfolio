@@ -3,6 +3,7 @@ const links = [
   { label: 'GitHub', href: 'https://github.com/Parker-Fawcett', display: 'github.com/Parker-Fawcett' },
   { label: 'Website', href: 'https://www.parkerfawcett.com', display: 'parkerfawcett.com' },
   { label: 'Résumé', href: '/resume.pdf', display: 'resume.pdf' },
+  { label: 'ORCID', href: 'https://orcid.org/0009-0003-9699-7422', display: '0009-0003-9699-7422' },
 ]
 
 export default function Contact() {
