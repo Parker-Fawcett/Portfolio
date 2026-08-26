@@ -57,7 +57,7 @@ const projects = [
       ],
     },
     liveUrl: 'https://skoraadmit.com',
-    githubUrl: 'https://github.com/Parker-Fawcett/AdmitPath',
+    githubUrl: null, // repo private by design
     links: [
       { label: 'hermes-agent', href: 'https://github.com/Parker-Fawcett/hermes-agent' },
     ],
