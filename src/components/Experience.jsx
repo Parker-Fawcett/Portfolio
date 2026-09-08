@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react'
+
 const experiences = [
   {
     role: 'AI Skills Engineer',
@@ -8,8 +10,17 @@ const experiences = [
       'Built a central repo of AI skills and configs so downstream teams stop drifting apart. Updates propagate to daughter repos automatically.',
       'Wrote Claude Code plugins around MCP servers, hooks, and sub-agents so the company taxonomy shows up in context while you code.',
       'Claude can now suggest relevant repo skills on its own and answer plain-English questions about them mid-task.',
-      'Automated the data ingestion pipelines (Python, SQL, Snowflake), which let us drop manual PR review for the whole division.',
+      'Rebuilt CareerMD lead-gen from manual Python research into automated n8n + web-scraping pipelines; automated ingestion (Python, SQL, Snowflake), dropping manual PR review for the whole division.',
       'Promoted from intern to full-time AI engineer before junior year of high school, by the VP of Data & AI.',
+    ],
+  },
+  {
+    role: 'Corporate Strategy & Operations Intern',
+    org: 'CHG Healthcare',
+    period: 'Summer 2026',
+    highlights: [
+      'Analyzed enterprise operations and cross-departmental data workflows to support strategic initiatives.',
+      'Worked inside a large healthcare-services org while shipping independent software and research on the side.',
     ],
   },
   {
@@ -24,10 +35,10 @@ const experiences = [
   {
     role: 'Founder & managing director',
     org: 'Fawcett Capital LLC',
-    period: '2024 – Present',
+    period: 'May 2026 – Present',
     highlights: [
-      'An LLC that keeps financial reporting, compliance, and payments in one place across my ventures.',
-      'Grew CatchAndTrade into a marketplace tracking 20k+ trading cards with sub-200ms queries, OCR scanning, and live grading.',
+      'A Utah LLC keeping financial reporting, compliance, and payments in one place across my ventures — I drafted the operating agreement myself.',
+      'Grew CatchAndTrade into a marketplace with a 20,000+ card catalog, OCR scanning, and live grading.',
     ],
   },
 ]
@@ -54,15 +65,104 @@ const leadership = [
 ]
 
 export default function Experience() {
+  const [active, setActive] = useState(0)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const chapters = section.querySelectorAll('[data-exp]')
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(Number(entry.target.dataset.exp))
+        })
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    )
+    chapters.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
+  const scrollToExp = (i) => {
+    const section = sectionRef.current
+    if (!section) return
+    const el = section.querySelector(`[data-exp="${i}"]`)
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   return (
-    <section id="experience" className="section-container">
+    <section id="experience" ref={sectionRef} className="section-container">
       <p className="section-label">01 · Background</p>
       <h2 className="section-title">Experience</h2>
+
+      <div
+        aria-label="Role progress"
+        style={{
+          position: 'sticky',
+          top: 56,
+          zIndex: 100,
+          background: 'var(--paper)',
+          borderTop: '1px solid var(--line)',
+          borderBottom: '1px solid var(--line)',
+          padding: '10px 0',
+          marginBottom: 8,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 16,
+        }}
+      >
+        <span
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.68rem',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            color: 'var(--ink-muted)',
+            whiteSpace: 'nowrap',
+          }}
+          className="rail-label"
+        >
+          01 · Background
+        </span>
+        <div style={{ display: 'flex', gap: 4, overflowX: 'auto' }}>
+          {experiences.map((exp, i) => {
+            const isActive = i === active
+            return (
+              <button
+                key={exp.org}
+                type="button"
+                onClick={() => scrollToExp(i)}
+                aria-label={`Go to ${exp.role}`}
+                aria-current={isActive ? 'true' : undefined}
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.72rem',
+                  fontWeight: isActive ? 600 : 400,
+                  letterSpacing: '0.06em',
+                  color: isActive ? 'var(--accent-deep)' : 'var(--ink-muted)',
+                  background: 'transparent',
+                  border: 'none',
+                  borderBottom: isActive ? '2px solid var(--accent)' : '2px solid transparent',
+                  padding: '4px 8px',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {String(i + 1).padStart(2, '0')}
+              </button>
+            )
+          })}
+        </div>
+      </div>
 
       <div>
         {experiences.map((exp, i) => (
           <article
             key={exp.org}
+            data-exp={i}
+            className="exp-chapter"
             style={{
               display: 'grid',
               gridTemplateColumns: 'minmax(0, 56px) minmax(0, 1fr)',
@@ -193,12 +293,11 @@ export default function Experience() {
               Herriman High School &amp; Jordan Applied Technology Center (JATC)
             </p>
             <p style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', marginTop: 2 }}>
-              Expected June 2028 · GPA 3.8
+              Expected June 2028 · GPA 3.8 UW / 4.3 W
             </p>
             <p style={{ fontSize: '0.79rem', color: 'var(--ink-secondary)', marginTop: 10, lineHeight: 1.7 }}>
-              AP Lang, AP World, AP Human Geo, plus concurrent enrollment at SLCC (AutoCAD,
-              business fundamentals, personal finance). BYU faculty are using me as a case study
-              for research on young people starting businesses and building automated systems.
+              AP Lang, AP World, AP Human Geo (4), plus concurrent enrollment at SLCC (AutoCAD,
+              business fundamentals, personal finance).
             </p>
           </div>
           <div style={{ fontSize: '0.79rem', lineHeight: 1.9 }}>
@@ -261,7 +360,9 @@ export default function Experience() {
       </div>
 
       <style>{`
+        .exp-chapter { scroll-margin-top: 140px; }
         @media (max-width: 720px) {
+          .rail-label { display: none; }
           .leadership-row { grid-template-columns: minmax(0, 1fr) !important; gap: 8px !important; }
           .edu-grid { grid-template-columns: minmax(0, 1fr) !important; }
         }

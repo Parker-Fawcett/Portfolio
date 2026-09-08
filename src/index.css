@@ -165,15 +165,6 @@ h1, h2, h3, h4 {
   border-bottom: 1px solid var(--line);
 }
 
-.stat-number {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-  letter-spacing: -0.03em;
-  color: var(--accent-deep);
-  line-height: 1.05;
-}
-
 .signoff {
   font-family: var(--font-mono);
   font-weight: 600;
