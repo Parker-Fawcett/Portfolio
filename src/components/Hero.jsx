@@ -22,8 +22,7 @@ const leftFeed = [
 ]
 const rightFeed = [
   '512 unit tests passing ✓',
-  '83 files pinned by specs',
-  '20,078 cards in public catalog',
+  '83 test files with enforced specs ✓',
   '172 sets tracked',
   'paper: under review @ EMSE',
   'outbound: 95% of $15k/mo stack',

@@ -7,11 +7,12 @@ const experiences = [
     period: 'June 2026 – Present',
     location: 'Division of 60+',
     highlights: [
-      'Built a central repo of AI skills and configs so downstream teams stop drifting apart. Updates propagate to daughter repos automatically.',
-      'Wrote Claude Code plugins around MCP servers, hooks, and sub-agents so the company taxonomy shows up in context while you code.',
-      'Claude can now suggest relevant repo skills on its own and answer plain-English questions about them mid-task.',
-      'Rebuilt CareerMD lead-gen from manual Python research into automated n8n + web-scraping pipelines; automated ingestion (Python, SQL, Snowflake), dropping manual PR review for the whole division.',
-      'Promoted from intern to full-time AI engineer before junior year of high school, by the VP of Data & AI.',
+      'Architect AI-assisted enterprise automation pipelines that ingest job listings, enrich missing contact data across multiple sources, resolve ambiguous identities, validate required fields, and route qualified records into Salesforce workflows.',
+      'Built a CareerMD lead-generation pipeline combining web extraction, multi-source enrichment, AI-assisted field/name resolution, deterministic validation, duplicate detection, and CRM decision logic; engineered for controlled dry-runs before live Salesforce writes.',
+      'Develop Python/SQL data workflows and Snowflake integrations while translating ambiguous business requirements into production-oriented technical systems.',
+      'Build internal AI tooling and automation used across the Enterprise Data & AI organization, collaborating through agile development and iterative deployment.',
+      'Redesigned CareerMD lead-gen from manual Python research into automated n8n workflows and advanced web-scraping pipelines.',
+      'Transitioned from summer internship into AI engineering role before junior year of high school.',
     ],
   },
   {
@@ -20,7 +21,8 @@ const experiences = [
     period: 'Summer 2026',
     highlights: [
       'Analyzed enterprise operations and cross-departmental data workflows to support strategic initiatives.',
-      'Worked inside a large healthcare-services org while shipping independent software and research on the side.',
+      'Supported strategic and operational initiatives through research, analysis, and structured problem solving.',
+      'Worked within a large healthcare-services organization while simultaneously developing independent software, research, and entrepreneurial projects.',
     ],
   },
   {
@@ -33,12 +35,25 @@ const experiences = [
     ],
   },
   {
-    role: 'Founder & managing director',
+    role: 'Founder & Managing Director / Sole Member',
     org: 'Fawcett Capital LLC',
     period: 'May 2026 – Present',
+    location: 'Herriman, UT',
     highlights: [
-      'A Utah LLC keeping financial reporting, compliance, and payments in one place across my ventures — I drafted the operating agreement myself.',
-      'Grew CatchAndTrade into a marketplace with a 20,000+ card catalog, OCR scanning, and live grading.',
+      'Founded and operate Fawcett Capital LLC as an umbrella venture entity for technology products, AI software, marketplaces, research infrastructure, and digital businesses; 100% ownership.',
+      'Personally drafted the Operating Agreement establishing ownership structure, management framework, business purpose, distributions, capital contributions, amendment procedures, and management transition.',
+      'Direct venture strategy, product development, technical execution, commercialization, and operations across the portfolio spanning AI software, SaaS, marketplaces, developer infrastructure, and digital commerce.',
+      'Established manager-managed LLC structure with automatic transition to member-managed at age 18 and transfer of full signing and operational authority.',
+    ],
+  },
+  {
+    role: 'Associate',
+    org: 'Five Below',
+    period: '2025 – Present',
+    highlights: [
+      'Balance part-time retail employment with advanced coursework, enterprise AI engineering, independent research, and entrepreneurship.',
+      'Recognized as Employee of the Month.',
+      'Provide customer service, merchandising, store operations, and team support in a high-volume retail environment.',
     ],
   },
 ]

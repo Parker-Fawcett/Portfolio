@@ -68,13 +68,13 @@ const projects = [
   {
     name: 'CatchAndTrade',
     type: 'Marketplace',
-    statement: '20,078 cards. One catalog.',
+    statement: 'A public catalog. One schema.',
     image: '/images/catch-and-trade.webp',
     description:
-      'Trading-card marketplace under Fawcett Capital, my holding company. A public catalog of 20,000+ collectibles on composite indexes and materialized views, plus client-side OCR scanning for grading physical cards.',
+      'Trading-card marketplace under Fawcett Capital, my holding company. A public catalog of collectibles on composite indexes and materialized views, plus client-side OCR scanning for grading physical cards.',
     stack: ['Next.js', 'React', 'Supabase PostgreSQL', 'Tesseract.js OCR', 'Google OAuth', 'TailwindCSS'],
     metrics: [
-      'Public catalog of 20,000+ unique collectibles with pricing intelligence',
+      'Public catalog with pricing intelligence',
       'Composite indexes plus denormalized price snapshots keep lookups fast',
       'OCR runs client-side, so scanning physical cards costs nothing server-side',
     ],

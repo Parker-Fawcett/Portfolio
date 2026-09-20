@@ -3,7 +3,6 @@
 const rows = [
   { number: '512', label: 'unit tests written', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/test', source: 'rebuild-dossier/test', date: '2026' },
   { number: '83', label: 'test files with enforced specs', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/test', source: 'rebuild-dossier/test', date: '2026' },
-  { number: '20,078', label: 'collectibles tracked', href: 'https://catchandtrade.com', source: 'catchandtrade.com', date: 'live' },
   { number: '60+', label: 'engineers on my tooling', href: 'https://www.chghealthcare.com', source: 'CHG Healthcare', date: '2026' },
 ]
 
