@@ -1,10 +1,38 @@
 import { useEffect, useRef, useState } from 'react'
 
 const steps = [
-  { label: 'Central taxonomy', desc: 'A single repo of AI skills and configs that every downstream daughter repo tracks — updates propagate automatically, drift disappears.' },
-  { label: 'Plugin provisioning', desc: 'Claude Code plugins around MCP servers, hooks, and sub-agents inject the taxonomy into the editor while you code.' },
-  { label: 'In-flow suggestion', desc: 'Claude suggests the right repo skills on its own and answers plain-English questions about them mid-task.' },
-  { label: 'Auto-ingestion', desc: 'Python/SQL/Snowflake pipelines run ingestion without a human PR review bottleneck — the whole division stops waiting on reviews.' },
+  {
+    label: 'Web extraction',
+    desc: 'Automated browser pipelines pull job listings from target sources — handles pagination, anti-bot challenges, and dynamic rendering.',
+  },
+  {
+    label: 'Multi-source enrichment',
+    desc: 'Missing contact data enriched across multiple providers (LinkedIn, Clearbit, proprietary databases) with waterfall fallbacks.',
+  },
+  {
+    label: 'AI field/name resolution',
+    desc: 'LLM-assisted disambiguation of ambiguous identities — resolves "John Smith" to correct record using context, org, role signals.',
+  },
+  {
+    label: 'Deterministic validation',
+    desc: 'Rule-based checks verify required fields (email format, phone normalization, territory mapping, license status) — zero LLM hallucination risk.',
+  },
+  {
+    label: 'Duplicate detection',
+    desc: 'Fuzzy matching on name/org/contact composite keys prevents duplicate Salesforce records — configurable threshold per source.',
+  },
+  {
+    label: 'CRM decision logic',
+    desc: 'Routing rules assign ownership, set lead status, trigger sequences, and enrich campaign metadata before write.',
+  },
+  {
+    label: 'Controlled dry-run',
+    desc: 'Full pipeline executes against staging; diff report shows creates/updates/skips with reasons — human approval gate before live.',
+  },
+  {
+    label: 'Salesforce commit',
+    desc: 'Approved batch writes via Bulk API v2 with idempotency keys; audit log captures payload, decision, and operator per record.',
+  },
 ]
 
 export default function DataSpotlight() {

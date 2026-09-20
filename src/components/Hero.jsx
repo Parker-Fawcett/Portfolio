@@ -23,6 +23,12 @@ const leftFeed = [
 const rightFeed = [
   '512 unit tests passing ✓',
   '83 test files with enforced specs ✓',
+  '188 monthly decisions modeled',
+  '5,000 bootstrap iterations',
+  '370+ public commits',
+  '80+ API endpoints live',
+  '16 trials locked by SHA-256',
+  'R² = 0.871 vs QuantConnect',
   '172 sets tracked',
   'paper: under review @ EMSE',
   'outbound: 95% of $15k/mo stack',
