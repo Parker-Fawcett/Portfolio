@@ -7,7 +7,7 @@ const projects = [
     name: 'When AUC Survives but Portfolios Do Not',
     type: 'Quantitative finance research',
     statement: 'Aggregate accuracy ≠ decision stability.',
-    image: '/images/rebuild-dossier.webp',
+    image: '/images/code-elevation.webp',
     description:
       'Independent quantitative research auditing predictive multiplicity and the mathematical disconnect between aggregate classification accuracy and decision-level portfolio stability. Modeled cross-sectional equity probability distributions across 188 monthly decisions spanning a dynamic 200-stock U.S. equity universe. A controlled validation-leakage ablation demonstrated that a marginal 0.002 shift in test AUC (0.553 to 0.551) destabilized the investment boundary, replacing 61.1% of the portfolio (mean Jaccard overlap 0.389).',
     stack: ['Python', 'Fama-French 5-factor + Carhart', 'Newey-West', 'Moving-block bootstrap', 'Deflated Sharpe', 'QuantConnect'],
@@ -35,6 +35,37 @@ const projects = [
     links: [
       { label: 'SSRN paper', href: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682' },
       { label: 'Companion repo', href: 'https://github.com/Parker-Fawcett/Stock' },
+    ],
+  },
+  {
+    name: 'Fawcett Capital LLC',
+    type: 'Holding company / Venture entity',
+    statement: 'One holding company. Five ventures.',
+    image: '/images/parker.webp',
+    description:
+      'Utah domestic LLC (formed May 2026) serving as an umbrella venture entity for technology products, AI software, marketplaces, research infrastructure, and digital businesses. 100% ownership. Personally drafted the Operating Agreement establishing ownership structure, management framework, business purpose, distributions, capital contributions, amendment procedures, and management transition. Manager-managed structure transitions automatically to member-managed at age 18 with full signing and operational authority vesting in the Member.',
+    stack: ['LLC formation', 'Operating Agreement', 'Venture strategy', 'Portfolio management'],
+    metrics: [
+      'Utah LLC formed May 2026 — active entity',
+      '100% ownership / sole Member',
+      'Operating Agreement drafted by founder',
+      'Manager-managed → member-managed auto-transition at age 18',
+      'Ventures span AI software, SaaS, marketplaces, developer infrastructure, digital commerce',
+    ],
+    architecture: {
+      summary: 'Fawcett Capital LLC centralizes financial reporting, compliance, and payments across the venture portfolio. The Operating Agreement establishes governance, distributions, capital contributions, amendments, and dissolution procedures. Directs venture strategy, product development, technical execution, commercialization, and operations across portfolio companies including Skora, CatchAndTrade, Alvien, MyNexusAI, and research infrastructure.',
+      highlights: [
+        'Centralized legal/financial structure for multi-venture portfolio',
+        'Operating Agreement covers ownership, management, distributions, capital, amendments, dissolution',
+        'Automatic governance transition at age 18 (manager-managed → member-managed)',
+        'Full signing/operational authority vests in Member at transition',
+        'Ventures: Skora (B2B2C SaaS), CatchAndTrade (marketplace), Alvien (BI), MyNexusAI (AI SaaS), research infra',
+      ],
+    },
+    liveUrl: 'https://github.com/Parker-Fawcett',
+    githubUrl: 'https://github.com/Parker-Fawcett',
+    links: [
+      { label: 'Utah Corp. record', href: 'https://secure.utah.gov/bes/' },
     ],
   },
   {
@@ -208,6 +239,7 @@ const projects = [
 // Smaller public experiments. Per-repo deep links pending the link bank —
 // the section links the profile until exact slugs are confirmed.
 const artifacts = [
+  { name: 'Print-on-Demand / Online Commerce', desc: 'Built and operated online commerce businesses across print-on-demand and marketplace platforms. 2,000+ cumulative sales. Managed product research, design, listings, customer service, fulfillment, platform optimization, and marketplace operations.', stack: 'E-commerce · digital marketing · unit economics' },
   { name: 'Skill-Drift', desc: 'Classifies AI-agent skill changes as cosmetic, risk-relevant, or undeterminable — drift vs. danger.', stack: 'Python · LLM eval' },
   { name: 'Message', desc: 'End-to-end encrypted messaging on X3DH + Double Ratchet via WebCrypto, with forward secrecy.', stack: 'WebCrypto · applied crypto' },
   { name: 'Ai-Startup-funny', desc: 'One prompt, one autonomous agent, one startup — then an audit of what it actually built.', stack: 'Agent experiment' },

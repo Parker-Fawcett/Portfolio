@@ -3,6 +3,11 @@
 const rows = [
   { number: '512', label: 'unit tests written', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/test', source: 'rebuild-dossier/test', date: '2026' },
   { number: '83', label: 'test files with enforced specs', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/test', source: 'rebuild-dossier/test', date: '2026' },
+  { number: '188', label: 'monthly cross-sectional decisions', href: 'https://github.com/Parker-Fawcett/Stock', source: 'AUC paper / Stock repo', date: '2026' },
+  { number: '5,000', label: 'bootstrap iterations', href: 'https://github.com/Parker-Fawcett/Stock', source: 'AUC paper / Stock repo', date: '2026' },
+  { number: '16', label: 'experimental trials (locked)', href: 'https://github.com/Parker-Fawcett/Stock', source: 'AUC provenance manifest', date: '2026' },
+  { number: '370+', label: 'public commits', href: 'https://github.com/Parker-Fawcett/catchandtrade', source: 'CatchAndTrade repo', date: 'live' },
+  { number: '80+', label: 'API endpoints', href: 'https://skoraadmit.com', source: 'Skora production', date: '2026' },
   { number: '60+', label: 'engineers on my tooling', href: 'https://www.chghealthcare.com', source: 'CHG Healthcare', date: '2026' },
 ]
 
