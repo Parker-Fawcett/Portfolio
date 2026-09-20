@@ -4,6 +4,40 @@ import ProjectModal from './ProjectModal'
 
 const projects = [
   {
+    name: 'When AUC Survives but Portfolios Do Not',
+    type: 'Quantitative finance research',
+    statement: 'Aggregate accuracy ≠ decision stability.',
+    image: '/images/rebuild-dossier.webp',
+    description:
+      'Independent quantitative research auditing predictive multiplicity and the mathematical disconnect between aggregate classification accuracy and decision-level portfolio stability. Modeled cross-sectional equity probability distributions across 188 monthly decisions spanning a dynamic 200-stock U.S. equity universe. A controlled validation-leakage ablation demonstrated that a marginal 0.002 shift in test AUC (0.553 to 0.551) destabilized the investment boundary, replacing 61.1% of the portfolio (mean Jaccard overlap 0.389).',
+    stack: ['Python', 'Fama-French 5-factor + Carhart', 'Newey-West', 'Moving-block bootstrap', 'Deflated Sharpe', 'QuantConnect'],
+    metrics: [
+      '188 monthly cross-sectional decisions across 200-stock universe',
+      'AUC drop of 0.002 triggered 61.1% portfolio turnover (Jaccard 0.389)',
+      'Fama-French 5-factor + momentum with Newey-West (3 lags) for heteroskedasticity/autocorrelation',
+      '5,000-iteration moving-block bootstraps; Deflated Sharpe across N=12 and N=38 trial sets correcting for skew (+0.417) and kurtosis (3.94)',
+      'Time-series reconciliation: 0.933 monthly return correlation (R²=0.871) vs QuantConnect cloud execution',
+      'Cryptographic provenance pipeline (paper_provenance.py) locks every table, cache, and seed to SHA-256 manifest',
+    ],
+    architecture: {
+      summary: 'The paper demonstrates that standard ML evaluation (AUC) can survive while the actual portfolio decisions collapse. Separates true signal from market anomalies via factor regressions, validates return stability against resampling uncertainty with Deflated Sharpe Ratios controlling for data-mining bias, and proves local calculations replicate against QuantConnect. All stochastic seeds and computations locked in an immutable SHA-256 provenance manifest.',
+      highlights: [
+        'Predictive multiplicity: identical AUC masks radically different portfolio compositions',
+        'Factor regressions isolate alpha from known anomalies (FF5 + Carhart, Newey-West SEs)',
+        'Bootstrap + Deflated Sharpe corrects for multiple-testing and non-normal returns',
+        'QuantConnect replication validates no silent calculation drift (R²=0.871)',
+        'paper_provenance.py emits SHA-256 manifest for full computational reproducibility',
+        'SSRN Abstract 7468682; companion repo at github.com/Parker-Fawcett/Stock',
+      ],
+    },
+    liveUrl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682',
+    githubUrl: 'https://github.com/Parker-Fawcett/Stock',
+    links: [
+      { label: 'SSRN paper', href: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682' },
+      { label: 'Companion repo', href: 'https://github.com/Parker-Fawcett/Stock' },
+    ],
+  },
+  {
     name: 'Rebuild Dossier',
     type: 'Open-source research',
     statement: 'Lock the contract before the model.',
