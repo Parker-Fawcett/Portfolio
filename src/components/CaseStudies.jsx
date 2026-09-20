@@ -7,7 +7,7 @@ const projects = [
     name: 'When AUC Survives but Portfolios Do Not',
     type: 'Quantitative finance research',
     statement: 'Aggregate accuracy ≠ decision stability.',
-    image: '/images/code-elevation.webp',
+    image: '/images/Auc.png',
     description:
       'Independent quantitative research auditing predictive multiplicity and the mathematical disconnect between aggregate classification accuracy and decision-level portfolio stability. Modeled cross-sectional equity probability distributions across 188 monthly decisions spanning a dynamic 200-stock U.S. equity universe. A controlled validation-leakage ablation demonstrated that a marginal 0.002 shift in test AUC (0.553 to 0.551) destabilized the investment boundary, replacing 61.1% of the portfolio (mean Jaccard overlap 0.389).',
     stack: ['Python', 'Fama-French 5-factor + Carhart', 'Newey-West', 'Moving-block bootstrap', 'Deflated Sharpe', 'QuantConnect'],
@@ -41,7 +41,6 @@ const projects = [
     name: 'Fawcett Capital LLC',
     type: 'Holding company / Venture entity',
     statement: 'One holding company. Five ventures.',
-    image: '/images/parker.webp',
     description:
       'Utah domestic LLC (formed May 2026) serving as an umbrella venture entity for technology products, AI software, marketplaces, research infrastructure, and digital businesses. 100% ownership. Personally drafted the Operating Agreement establishing ownership structure, management framework, business purpose, distributions, capital contributions, amendment procedures, and management transition. Manager-managed structure transitions automatically to member-managed at age 18 with full signing and operational authority vesting in the Member.',
     stack: ['LLC formation', 'Operating Agreement', 'Venture strategy', 'Portfolio management'],

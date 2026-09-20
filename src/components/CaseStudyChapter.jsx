@@ -96,7 +96,7 @@ export default function CaseStudyChapter({ project, index, flip, onViewDetails }
             {project.stack.join(' · ')}
           </p>
 
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+<div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
               Visit live site
             </a>
@@ -110,48 +110,50 @@ export default function CaseStudyChapter({ project, index, flip, onViewDetails }
             </button>
           </div>
         </div>
-
-        <figure style={{ direction: 'ltr', minWidth: 0, margin: 0 }}>
-          <div
-            style={{
-              border: '1px solid var(--line-strong)',
-              borderRadius: 4,
-              overflow: 'hidden',
-              background: 'var(--paper-raised)',
-            }}
-          >
-            <img
-              src={project.image}
-              alt={`${project.name} screenshot`}
-              loading="lazy"
-              style={{ width: '100%', aspectRatio: '4 / 3', objectFit: 'cover', display: 'block' }}
-            />
-            <figcaption
+ 
+        {project.image && (
+          <figure style={{ direction: 'ltr', minWidth: 0, margin: 0 }}>
+            <div
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                gap: 12,
-                padding: '10px 14px',
-                borderTop: '1px solid var(--line)',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.68rem',
-                letterSpacing: '0.04em',
-                color: 'var(--ink-muted)',
+                border: '1px solid var(--line-strong)',
+                borderRadius: 4,
+                overflow: 'hidden',
+                background: 'var(--paper-raised)',
               }}
             >
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: 3 }}
+              <img
+                src={project.image}
+                alt={`${project.name} screenshot`}
+                loading="lazy"
+                style={{ width: '100%', aspectRatio: '4 / 3', objectFit: 'cover', display: 'block' }}
+              />
+              <figcaption
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  gap: 12,
+                  padding: '10px 14px',
+                  borderTop: '1px solid var(--line)',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.68rem',
+                  letterSpacing: '0.04em',
+                  color: 'var(--ink-muted)',
+                }}
               >
-                {host} ↗
-              </a>
-              <span aria-hidden="true">FIG. {marker}</span>
-            </figcaption>
-          </div>
-        </figure>
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: 3 }}
+                >
+                  {host} ↗
+                </a>
+                <span aria-hidden="true">FIG. {marker}</span>
+              </figcaption>
+            </div>
+          </figure>
+        )}
       </div>
 
       <style>{`
