@@ -1,7 +1,244 @@
 import { useEffect, useRef, useState } from 'react'
+import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import CaseStudyChapter from './CaseStudyChapter'
 import ProjectModal from './ProjectModal'
 import Reveal from './Reveal'
+
+// Wide-viewport gate: the pinned scrub needs room. Narrow screens and
+// reduced-motion users get the stacked chapters (zero regression path).
+function useWide(min = 900) {
+  const [wide, setWide] = useState(
+    () => typeof window !== 'undefined' && window.innerWidth >= min
+  )
+  useEffect(() => {
+    const mq = window.matchMedia(`(min-width: ${min}px)`)
+    const onChange = () => setWide(mq.matches)
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [min])
+  return wide
+}
+
+const SCRUB_SPAN_VH = 220 // track length per chapter
+
+// One condensed phase in the pinned viewport: statement + top-3 proof +
+// figure + actions. Full metrics/architecture live in the Details modal,
+// which is why the phase fits 100vh. Opacity is written via ref (the
+// framer-motion 12.41 + React 19 style-opacity quirk — see DESIGN.md);
+// transforms go through style (those propagate fine).
+function ScrubPhase({ project, index, floatProg, flip, onViewDetails }) {
+  const marker = `0.${index + 1}`
+  const host = project.liveUrl.replace('https://', '').replace('http://', '')
+  const local = useTransform(floatProg, (v) => v - index)
+  const y = useTransform(local, [-1, 0, 1], [70, 0, 70])
+  const scale = useTransform(local, [-1, 0, 1], [0.95, 1, 0.95])
+  const ref = useRef(null)
+
+  const apply = (v) => {
+    const el = ref.current
+    if (!el) return
+    const a = Math.abs(v)
+    el.style.opacity = a >= 1 ? '0' : String(1 - a)
+    el.style.visibility = a >= 1 ? 'hidden' : 'visible'
+    el.style.pointerEvents = a < 0.5 ? 'auto' : 'none'
+  }
+  useMotionValueEvent(local, 'change', apply)
+  useEffect(() => {
+    apply(local.get())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return (
+    <motion.div
+      ref={ref}
+      aria-label={`${project.name} case study`}
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        alignItems: 'center',
+        y,
+        scale,
+        opacity: 0,
+        visibility: 'hidden',
+      }}
+    >
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: project.image
+            ? 'minmax(0, 1.02fr) minmax(0, 0.98fr)'
+            : 'minmax(0, 1fr)',
+          gap: 56,
+          alignItems: 'center',
+          width: '100%',
+          direction: flip ? 'rtl' : 'ltr',
+        }}
+      >
+        <div style={{ direction: 'ltr', minWidth: 0 }}>
+          <p
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.72rem',
+              fontWeight: 600,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              marginBottom: 16,
+            }}
+          >
+            <span style={{ color: 'var(--accent-deep)' }}>[{marker}]</span>
+            <span style={{ color: 'var(--ink-muted)' }}> · {project.type}</span>
+          </p>
+          <h3
+            style={{
+              fontSize: 'clamp(1.9rem, 3.4vw, 2.8rem)',
+              fontWeight: 600,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.06,
+              color: 'var(--ink)',
+              marginBottom: 16,
+              textWrap: 'balance',
+            }}
+          >
+            {project.statement}
+          </h3>
+          <ul style={{ listStyle: 'none', display: 'grid', gap: 8, marginBottom: 20 }}>
+            {project.metrics.slice(0, 3).map((m, i) => (
+              <li
+                key={i}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'minmax(0, 22px) minmax(0, 1fr)',
+                  gap: 8,
+                  fontSize: '0.84rem',
+                  color: 'var(--ink-secondary)',
+                  lineHeight: 1.55,
+                }}
+              >
+                <span aria-hidden="true" style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-deep)', fontWeight: 600 }}>
+                  ✓
+                </span>
+                <span>{m}</span>
+              </li>
+            ))}
+          </ul>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              Visit live site
+            </a>
+            <button
+              type="button"
+              onClick={() => onViewDetails(project)}
+              className="btn btn-secondary"
+              style={{ cursor: 'pointer' }}
+            >
+              Details +
+            </button>
+          </div>
+        </div>
+        {project.image && (
+          <figure style={{ direction: 'ltr', minWidth: 0, margin: 0 }}>
+            <div
+              style={{
+                border: '1px solid var(--line-strong)',
+                borderRadius: 4,
+                overflow: 'hidden',
+                background: 'var(--paper-raised)',
+              }}
+            >
+              <img
+                src={project.image}
+                alt={`${project.name} screenshot`}
+                loading="lazy"
+                style={{ width: '100%', maxHeight: '52vh', aspectRatio: '16 / 10', objectFit: 'cover', display: 'block' }}
+              />
+              <figcaption
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  gap: 12,
+                  padding: '10px 14px',
+                  borderTop: '1px solid var(--line)',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.68rem',
+                  letterSpacing: '0.04em',
+                  color: 'var(--ink-muted)',
+                }}
+              >
+                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {host} ↗
+                </span>
+                <span aria-hidden="true">FIG. {marker}</span>
+              </figcaption>
+            </div>
+          </figure>
+        )}
+      </div>
+    </motion.div>
+  )
+}
+
+// Pinned scrub track: N × 220vh of scroll drives one sticky viewport through
+// the chapters. Rail sync is derived from the same progress value.
+function ScrubChapters({ projects, trackRef, onActive, onViewDetails }) {
+  const n = projects.length
+  const { scrollYProgress } = useScroll({
+    target: trackRef,
+    offset: ['start start', 'end end'],
+  })
+  const floatProg = useTransform(scrollYProgress, [0, 1], [0, n - 1])
+  const lastRef = useRef(-1)
+  useMotionValueEvent(floatProg, 'change', (v) => {
+    const i = Math.max(0, Math.min(n - 1, Math.round(v)))
+    if (i !== lastRef.current) {
+      lastRef.current = i
+      onActive(i)
+    }
+  })
+  useEffect(() => {
+    const v = floatProg.get()
+    onActive(Math.max(0, Math.min(n - 1, Math.round(v))))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return (
+    <div ref={trackRef} style={{ position: 'relative', height: `${n * SCRUB_SPAN_VH}vh` }}>
+      <div
+        style={{
+          position: 'sticky',
+          top: 0,
+          height: '100vh',
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: 1120,
+            margin: '0 auto',
+            padding: '84px 24px 24px',
+            height: '100%',
+          }}
+        >
+          {projects.map((p, i) => (
+            <ScrubPhase
+              key={p.name}
+              project={p}
+              index={i}
+              floatProg={floatProg}
+              flip={i % 2 === 1}
+              onViewDetails={onViewDetails}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const projects = [
   {
@@ -263,8 +500,13 @@ export default function CaseStudies() {
   const [selectedProject, setSelectedProject] = useState(null)
   const [active, setActive] = useState(0)
   const sectionRef = useRef(null)
+  const trackRef = useRef(null)
+  const reduceMotion = useReducedMotion()
+  const wide = useWide(900)
+  const scrub = wide && !reduceMotion
 
   useEffect(() => {
+    if (scrub) return // scrub mode derives active from scroll progress
     const section = sectionRef.current
     if (!section) return
     const chapters = section.querySelectorAll('[data-chapter]')
@@ -278,9 +520,17 @@ export default function CaseStudies() {
     )
     chapters.forEach((el) => observer.observe(el))
     return () => observer.disconnect()
-  }, [])
+  }, [scrub])
 
   const scrollToChapter = (i) => {
+    if (scrub) {
+      const track = trackRef.current
+      if (!track) return
+      const top = track.getBoundingClientRect().top + window.scrollY
+      const spanPx = window.innerHeight * (SCRUB_SPAN_VH / 100)
+      window.scrollTo({ top: top + i * spanPx + spanPx / 2 - window.innerHeight / 2, behavior: 'smooth' })
+      return
+    }
     const section = sectionRef.current
     if (!section) return
     const el = section.querySelector(`[data-chapter="${i}"]`)
@@ -355,16 +605,27 @@ export default function CaseStudies() {
         </div>
       </div>
 
-      <div style={{ borderBottom: '1px solid var(--line)' }}>
-        {projects.map((project, i) => (
-          <CaseStudyChapter
-            key={project.name}
-            project={project}
-            index={i}
-            flip={i % 2 === 1}
+      <div key={scrub ? 'scrub' : 'stack'}>
+        {scrub ? (
+          <ScrubChapters
+            projects={projects}
+            trackRef={trackRef}
+            onActive={setActive}
             onViewDetails={setSelectedProject}
           />
-        ))}
+        ) : (
+          <div style={{ borderBottom: '1px solid var(--line)' }}>
+            {projects.map((project, i) => (
+              <CaseStudyChapter
+                key={project.name}
+                project={project}
+                index={i}
+                flip={i % 2 === 1}
+                onViewDetails={setSelectedProject}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       <div style={{ marginTop: 64 }}>

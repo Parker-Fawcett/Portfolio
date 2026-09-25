@@ -30,6 +30,12 @@ empirical, tabular, printed. Ink on paper, monospace data, ruled lines.
    (`#0e1013`) cinematic showcase — no glow, no gradient, no glass, ever.
    It dissolves into Act II: the paper dossier, which carries all bulk
    reading. Dark is for showcase imagery only; text lives on paper.
+   Chapter transitions in Selected Work are a pinned scroll scrub
+   (8 × 220vh track, sticky viewport, linear crossfade + drift);
+   condensed phases (statement + top-3 proof + figure) because full
+   chapters cannot fit 100vh — complete metrics live in the Details
+   modal. Scrub runs on wide viewports only; narrow screens and
+   `prefers-reduced-motion` get the stacked chapters unchanged.
 6. **Numbers carry provenance.** Every stat ships with source + date.
    Floating context-free numerals are banned — use the appendix table.
 7. **Left-aligned display type.** Centered heroes are the template
