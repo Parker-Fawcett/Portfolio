@@ -19,6 +19,12 @@ const projects = [
       'Time-series reconciliation: 0.933 monthly return correlation (R²=0.871) vs QuantConnect cloud execution',
       'Cryptographic provenance pipeline (paper_provenance.py) locks every table, cache, and seed to SHA-256 manifest',
     ],
+    beforeAfter: {
+      leftLabel: 'What the metric says',
+      leftBody: 'AUC 0.553 → 0.551. A 0.002 shift — statistical noise by any standard gate. The model passes.',
+      rightLabel: 'What the portfolio does',
+      rightBody: '61.1% of holdings replaced. Mean Jaccard overlap 0.389 — a different portfolio wearing the same score.',
+    },
     architecture: {
       summary: 'The paper demonstrates that standard ML evaluation (AUC) can survive while the actual portfolio decisions collapse. Separates true signal from market anomalies via factor regressions, validates return stability against resampling uncertainty with Deflated Sharpe Ratios controlling for data-mining bias, and proves local calculations replicate against QuantConnect. All stochastic seeds and computations locked in an immutable SHA-256 provenance manifest.',
       highlights: [
@@ -113,6 +119,12 @@ const projects = [
       'Hermes validates every contact through a 4-provider waterfall and rotates 26 outreach angles, CAN-SPAM compliant',
       'Counselor-in-the-loop essay review grounded in federal admissions data, not vibes',
     ],
+    beforeAfter: {
+      leftLabel: 'Enterprise outbound',
+      leftBody: '$3K–$15K/mo platforms: enrichment, sequencing, and compliance sold back to you as a subscription.',
+      rightLabel: 'Hermes',
+      rightBody: '~95% of that surface at $0 marginal cost — 4-provider waterfall, 26 outreach angles, CAN-SPAM compliant.',
+    },
     architecture: {
       summary: 'Next.js on serverless Postgres, Redis for hot paths, Groq for fast drafting. Hermes handles outbound: enrichment waterfall, angle rotation, compliance.',
       highlights: [

@@ -83,6 +83,51 @@ export default function CaseStudyChapter({ project, index, flip, onViewDetails }
             ))}
           </ul>
 
+          {project.beforeAfter && (
+            <div
+              className="before-after"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+                border: '1px solid var(--line-strong)',
+                borderRadius: 4,
+                overflow: 'hidden',
+                background: 'var(--paper-raised)',
+                marginBottom: 22,
+              }}
+            >
+              {[
+                { k: 'before', tabLabel: project.beforeAfter.leftLabel, body: project.beforeAfter.leftBody },
+                { k: 'after', tabLabel: project.beforeAfter.rightLabel, body: project.beforeAfter.rightBody },
+              ].map((cell, ci) => (
+                <div
+                  key={cell.k}
+                  style={{
+                    padding: '16px 18px',
+                    borderLeft: ci === 1 ? '1px solid var(--line-strong)' : 'none',
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.64rem',
+                      fontWeight: 600,
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color: ci === 1 ? 'var(--accent-deep)' : 'var(--ink-muted)',
+                      marginBottom: 8,
+                    }}
+                  >
+                    {cell.tabLabel}
+                  </p>
+                  <p style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)', lineHeight: 1.65 }}>
+                    {cell.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+
           <p
             style={{
               fontFamily: 'var(--font-mono)',
@@ -160,6 +205,10 @@ export default function CaseStudyChapter({ project, index, flip, onViewDetails }
         .chapter { scroll-margin-top: 140px; }
         @media (max-width: 900px) {
           .chapter-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 36px !important; }
+        }
+        @media (max-width: 640px) {
+          .before-after { grid-template-columns: minmax(0, 1fr) !important; }
+          .before-after > div + div { border-left: none !important; border-top: 1px solid var(--line-strong); }
         }
       `}</style>
     </article>

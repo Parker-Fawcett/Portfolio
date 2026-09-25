@@ -32,6 +32,8 @@ const rightFeed = [
   '172 sets tracked',
   'paper: under review @ EMSE',
   'outbound: 95% of $15k/mo stack',
+  'ocr: $0 per scan, client-side',
+  'careermd: manual → automated ✓',
   'margin: $0 operating cost ✓',
   'status: still in high school',
 ]
