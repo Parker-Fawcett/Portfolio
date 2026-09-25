@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import CaseStudyChapter from './CaseStudyChapter'
 import ProjectModal from './ProjectModal'
+import Reveal from './Reveal'
 
 const projects = [
   {
@@ -289,7 +290,9 @@ export default function CaseStudies() {
   return (
     <section id="case-studies" ref={sectionRef} className="section-container">
       <p className="section-label">02 · Projects</p>
-      <h2 className="section-title">Selected work</h2>
+      <Reveal>
+        <h2 className="section-title">Selected work</h2>
+      </Reveal>
 
       <div
         aria-label="Chapter progress"

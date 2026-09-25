@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import Reveal from './Reveal'
 
 const experiences = [
   {
@@ -109,7 +110,9 @@ export default function Experience() {
   return (
     <section id="experience" ref={sectionRef} className="section-container">
       <p className="section-label">01 · Background</p>
-      <h2 className="section-title">Experience</h2>
+      <Reveal>
+        <h2 className="section-title">Experience</h2>
+      </Reveal>
 
       <div
         aria-label="Role progress"
@@ -200,35 +203,37 @@ export default function Experience() {
             </span>
 
             <div>
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  justifyContent: 'space-between',
-                  alignItems: 'baseline',
-                  gap: 10,
-                  marginBottom: 14,
-                }}
-              >
-                <div>
-                  <h3 style={{ fontSize: '1.22rem', fontWeight: 600, letterSpacing: '-0.01em' }}>{exp.role}</h3>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.03em', color: 'var(--ink-muted)', marginTop: 4 }}>
-                    {exp.org}
-                    {exp.location ? ` · ${exp.location}` : ''}
-                  </p>
-                </div>
-                <span
+              <Reveal>
+                <div
                   style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.7rem',
-                    letterSpacing: '0.06em',
-                    color: 'var(--ink-muted)',
-                    whiteSpace: 'nowrap',
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'space-between',
+                    alignItems: 'baseline',
+                    gap: 10,
+                    marginBottom: 14,
                   }}
                 >
-                  {exp.period}
-                </span>
-              </div>
+                  <div>
+                    <h3 style={{ fontSize: '1.22rem', fontWeight: 600, letterSpacing: '-0.01em' }}>{exp.role}</h3>
+                    <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.03em', color: 'var(--ink-muted)', marginTop: 4 }}>
+                      {exp.org}
+                      {exp.location ? ` · ${exp.location}` : ''}
+                    </p>
+                  </div>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.7rem',
+                      letterSpacing: '0.06em',
+                      color: 'var(--ink-muted)',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {exp.period}
+                  </span>
+                </div>
+              </Reveal>
 
               <ul style={{ listStyle: 'disc', paddingLeft: 18, display: 'grid', gap: 8 }}>
                 {exp.highlights.map((h, idx) => (

@@ -1,5 +1,6 @@
 // Appendix table: every number carries its provenance. Numbers without
 // sources are decoration — see DESIGN.md rule 6.
+import Reveal from './Reveal'
 const rows = [
   { number: '512', label: 'unit tests written', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/test', source: 'rebuild-dossier/test', date: '2026' },
   { number: '83', label: 'test files with enforced specs', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/test', source: 'rebuild-dossier/test', date: '2026' },
@@ -35,22 +36,23 @@ export default function StatsBand() {
           Appendix A — figures cited
         </p>
         <div>
-          {rows.map((row) => (
-            <a
-              key={row.label}
-              href={row.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="stat-row"
-              style={{ textDecoration: 'none', display: 'grid' }}
-            >
-              <span className="stat-row-number">{row.number}</span>
-              <span className="stat-row-label">{row.label}</span>
-              <span className="stat-row-source">
-                {row.source} ↗
-                <span className="stat-row-date">{row.date}</span>
-              </span>
-            </a>
+          {rows.map((row, i) => (
+            <Reveal key={row.label} delay={Math.min(i * 0.06, 0.3)}>
+              <a
+                href={row.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="stat-row"
+                style={{ textDecoration: 'none', display: 'grid' }}
+              >
+                <span className="stat-row-number">{row.number}</span>
+                <span className="stat-row-label">{row.label}</span>
+                <span className="stat-row-source">
+                  {row.source} ↗
+                  <span className="stat-row-date">{row.date}</span>
+                </span>
+              </a>
+            </Reveal>
           ))}
         </div>
 
@@ -58,24 +60,25 @@ export default function StatsBand() {
           Appendix B — head-to-head
         </p>
         <div style={{ borderBottom: '1px solid var(--line)' }}>
-          {comparisons.map((c) => (
-            <a
-              key={c.metric}
-              href={c.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="compare-row"
-              style={{ textDecoration: 'none', display: 'grid' }}
-            >
-              <span className="compare-metric">{c.metric}</span>
-              <span className="compare-baseline">{c.baseline}</span>
-              <span className="compare-arrow" aria-hidden="true">→</span>
-              <span className="compare-result">{c.result}</span>
-              <span className="compare-source">
-                {c.source} ↗
-                <span className="stat-row-date">{c.date}</span>
-              </span>
-            </a>
+          {comparisons.map((c, i) => (
+            <Reveal key={c.metric} delay={Math.min(i * 0.06, 0.3)}>
+              <a
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="compare-row"
+                style={{ textDecoration: 'none', display: 'grid' }}
+              >
+                <span className="compare-metric">{c.metric}</span>
+                <span className="compare-baseline">{c.baseline}</span>
+                <span className="compare-arrow" aria-hidden="true">→</span>
+                <span className="compare-result">{c.result}</span>
+                <span className="compare-source">
+                  {c.source} ↗
+                  <span className="stat-row-date">{c.date}</span>
+                </span>
+              </a>
+            </Reveal>
           ))}
         </div>
       </div>

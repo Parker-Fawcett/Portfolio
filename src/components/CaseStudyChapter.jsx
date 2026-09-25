@@ -1,5 +1,7 @@
 // One statement + proof chapter: a claim on the left, the artifact on the
 // right (order alternates). The Details button opens the full dossier modal.
+import Reveal from './Reveal'
+
 export default function CaseStudyChapter({ project, index, flip, onViewDetails }) {
   const marker = `0.${index + 1}`
   const host = project.liveUrl.replace('https://', '').replace('http://', '')
@@ -36,19 +38,21 @@ export default function CaseStudyChapter({ project, index, flip, onViewDetails }
             <span style={{ color: 'var(--ink-muted)' }}> · {project.type}</span>
           </p>
 
-          <h3
-            style={{
-              fontSize: 'clamp(2rem, 4vw, 3rem)',
-              fontWeight: 600,
-              letterSpacing: '-0.03em',
-              lineHeight: 1.04,
-              color: 'var(--ink)',
-              marginBottom: 18,
-              textWrap: 'balance',
-            }}
-          >
-            {project.statement}
-          </h3>
+          <Reveal>
+            <h3
+              style={{
+                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                fontWeight: 600,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.04,
+                color: 'var(--ink)',
+                marginBottom: 18,
+                textWrap: 'balance',
+              }}
+            >
+              {project.statement}
+            </h3>
+          </Reveal>
 
           <p
             style={{
@@ -157,47 +161,49 @@ export default function CaseStudyChapter({ project, index, flip, onViewDetails }
         </div>
  
         {project.image && (
-          <figure style={{ direction: 'ltr', minWidth: 0, margin: 0 }}>
-            <div
-              style={{
-                border: '1px solid var(--line-strong)',
-                borderRadius: 4,
-                overflow: 'hidden',
-                background: 'var(--paper-raised)',
-              }}
-            >
-              <img
-                src={project.image}
-                alt={`${project.name} screenshot`}
-                loading="lazy"
-                style={{ width: '100%', aspectRatio: '4 / 3', objectFit: 'cover', display: 'block' }}
-              />
-              <figcaption
+          <Reveal delay={0.12} style={{ direction: 'ltr', minWidth: 0 }}>
+            <figure style={{ margin: 0 }}>
+              <div
                 style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  gap: 12,
-                  padding: '10px 14px',
-                  borderTop: '1px solid var(--line)',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.68rem',
-                  letterSpacing: '0.04em',
-                  color: 'var(--ink-muted)',
+                  border: '1px solid var(--line-strong)',
+                  borderRadius: 4,
+                  overflow: 'hidden',
+                  background: 'var(--paper-raised)',
                 }}
               >
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: 3 }}
+                <img
+                  src={project.image}
+                  alt={`${project.name} screenshot`}
+                  loading="lazy"
+                  style={{ width: '100%', aspectRatio: '4 / 3', objectFit: 'cover', display: 'block' }}
+                />
+                <figcaption
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    gap: 12,
+                    padding: '10px 14px',
+                    borderTop: '1px solid var(--line)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.68rem',
+                    letterSpacing: '0.04em',
+                    color: 'var(--ink-muted)',
+                  }}
                 >
-                  {host} ↗
-                </a>
-                <span aria-hidden="true">FIG. {marker}</span>
-              </figcaption>
-            </div>
-          </figure>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: 3 }}
+                  >
+                    {host} ↗
+                  </a>
+                  <span aria-hidden="true">FIG. {marker}</span>
+                </figcaption>
+              </div>
+            </figure>
+          </Reveal>
         )}
       </div>
 

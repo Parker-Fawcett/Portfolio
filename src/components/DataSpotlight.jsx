@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import Reveal from './Reveal'
 
 const steps = [
   {
@@ -71,7 +72,9 @@ export default function DataSpotlight() {
   return (
     <section id="data-spotlight" ref={sectionRef} className="section-container" style={{ borderTop: '1px solid var(--line)' }}>
       <p className="section-label">03 · How it works at CHG</p>
-      <h2 className="section-title">The tooling flow</h2>
+      <Reveal>
+        <h2 className="section-title">The tooling flow</h2>
+      </Reveal>
 
       <div
         aria-label="Flow progress"
