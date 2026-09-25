@@ -25,6 +25,10 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  /* Play-then-lock: chapters snap gently to place on arrival, but the
+     scroll is never hijacked — proximity only bites near a snap point. */
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 70px;
 }
 
 body {
