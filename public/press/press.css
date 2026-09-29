@@ -1,0 +1,58 @@
+:root {
+  --paper: #f6f6f4;
+  --ink: #1a1c20;
+  --secondary: #46494f;
+  --muted: #6d7076;
+  --line: #dcddd8;
+  --accent: #16307f;
+  --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: var(--ink); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.site-header { border-bottom: 1px solid var(--line); }
+.header-inner { max-width: 1120px; margin: auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.wordmark { font: 600 .78rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+nav { display: flex; gap: 26px; }
+nav a { font: 500 .72rem var(--mono); text-transform: uppercase; letter-spacing: .08em; text-decoration: none; color: var(--secondary); }
+.page { max-width: 1120px; margin: auto; padding: 88px 24px 112px; }
+.eyebrow, .section-heading span, h3, dt, .links span, .portrait figcaption, .site-footer { font-family: var(--mono); }
+.eyebrow { margin: 0 0 20px; font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.intro { display: grid; grid-template-columns: minmax(0, 1fr) 288px; align-items: start; gap: clamp(36px, 8vw, 110px); padding-bottom: 72px; }
+h1 { margin: 0 0 22px; font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1; letter-spacing: -.045em; font-weight: 600; }
+.lede { max-width: 700px; margin: 0; font-size: clamp(1.14rem, 2.2vw, 1.45rem); line-height: 1.55; color: var(--secondary); }
+.portrait { margin: 0; }
+.portrait img { display: block; width: 100%; height: auto; border: 1px solid var(--line); object-fit: cover; }
+.portrait figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 3px 14px; margin-top: 10px; font-size: .66rem; color: var(--muted); }
+.portrait a { white-space: nowrap; }
+.section { display: grid; grid-template-columns: minmax(160px, 27%) minmax(0, 1fr); gap: 34px; padding: 34px 0 44px; border-top: 1px solid var(--line); }
+.section-heading { display: flex; align-items: baseline; gap: 14px; }
+.section-heading span { color: var(--accent); font-size: .72rem; font-weight: 600; }
+h2 { margin: 0; font-size: 1.22rem; line-height: 1.35; font-weight: 600; letter-spacing: -.015em; }
+.section-body { margin: 0; }
+.bio-block + .bio-block { margin-top: 28px; }
+h3 { margin: 0 0 9px; font-size: .69rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.bio-block p { max-width: 680px; margin: 0; color: var(--secondary); font-size: .94rem; line-height: 1.75; }
+.facts div, .links li { display: grid; grid-template-columns: 125px minmax(0, 1fr); gap: 18px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.facts div:first-child, .links li:first-child { padding-top: 0; }
+dt, .links span { color: var(--muted); font-size: .7rem; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
+dd { margin: 0; color: var(--secondary); font-size: .92rem; }
+.links { list-style: none; padding: 0; }
+.links a { overflow-wrap: anywhere; font-size: .92rem; }
+.site-footer { max-width: 1120px; margin: auto; padding: 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: .7rem; }
+@media (max-width: 760px) {
+  .page { padding: 56px 20px 80px; }
+  .intro { grid-template-columns: 1fr; gap: 34px; padding-bottom: 56px; }
+  .portrait { max-width: 288px; }
+  .section { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 420px) {
+  .header-inner { padding: 15px 16px; }
+  nav { gap: 14px; }
+  .page { padding-left: 16px; padding-right: 16px; }
+  .facts div, .links li { grid-template-columns: 96px minmax(0, 1fr); gap: 10px; }
+}

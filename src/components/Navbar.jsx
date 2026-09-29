@@ -3,6 +3,7 @@ const navItems = [
   { label: 'Work', href: '#case-studies', desktopOnly: false },
   { label: 'Spotlight', href: '#data-spotlight', desktopOnly: true },
   { label: 'Contact', href: '#contact', desktopOnly: false },
+  { label: 'Press', href: '/press/', desktopOnly: false },
 ]
 
 export default function Navbar() {
@@ -74,6 +75,7 @@ export default function Navbar() {
       <style>{`
         @media (max-width: 640px) {
           .nav-desktop { display: none !important; }
+          nav { gap: 12px !important; }
         }
       `}</style>
     </header>
