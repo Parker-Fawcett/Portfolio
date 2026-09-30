@@ -49,8 +49,12 @@ a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); ou
 .article-body ol { margin: 0 0 24px; padding-left: 24px; }
 .article-body li { padding-left: 6px; margin-bottom: 12px; }
 .article-body strong { color: var(--ink); font-weight: 600; }
+.article-body code { font-family: var(--mono); font-size: .86em; color: var(--ink); overflow-wrap: anywhere; }
+.request-example { margin: 4px 0 24px; padding: 18px 20px; overflow-x: auto; border: 1px solid var(--line); background: var(--raised); }
+.request-example code { white-space: pre; overflow-wrap: normal; font-size: .86rem; }
 .evidence-table { overflow-x: auto; margin: 34px 0 8px; border-top: 1px solid var(--strong-line); }
 table { border-collapse: collapse; width: 100%; min-width: 500px; background: var(--raised); }
+.comparison-table { min-width: 680px; }
 caption { text-align: left; padding: 12px 0; font: 600 .68rem var(--mono); letter-spacing: .1em; color: var(--muted); text-transform: uppercase; background: var(--paper); }
 th, td { padding: 15px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
 thead th { font: 600 .66rem var(--mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }

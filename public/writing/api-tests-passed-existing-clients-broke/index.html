@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f6f4" />
+    <meta name="description" content="A rebuilt Express API passed every generated test but changed where a client had to send its data. A practical look at request contracts, weak tests, and compatibility checks." />
+    <link rel="canonical" href="https://www.parkerfawcett.com/writing/api-tests-passed-existing-clients-broke/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/writing/writing.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.parkerfawcett.com/writing/api-tests-passed-existing-clients-broke/" />
+    <meta property="og:title" content="The API Tests Passed. Existing Clients Broke. | Parker Fawcett" />
+    <meta property="og:description" content="A rebuilt Express API accepted JSON where the original read query parameters. Its generated tests still passed." />
+    <meta property="og:image" content="https://www.parkerfawcett.com/images/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>The API Tests Passed. Existing Clients Broke. | Parker Fawcett</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="/">Parker Fawcett</a>
+        <nav aria-label="Main navigation"><a href="/writing/">All writing</a><a href="/">Portfolio</a></nav>
+      </div>
+    </header>
+    <main class="article-page">
+      <article>
+        <header class="article-header">
+          <p class="eyebrow">W.002 / API contracts</p>
+          <h1>The API Tests Passed. Existing Clients Broke<span class="period">.</span></h1>
+          <p class="article-deck">A rebuilt Express API passed every generated check. It also changed where clients had to put a user's name.</p>
+          <div class="byline"><span>Parker Fawcett</span><span>September 2026</span><span>4 min read</span></div>
+        </header>
+
+        <div class="article-body">
+          <p>The original API created a user from a request like this:</p>
+          <pre class="request-example"><code>POST /users?name=ann&amp;age=30</code></pre>
+          <p>The rebuild expected <code>name</code> and <code>age</code> in a JSON body instead. That request to the rebuild returned <code>{"error":"name is required"}</code>. A client sending it could no longer create a user, even though the generated visible tests and held-out test all passed.</p>
+          <p>This happened in a cold run of <a href="https://github.com/Parker-Fawcett/rebuild-dossier">Rebuild Dossier</a> against a third-party Express todo API. The coding agent rebuilt the app from extracted contracts and tests, without the source. It implemented all ten routes, passed the four visible checks and the one held-out check, then failed a side-by-side request comparison with the original.</p>
+
+          <h2 id="missing-contract">The route was present. The contract was missing.</h2>
+          <p>For <code>POST /users</code>, the extracted contract contained only the route declaration. It did not say that the handler read <code>req.query.name</code>. The generated check sent an empty JSON object and accepted any response with a status below 500. That check could reject a crash. It could not distinguish the original query-string API from a new JSON-body API.</p>
+          <p>The status predicate was weaker than it looked: a missing route can return 404 and still satisfy “below 500.” A green result here meant the server answered without a 5xx error. It said nothing about whether this request created a user, where the inputs belonged, or what came back.</p>
+          <div class="evidence-table" role="region" aria-label="Original and rebuilt API behavior" tabindex="0">
+            <table class="comparison-table">
+              <caption>Same routes, different behavior</caption>
+              <thead><tr><th scope="col">Request or behavior</th><th scope="col">Original</th><th scope="col">Rebuild</th></tr></thead>
+              <tbody>
+                <tr><th scope="row"><code>POST /users?name=ann&amp;age=30</code></th><td>Reads the query parameters</td><td>Requires a JSON body; rejects the original request</td></tr>
+                <tr><th scope="row"><code>GET /users</code></th><td>Returns an object with a <code>userData</code> array loaded from a file</td><td>Returns a bare, initially empty array</td></tr>
+                <tr><th scope="row">Restart the process</th><td>User data persists in a JSON file</td><td>In-memory data disappears</td></tr>
+                <tr><th scope="row"><code>node index.js</code></th><td>Starts the server</td><td>Does not start a listener</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>These are compatibility breaks, not cosmetic differences. A client depends on where fields go, what shape comes back, and whether the service starts and retains data. A route list alone records none of that.</p>
+
+          <h2 id="better-checks">Check the request a real client sends</h2>
+          <p>For an API rebuild, I would save a small set of representative exchanges from the existing app before writing the replacement. Each example should pin the method, path, query string, headers, body, status, and response shape. Then I would replay the exact requests against the rebuild.</p>
+          <ol>
+            <li><strong>Use real parameter locations.</strong> A test that sends <code>{}</code> cannot tell whether a working client uses query parameters, JSON, or form data.</li>
+            <li><strong>Assert the response contract.</strong> “Status below 500” is a useful smoke check. Compatibility needs the expected status, fields, and envelope.</li>
+            <li><strong>Exercise state across requests.</strong> Create a record, fetch it, restart the process, and fetch it again if persistence is part of the original behavior.</li>
+            <li><strong>Run the documented entry point.</strong> An importable app object is not enough if existing users launch it with <code>node index.js</code>.</li>
+          </ol>
+          <p>A side-by-side check needs some care. Generated IDs and timestamps can differ between runs, so compare stable fields and state changes rather than raw response bytes. But do not normalize away a changed envelope, missing field, or different parameter location: those are the contract you are trying to protect.</p>
+
+          <h2 id="extractor-fix">What changed after this run</h2>
+          <p>The extractor was later changed to follow Express handlers into their source, including some imported functions and local callees. It could then put the behavior, not just the route declaration, into the contract and aim mutation checks at the handler. On this same todo app, the regenerated contract includes the code that reads <code>req.query.name</code>.</p>
+          <p>That is a better starting point for a rebuild, but it is not a complete compatibility guarantee. In this run, persistence and server startup also differed. Those behaviors live outside a single route handler and need their own checks. The extractor fix does not retroactively make the earlier all-green rebuild compatible, and the log does not report a new full rebuild of this app after the fix.</p>
+          <p>This is one third-party app and one rebuild, not a failure rate. The useful lesson is narrower and concrete: if a generated test never sends a request that an existing client sends, its green result cannot certify that client will still work.</p>
+        </div>
+
+        <aside class="source-material" aria-labelledby="sources-heading">
+          <h2 id="sources-heading">Source material</h2>
+          <p>The chronological findings log records the cold run and request comparison, followed by the Express handler-extraction fix. The fix was verified at extraction time; this article does not claim a new rebuild of the same app was run afterward.</p>
+          <ul>
+            <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/main/docs/v0-findings.md#L5859-L5921">Original Express cold run and request comparison ↗</a></li>
+            <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/main/docs/v0-findings.md#L5960-L5977">Later handler-extraction fix ↗</a></li>
+            <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier">Rebuild Dossier code and evaluation artifacts ↗</a></li>
+          </ul>
+        </aside>
+        <aside class="author-box" aria-label="About the author">
+          <p class="eyebrow">About the author</p>
+          <h2>Parker Fawcett</h2>
+          <p>AI Skills Engineer. I build tools for coding agents and write about how to check the software they produce.</p>
+          <div><a href="https://github.com/Parker-Fawcett/rebuild-dossier">Rebuild Dossier ↗</a><a href="https://github.com/Parker-Fawcett">GitHub ↗</a><a href="mailto:Parkerscottfawcett@gmail.com">Contact ↗</a></div>
+        </aside>
+        <nav class="article-end-nav" aria-label="Article navigation"><a href="/writing/visible-tests-are-not-a-specification/">← Previous entry</a><a href="/writing/">All writing →</a></nav>
+      </article>
+    </main>
+    <footer class="site-footer"><span>© 2026 Parker Fawcett</span><a href="/press/">Press / media ↗</a></footer>
+  </body>
+</html>
