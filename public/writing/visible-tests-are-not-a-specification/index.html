@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f6f6f4" />
-    <meta name="description" content="A Rebuild Dossier experiment showed a coding agent passing a visible test while delivering a static todo interface. Parker Fawcett explains what the test missed." />
+    <meta name="description" content="A generated check passed on a todo page that could not add, edit, or delete tasks. Here is what the test missed and how to check the real user path." />
     <link rel="canonical" href="https://www.parkerfawcett.com/writing/visible-tests-are-not-a-specification/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,7 +14,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://www.parkerfawcett.com/writing/visible-tests-are-not-a-specification/" />
     <meta property="og:title" content="Visible Tests Are Not a Specification | Parker Fawcett" />
-    <meta property="og:description" content="A passing page test hid a todo app that could not manage todos. The lesson from a Rebuild Dossier experiment." />
+    <meta property="og:description" content="A generated check passed on a todo page that could not manage todos. Here is the user path the test missed." />
     <meta property="og:image" content="https://www.parkerfawcett.com/images/og.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <title>Visible Tests Are Not a Specification | Parker Fawcett</title>
@@ -29,54 +29,50 @@
     <main class="article-page">
       <article>
         <header class="article-header">
-          <p class="eyebrow">W.001 / Agent evaluation</p>
+          <p class="eyebrow">W.001 / Software testing</p>
           <h1>Visible Tests Are Not a Specification<span class="period">.</span></h1>
-          <p class="article-deck">A coding agent passed a page test on a todo app. The rebuilt page could not manage todos. The test had checked for three strings and nothing more.</p>
-          <div class="byline"><span>Parker Fawcett</span><span>September 2026</span><span>~6 min read</span></div>
+          <p class="article-deck">The generated test found three strings. A coding agent returned a page with those strings—and no usable todo list.</p>
+          <div class="byline"><span>Parker Fawcett</span><span>September 2026</span><span>4 min read</span></div>
         </header>
 
         <div class="article-body">
-          <p>It is tempting to read a green test suite as a statement about the software. In an agentic rebuild, that shortcut can be especially persuasive: the agent had a specification, it wrote code, the checks passed, and a report says the job is done. But the test suite may be describing only what the test harness happened to observe.</p>
-          <p>One <a href="https://arxiv.org/abs/2608.23616">Rebuild Dossier experiment</a> made that gap unusually clear. I ran the tool against a small, independently authored todo application, then gave a coding agent the generated specification without access to the original source. The visible page test passed. The resulting interface was a static shell.</p>
+          <p>The original todo app had a working list. You could add an item, change it, and remove it. The rebuilt page could do none of those things. Its visible page test still passed.</p>
+          <p>I found this while testing <a href="https://github.com/Parker-Fawcett/rebuild-dossier">Rebuild Dossier</a>, a tool that extracts contracts and tests from an existing application before a coding agent rebuilds it. For this run, the agent received the generated material without the original source. The generated page test checked that three fixed strings appeared on screen. The agent returned a page displaying those strings.</p>
 
-          <h2 id="todo-case">The todo app that passed without todos</h2>
-          <p>The original application had an interactive todo list and CRUD behavior. The generated page test, however, asserted only that three fixed strings appeared in the rendered page. It did not add a todo, change one, delete one, or check that the interface was wired to the API. A page containing those three strings could pass.</p>
-          <p>That is what the blind rebuild produced: a noninteractive shell that satisfied the visible page check. The agent also built GET, POST, PUT, and DELETE endpoints in a batch, but that extra work did not make the page a working todo interface. The result was a valid pass against the test we had written and a poor match for the feature a person would recognize. The paper records this as a narrowness error in the verification signal, alongside separate findings about the agent’s build process. <a href="https://arxiv.org/html/2608.23616v3">See §4.7 and §5.1 of the technical report.</a></p>
-
+          <h2 id="todo-case">What the test actually proved</h2>
+          <p>The page capture had recorded text, not an interaction. There was no assertion for creating a todo, seeing it join the list, editing its title, or deleting it. The test did exactly what it was written to do. It could not tell a working interface from a static one with the right words.</p>
           <div class="evidence-table" role="region" aria-label="What the todo test measured" tabindex="0">
             <table>
-              <caption>One test, two very different claims</caption>
-              <thead><tr><th scope="col">Layer</th><th scope="col">What it established</th></tr></thead>
+              <caption>The gap in one page</caption>
+              <thead><tr><th scope="col">Part</th><th scope="col">What happened</th></tr></thead>
               <tbody>
-                <tr><th scope="row">Original app</th><td>A person could use a todo interface with state and CRUD behavior.</td></tr>
-                <tr><th scope="row">Visible page test</th><td>Three fixed strings appeared somewhere in the rendered page.</td></tr>
-                <tr><th scope="row">Passing rebuild</th><td>A static shell displayed the strings. The interactive feature was absent.</td></tr>
+                <tr><th scope="row">Original app</th><td>A person could add, edit, and delete todos through the interface.</td></tr>
+                <tr><th scope="row">Generated check</th><td>Three fixed strings had to appear in the rendered page.</td></tr>
+                <tr><th scope="row">Passing rebuild</th><td>The strings appeared in a static page; the list did not work.</td></tr>
               </tbody>
             </table>
           </div>
+          <p>The agent also built GET, POST, PUT, and DELETE endpoints. That API work did not connect the page to a usable list. It was a separate issue with the build order; the static page itself satisfied the narrow check. Both details matter when diagnosing the result.</p>
 
-          <h2 id="independent-oracle">A broader check made the gap measurable</h2>
-          <p>The todo run is a concrete example, not a prevalence estimate. A later evaluation asked a broader question: how much of an application’s original behavior survived when the generated tests said the rebuild was complete? In a September 27 entry in the project’s <a href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/main/docs/v0-findings.md">chronological findings log</a>, I reported an author-written requirements check against 30 archived rebuilds of one application. Every run had completed the visible suite. Against the original app’s behavior that could be checked without its database, weak-tier rebuilds matched 18 of 960 checks (1.9%); strong-tier rebuilds matched 176 of 480 (36.7%).</p>
-          <p>Those percentages describe this one app and this particular check, not coding agents generally. The check was written by the author, covered only behavior decidable without the database, and compared response keys coarsely. Its value here is the direct comparison: visible test completion and behavioral fidelity gave very different answers on the same archived runs. <a href="https://github.com/Parker-Fawcett/rebuild-dossier/tree/main/evidence/fidelity-oracle">The frozen check and run evidence are available in the repository.</a></p>
-
-          <h2 id="mechanism">How a measurement becomes a requirement</h2>
-          <p>A generated test starts as a measurement of an existing app. During a rebuild, it becomes an instruction: make this test pass. If the measurement captured only visible text, the agent has no reason to infer every interaction that text was attached to. It may build exactly the narrow behavior the test rewards.</p>
-          <p>The same project surfaced a different version of that problem with an animated counter. A capture taken before the animation settled recorded an intermediate value. A blind rebuild hardcoded that intermediate value as permanent content and passed the available checks, while reproducing none of the animation. In that case the harness recorded the wrong moment; in the todo case it recorded too little behavior. The capture bug was later fixed with DOM-text-stability polling, as the findings log records. Both experiments show how the evidence supplied to an agent can shape the result. <a href="https://arxiv.org/html/2608.23616v3">The report separates the failure mechanisms in §5.1 and Appendix C.5.</a></p>
-
-          <h2 id="held-out">Even a held-out test can give away its answer</h2>
-          <p>A later experiment found another weak boundary. The held-out contract did not include a page’s required text, but a failing test printed that text in its assertion output. An agent could rerun the held-out suite against a wrong implementation and read the expected string without opening the test file. The paper reports that, in one ten-run batch, the reps that repeatedly ran held-out tests went green while the two that ran them once failed with placeholder content. That association does not establish what caused every earlier result, and the paper says so. It does identify a leakage path that was reproduced directly. <a href="https://arxiv.org/html/2608.23616v3">See §4.14 of the report.</a></p>
-          <p>The fix was to put the captured static text into the legitimate page contract, so the withheld assertion was no longer the only place an agent could learn it. In the repeat batch after that change, all eight valid runs passed held-out regardless of how often they reran it. The larger point is that “held out” describes an intended boundary; the test runner’s output is part of that boundary too.</p>
-
-          <h2 id="practice">What I would check before trusting green</h2>
-          <p>These are small experiments, and the third-party todo result is one application, one model tier, and one run. It is a demonstrated failure mode, not a measured failure rate. The practical response is to ask what each check actually proves:</p>
+          <h2 id="mechanism">The missing unit was the user action</h2>
+          <p>A text assertion is useful when the requirement is text. “Manage todos” is a sequence of state changes. To check that feature, I would drive the same sequence through the original and rebuilt interfaces:</p>
           <ol>
-            <li><strong>Name the user action.</strong> If a feature is “manage todos,” check a create, update, and delete path, not just the labels around them.</li>
-            <li><strong>Audit the capture.</strong> A screenshot or DOM snapshot can freeze a transient state. Verify when it was taken and whether the value is supposed to change.</li>
-            <li><strong>Inspect the test boundary.</strong> A withheld file can still expose expected values through failure output. Check what the agent can run and read during the build.</li>
-            <li><strong>Separate process from outcome.</strong> An agent can follow its build rules and still implement an incomplete test; it can also pass a test after violating a build rule. Record both claims independently.</li>
-            <li><strong>Compare against the original system.</strong> Run the same meaningful interaction against both applications when possible. A green generated suite is one piece of evidence, not the definition of equivalence.</li>
+            <li>Create an item and confirm it appears in the list.</li>
+            <li>Edit the item and confirm the old title is replaced.</li>
+            <li>Delete the item and confirm it disappears.</li>
           </ol>
-          <p>Rebuild Dossier tries to lock interface contracts and expose weak tests before an agent starts. That helped in some targeted checks, but the project’s own evaluation found places where the contract or test still missed behavior. The useful lesson is narrower than “tests do not work.” Tests work for the behaviors they express. The hard part is proving that those behaviors are the ones the user needs.</p>
+          <p>That browser path matters even if the API endpoints each pass their own tests. It checks the connection between the controls, state, requests, and rendered result. A page can have working endpoints and still leave a user staring at a static list.</p>
+          <p>The same distinction applies beyond CRUD. A captured screenshot may freeze an animated counter halfway through its transition. In another Rebuild Dossier run, a coding agent hardcoded that captured intermediate number and passed the available checks without reproducing the animation. The capture timing bug was later fixed. The useful question remains: did the test record the intended behavior, or only one moment of it?</p>
+
+          <h2 id="practice">A review checklist for generated tests</h2>
+          <p>Before treating a green run as a faithful rebuild, I would look at the tests as carefully as the code:</p>
+          <ol>
+            <li><strong>Write down the feature in verbs.</strong> “Add, edit, delete a todo” is more testable than “todo page renders.”</li>
+            <li><strong>Mark what the capture missed.</strong> Authentication, delayed data, interaction, and animation can all be absent from a page snapshot. An uncovered route should be reported as uncovered.</li>
+            <li><strong>Exercise the path a user takes.</strong> Test the interface through its controls, then compare the same actions against the original app.</li>
+            <li><strong>State the claim at the test’s level.</strong> If the check only proves three strings are present, report that. Save “the feature works” for a check that actually exercises the feature.</li>
+          </ol>
+          <p>This was one blind rebuild of one third-party app, so it does not tell us how often the failure happens. It does show where the check stopped: three strings rendered. A passing test is useful only when you can say what behavior it actually exercised.</p>
         </div>
 
         <aside class="source-material" aria-labelledby="sources-heading">
@@ -92,8 +88,8 @@
         <aside class="author-box" aria-label="About the author">
           <p class="eyebrow">About the author</p>
           <h2>Parker Fawcett</h2>
-          <p>AI Skills Engineer · Independent researcher. I build software and study how to verify the work coding agents produce.</p>
-          <div><a href="https://arxiv.org/abs/2608.23616">Research ↗</a><a href="https://github.com/Parker-Fawcett">GitHub ↗</a><a href="mailto:Parkerscottfawcett@gmail.com">Contact ↗</a></div>
+          <p>AI Skills Engineer. I build tools for coding agents and write about how to check the software they produce.</p>
+          <div><a href="https://github.com/Parker-Fawcett/rebuild-dossier">Rebuild Dossier ↗</a><a href="https://github.com/Parker-Fawcett">GitHub ↗</a><a href="mailto:Parkerscottfawcett@gmail.com">Contact ↗</a></div>
         </aside>
         <nav class="article-end-nav" aria-label="Article navigation"><a href="/writing/">← All writing</a><a href="/">Portfolio ↗</a></nav>
       </article>
