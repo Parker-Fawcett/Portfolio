@@ -32,7 +32,7 @@
           <p class="eyebrow">W.001 / Agent evaluation</p>
           <h1>Visible Tests Are Not a Specification<span class="period">.</span></h1>
           <p class="article-deck">A coding agent passed a page test on a todo app. The rebuilt page could not manage todos. The test had checked for three strings and nothing more.</p>
-          <div class="byline"><span>Parker Fawcett</span><span>September 2026</span><span>~5 min read</span></div>
+          <div class="byline"><span>Parker Fawcett</span><span>September 2026</span><span>~6 min read</span></div>
         </header>
 
         <div class="article-body">
@@ -54,6 +54,10 @@
               </tbody>
             </table>
           </div>
+
+          <h2 id="independent-oracle">A broader check made the gap measurable</h2>
+          <p>The todo run is a concrete example, not a prevalence estimate. A later evaluation asked a broader question: how much of an application’s original behavior survived when the generated tests said the rebuild was complete? In a September 27 entry in the project’s <a href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/main/docs/v0-findings.md">chronological findings log</a>, I reported an author-written requirements check against 30 archived rebuilds of one application. Every run had completed the visible suite. Against the original app’s behavior that could be checked without its database, weak-tier rebuilds matched 18 of 960 checks (1.9%); strong-tier rebuilds matched 176 of 480 (36.7%).</p>
+          <p>Those percentages describe this one app and this particular check, not coding agents generally. The check was written by the author, covered only behavior decidable without the database, and compared response keys coarsely. Its value here is the direct comparison: visible test completion and behavioral fidelity gave very different answers on the same archived runs. <a href="https://github.com/Parker-Fawcett/rebuild-dossier/tree/main/evidence/fidelity-oracle">The frozen check and run evidence are available in the repository.</a></p>
 
           <h2 id="mechanism">How a measurement becomes a requirement</h2>
           <p>A generated test starts as a measurement of an existing app. During a rebuild, it becomes an instruction: make this test pass. If the measurement captured only visible text, the agent has no reason to infer every interaction that text was attached to. It may build exactly the narrow behavior the test rewards.</p>
@@ -77,10 +81,12 @@
 
         <aside class="source-material" aria-labelledby="sources-heading">
           <h2 id="sources-heading">Source material</h2>
+          <p>The findings file is the living chronological record of experiments, fixes, and corrections. Later entries can supersede an earlier interpretation; the arXiv report is a versioned synthesis.</p>
           <ul>
             <li><a href="https://arxiv.org/abs/2608.23616">Rebuild Dossier technical report on arXiv ↗</a></li>
             <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier">Rebuild Dossier code and evaluation artifacts ↗</a></li>
-            <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/master/docs/v0-findings.md">Experiment notes and negative results ↗</a></li>
+            <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/main/docs/v0-findings.md">Chronological findings log, including corrections ↗</a></li>
+            <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier/tree/main/evidence/fidelity-oracle">Requirements check and archived evidence ↗</a></li>
           </ul>
         </aside>
         <aside class="author-box" aria-label="About the author">
