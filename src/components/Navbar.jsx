@@ -1,7 +1,7 @@
 const navItems = [
   { label: 'Experience', href: '#experience', desktopOnly: true },
   { label: 'Work', href: '#case-studies', desktopOnly: false },
-  { label: 'Spotlight', href: '#data-spotlight', desktopOnly: true },
+  { label: 'Writing', href: '/writing/', desktopOnly: false },
   { label: 'Contact', href: '#contact', desktopOnly: false },
 ]
 
@@ -19,6 +19,7 @@ export default function Navbar() {
       }}
     >
       <div
+        className="nav-inner"
         style={{
           maxWidth: 1120,
           margin: '0 auto',
@@ -45,7 +46,7 @@ export default function Navbar() {
         >
           Parker Fawcett
         </a>
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
+        <nav className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
           {navItems.map((item) => (
             <a
               key={item.href}
@@ -74,6 +75,8 @@ export default function Navbar() {
       <style>{`
         @media (max-width: 640px) {
           .nav-desktop { display: none !important; }
+          .nav-inner { padding: 0 16px !important; }
+          .nav-links { gap: 12px !important; }
         }
       `}</style>
     </header>

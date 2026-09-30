@@ -3,6 +3,7 @@ import Hero from './components/Hero'
 import StatsBand from './components/StatsBand'
 import Experience from './components/Experience'
 import CaseStudies from './components/CaseStudies'
+import Writing from './components/Writing'
 import DataSpotlight from './components/DataSpotlight'
 import SignOff from './components/SignOff'
 import Contact from './components/Contact'
@@ -16,6 +17,7 @@ function App() {
       <StatsBand />
       <Experience />
       <CaseStudies />
+      <Writing />
       <DataSpotlight />
       <div style={{ background: 'var(--ink)', marginTop: 48 }}>
         <SignOff />

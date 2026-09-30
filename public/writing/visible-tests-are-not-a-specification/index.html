@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f6f4" />
+    <meta name="description" content="A Rebuild Dossier experiment showed a coding agent passing a visible test while delivering a static todo interface. Parker Fawcett explains what the test missed." />
+    <link rel="canonical" href="https://www.parkerfawcett.com/writing/visible-tests-are-not-a-specification/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/writing/writing.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.parkerfawcett.com/writing/visible-tests-are-not-a-specification/" />
+    <meta property="og:title" content="Visible Tests Are Not a Specification | Parker Fawcett" />
+    <meta property="og:description" content="A passing page test hid a todo app that could not manage todos. The lesson from a Rebuild Dossier experiment." />
+    <meta property="og:image" content="https://www.parkerfawcett.com/images/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Visible Tests Are Not a Specification | Parker Fawcett</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="/">Parker Fawcett</a>
+        <nav aria-label="Main navigation"><a href="/writing/">All writing</a><a href="/">Portfolio</a></nav>
+      </div>
+    </header>
+    <main class="article-page">
+      <article>
+        <header class="article-header">
+          <p class="eyebrow">W.001 / Agent evaluation</p>
+          <h1>Visible Tests Are Not a Specification<span class="period">.</span></h1>
+          <p class="article-deck">A coding agent passed a page test on a todo app. The rebuilt page could not manage todos. The test had checked for three strings and nothing more.</p>
+          <div class="byline"><span>Parker Fawcett</span><span>September 2026</span><span>~5 min read</span></div>
+        </header>
+
+        <div class="article-body">
+          <p>It is tempting to read a green test suite as a statement about the software. In an agentic rebuild, that shortcut can be especially persuasive: the agent had a specification, it wrote code, the checks passed, and a report says the job is done. But the test suite may be describing only what the test harness happened to observe.</p>
+          <p>One <a href="https://arxiv.org/abs/2608.23616">Rebuild Dossier experiment</a> made that gap unusually clear. I ran the tool against a small, independently authored todo application, then gave a coding agent the generated specification without access to the original source. The visible page test passed. The resulting interface was a static shell.</p>
+
+          <h2 id="todo-case">The todo app that passed without todos</h2>
+          <p>The original application had an interactive todo list and CRUD behavior. The generated page test, however, asserted only that three fixed strings appeared in the rendered page. It did not add a todo, change one, delete one, or check that the interface was wired to the API. A page containing those three strings could pass.</p>
+          <p>That is what the blind rebuild produced: a noninteractive shell that satisfied the visible page check. The agent also built GET, POST, PUT, and DELETE endpoints in a batch, but that extra work did not make the page a working todo interface. The result was a valid pass against the test we had written and a poor match for the feature a person would recognize. The paper records this as a narrowness error in the verification signal, alongside separate findings about the agent’s build process. <a href="https://arxiv.org/html/2608.23616v3">See §4.7 and §5.1 of the technical report.</a></p>
+
+          <div class="evidence-table" role="region" aria-label="What the todo test measured" tabindex="0">
+            <table>
+              <caption>One test, two very different claims</caption>
+              <thead><tr><th scope="col">Layer</th><th scope="col">What it established</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Original app</th><td>A person could use a todo interface with state and CRUD behavior.</td></tr>
+                <tr><th scope="row">Visible page test</th><td>Three fixed strings appeared somewhere in the rendered page.</td></tr>
+                <tr><th scope="row">Passing rebuild</th><td>A static shell displayed the strings. The interactive feature was absent.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="mechanism">How a measurement becomes a requirement</h2>
+          <p>A generated test starts as a measurement of an existing app. During a rebuild, it becomes an instruction: make this test pass. If the measurement captured only visible text, the agent has no reason to infer every interaction that text was attached to. It may build exactly the narrow behavior the test rewards.</p>
+          <p>The same project surfaced a different version of that problem with an animated counter. A capture taken before the animation settled recorded an intermediate value. A blind rebuild hardcoded that intermediate value as permanent content and passed the available checks, while reproducing none of the animation. In that case the harness recorded the wrong moment; in the todo case it recorded too little behavior. Both failures are about the evidence supplied to the agent, not proof that the agent ignored a complete specification. <a href="https://arxiv.org/html/2608.23616v3">The report separates these mechanisms in §5.1 and Appendix C.5.</a></p>
+
+          <h2 id="held-out">Even a held-out test can give away its answer</h2>
+          <p>A later experiment found another weak boundary. The held-out contract did not include a page’s required text, but a failing test printed that text in its assertion output. An agent could rerun the held-out suite against a wrong implementation and read the expected string without opening the test file. The paper reports that, in one ten-run batch, the reps that repeatedly ran held-out tests went green while the two that ran them once failed with placeholder content. That association does not establish what caused every earlier result, and the paper says so. It does identify a leakage path that was reproduced directly. <a href="https://arxiv.org/html/2608.23616v3">See §4.14 of the report.</a></p>
+          <p>The fix was to put the captured static text into the legitimate page contract, so the withheld assertion was no longer the only place an agent could learn it. In the repeat batch after that change, all eight valid runs passed held-out regardless of how often they reran it. The larger point is that “held out” describes an intended boundary; the test runner’s output is part of that boundary too.</p>
+
+          <h2 id="practice">What I would check before trusting green</h2>
+          <p>These are small experiments, and the third-party todo result is one application, one model tier, and one run. It is a demonstrated failure mode, not a measured failure rate. The practical response is to ask what each check actually proves:</p>
+          <ol>
+            <li><strong>Name the user action.</strong> If a feature is “manage todos,” check a create, update, and delete path, not just the labels around them.</li>
+            <li><strong>Audit the capture.</strong> A screenshot or DOM snapshot can freeze a transient state. Verify when it was taken and whether the value is supposed to change.</li>
+            <li><strong>Inspect the test boundary.</strong> A withheld file can still expose expected values through failure output. Check what the agent can run and read during the build.</li>
+            <li><strong>Separate process from outcome.</strong> An agent can follow its build rules and still implement an incomplete test; it can also pass a test after violating a build rule. Record both claims independently.</li>
+            <li><strong>Compare against the original system.</strong> Run the same meaningful interaction against both applications when possible. A green generated suite is one piece of evidence, not the definition of equivalence.</li>
+          </ol>
+          <p>Rebuild Dossier tries to lock interface contracts and expose weak tests before an agent starts. That helped in some targeted checks, but the project’s own evaluation found places where the contract or test still missed behavior. The useful lesson is narrower than “tests do not work.” Tests work for the behaviors they express. The hard part is proving that those behaviors are the ones the user needs.</p>
+        </div>
+
+        <aside class="source-material" aria-labelledby="sources-heading">
+          <h2 id="sources-heading">Source material</h2>
+          <ul>
+            <li><a href="https://arxiv.org/abs/2608.23616">Rebuild Dossier technical report on arXiv ↗</a></li>
+            <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier">Rebuild Dossier code and evaluation artifacts ↗</a></li>
+            <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/master/docs/v0-findings.md">Experiment notes and negative results ↗</a></li>
+          </ul>
+        </aside>
+        <aside class="author-box" aria-label="About the author">
+          <p class="eyebrow">About the author</p>
+          <h2>Parker Fawcett</h2>
+          <p>AI Skills Engineer · Independent researcher. I build software and study how to verify the work coding agents produce.</p>
+          <div><a href="https://arxiv.org/abs/2608.23616">Research ↗</a><a href="https://github.com/Parker-Fawcett">GitHub ↗</a><a href="mailto:Parkerscottfawcett@gmail.com">Contact ↗</a></div>
+        </aside>
+        <nav class="article-end-nav" aria-label="Article navigation"><a href="/writing/">← All writing</a><a href="/">Portfolio ↗</a></nav>
+      </article>
+    </main>
+    <footer class="site-footer"><span>© 2026 Parker Fawcett</span><a href="/press/">Press / media ↗</a></footer>
+  </body>
+</html>
