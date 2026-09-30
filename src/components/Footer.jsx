@@ -1,3 +1,12 @@
+const footerLinkStyle = {
+  fontFamily: 'var(--font-mono)',
+  fontSize: '0.7rem',
+  letterSpacing: '0.05em',
+  color: 'rgba(246, 246, 244, 0.6)',
+  textDecoration: 'none',
+  whiteSpace: 'nowrap',
+}
+
 export default function Footer() {
   return (
     <footer style={{ borderTop: '1px solid rgba(246, 246, 244, 0.12)' }}>
@@ -23,23 +32,17 @@ export default function Footer() {
         >
           © {new Date().getFullYear()} Parker Fawcett
         </span>
-        <a
-          href="#hero"
-          className="footer-top"
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.7rem',
-            letterSpacing: '0.05em',
-            color: 'rgba(246, 246, 244, 0.6)',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          Back to top ↑
-        </a>
+        <nav aria-label="Footer links" style={{ display: 'flex', gap: 24 }}>
+          <a href="/press/" className="footer-link" style={footerLinkStyle}>
+            Press / media
+          </a>
+          <a href="#hero" className="footer-link" style={footerLinkStyle}>
+            Back to top ↑
+          </a>
+        </nav>
       </div>
       <style>{`
-        .footer-top:hover { color: #f6f6f4 !important; }
+        .footer-link:hover { color: #f6f6f4 !important; }
       `}</style>
     </footer>
   )
