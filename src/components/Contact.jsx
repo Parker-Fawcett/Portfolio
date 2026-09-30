@@ -15,7 +15,7 @@ export default function Contact() {
           className="section-label"
           style={{ color: 'rgba(246, 246, 244, 0.5)', marginBottom: 14 }}
         >
-          05 · Contact
+          06 · Contact
         </p>
         <h2 className="section-title" style={{ color: 'var(--paper)', marginBottom: 28 }}>
           Get in touch

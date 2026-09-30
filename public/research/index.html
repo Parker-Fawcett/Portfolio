@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f6f4" />
+    <meta name="description" content="Research by Parker Fawcett on coding-agent evaluation, Rebuild Dossier, mechanically enforced rebuild specs, and behavioral verification. Read the paper, code, findings, and technical writing." />
+    <link rel="canonical" href="https://www.parkerfawcett.com/research/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/writing/writing.css" />
+    <link rel="stylesheet" href="/research/research.css" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.parkerfawcett.com/research/" />
+    <meta property="og:title" content="Research on Coding-Agent Verification | Parker Fawcett" />
+    <meta property="og:description" content="Rebuild Dossier: the paper, code, evaluation evidence, and practical writing on testing coding-agent rebuilds." />
+    <meta property="og:image" content="https://www.parkerfawcett.com/images/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Research on Coding-Agent Verification | Parker Fawcett</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Research on Coding-Agent Verification | Parker Fawcett",
+        "url": "https://www.parkerfawcett.com/research/",
+        "about": { "@type": "Person", "@id": "https://www.parkerfawcett.com/#parker", "name": "Parker Fawcett" },
+        "mainEntity": {
+          "@type": "ScholarlyArticle",
+          "name": "Rebuild Dossier: Mechanically-Enforced Specs for Agentic App Rebuilds, and What Model-Tier Failures Reveal",
+          "author": { "@type": "Person", "@id": "https://www.parkerfawcett.com/#parker", "name": "Parker Fawcett" },
+          "url": "https://arxiv.org/abs/2608.23616",
+          "identifier": "https://doi.org/10.48550/arXiv.2608.23616",
+          "datePublished": "2026-08-22"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="/">Parker Fawcett</a>
+        <nav aria-label="Main navigation"><a href="/writing/">Writing</a><a href="/">Portfolio</a></nav>
+      </div>
+    </header>
+    <main class="research-page">
+      <p class="eyebrow">Research / index 001</p>
+      <h1>Research<span class="period">.</span></h1>
+      <p class="research-intro">I study how to verify the software coding agents produce. My work starts with the behavior of a real application, then checks what survives when an agent rebuilds it.</p>
+
+      <article class="research-paper" aria-labelledby="paper-heading">
+        <p class="paper-meta">R.001 / Software engineering · Agentic systems · 2026</p>
+        <h2 id="paper-heading">Rebuild Dossier: Mechanically-Enforced Specs for Agentic App Rebuilds, and What Model-Tier Failures Reveal</h2>
+        <p>Rebuild Dossier is an open-source MCP server that extracts interface contracts and tests from an existing Express or Next.js application. It packages those materials for a fresh coding agent and adds hooks that enforce parts of the rebuild workflow. The tool produces a spec and evaluation materials; the agent performs the rebuild.</p>
+        <div class="paper-actions">
+          <a href="https://arxiv.org/abs/2608.23616">Read the paper ↗</a>
+          <a href="https://github.com/Parker-Fawcett/rebuild-dossier">Explore code and evidence ↗</a>
+          <a href="https://doi.org/10.5281/zenodo.22036800">Archived software DOI ↗</a>
+        </div>
+      </article>
+
+      <section class="research-section" aria-labelledby="result-heading">
+        <p class="eyebrow">What the evaluation found</p>
+        <h2 id="result-heading">A passing suite can leave the wrong behavior intact.</h2>
+        <p>In a sealed follow-up on one application, all 30 rebuild snapshots passed the 20 visible tests. A separate requirements check found substantial differences in authentication and response behavior. The check covered 77 database-independent requirements out of 132 written checks; it was author-written and used a coarse response-key comparison. The result identifies a concrete limit of the generated suite in that setting, not a general failure rate for coding agents.</p>
+        <p>The <a href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/main/docs/v0-findings.md">chronological findings log</a> records the experiments, bugs, fixes, and later corrections. The arXiv paper is a versioned publication; the log is the living record. For the latest requirements check, see the <a href="https://github.com/Parker-Fawcett/rebuild-dossier/tree/main/evidence/fidelity-oracle">archived oracle and results</a>.</p>
+      </section>
+
+      <section class="research-section" aria-labelledby="writing-heading">
+        <p class="eyebrow">From the workbench</p>
+        <h2 id="writing-heading">Technical writing</h2>
+        <p>These articles unpack individual failures as engineering problems: what the original application did, what the generated check measured, and what a better verification path would exercise.</p>
+        <ul class="research-links">
+          <li><a href="/writing/visible-tests-are-not-a-specification/">Visible Tests Are Not a Specification →</a></li>
+          <li><a href="/writing/api-tests-passed-existing-clients-broke/">The API Tests Passed. Existing Clients Broke →</a></li>
+        </ul>
+      </section>
+
+      <aside class="research-contact">
+        <p class="eyebrow">Contact</p>
+        <h2>Questions about the work?</h2>
+        <p>I welcome technical feedback, replication attempts, and conversations about coding-agent evaluation.</p>
+        <a href="mailto:Parkerscottfawcett@gmail.com">Email Parker ↗</a>
+      </aside>
+    </main>
+    <footer class="site-footer"><span>© 2026 Parker Fawcett</span><a href="/press/">Press / media ↗</a></footer>
+  </body>
+</html>

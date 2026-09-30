@@ -33,6 +33,12 @@ export default function Footer() {
           © {new Date().getFullYear()} Parker Fawcett
         </span>
         <nav aria-label="Footer links" style={{ display: 'flex', gap: 24 }}>
+          <a href="/research/" className="footer-link" style={footerLinkStyle}>
+            Research
+          </a>
+          <a href="/writing/" className="footer-link" style={footerLinkStyle}>
+            Writing
+          </a>
           <a href="/press/" className="footer-link" style={footerLinkStyle}>
             Press / media
           </a>

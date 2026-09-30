@@ -1,6 +1,7 @@
 const navItems = [
   { label: 'Experience', href: '#experience', desktopOnly: true },
   { label: 'Work', href: '#case-studies', desktopOnly: false },
+  { label: 'Research', href: '/research/', desktopOnly: true },
   { label: 'Writing', href: '/writing/', desktopOnly: false },
   { label: 'Contact', href: '#contact', desktopOnly: false },
 ]

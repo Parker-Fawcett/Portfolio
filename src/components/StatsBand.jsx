@@ -2,8 +2,8 @@
 // sources are decoration — see DESIGN.md rule 6.
 import Reveal from './Reveal'
 const rows = [
-  { number: '512', label: 'unit tests written', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/test', source: 'rebuild-dossier/test', date: '2026' },
-  { number: '83', label: 'test files with enforced specs', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/master/test', source: 'rebuild-dossier/test', date: '2026' },
+  { number: '669', label: 'Rebuild Dossier tool tests', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/main/test', source: 'rebuild-dossier/test', date: 'Sep 2026' },
+  { number: '94', label: 'test files in the tool suite', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/main/test', source: 'rebuild-dossier/test', date: 'Sep 2026' },
   { number: '188', label: 'monthly cross-sectional decisions', href: 'https://github.com/Parker-Fawcett/Stock', source: 'AUC paper / Stock repo', date: '2026' },
   { number: '5,000', label: 'bootstrap iterations', href: 'https://github.com/Parker-Fawcett/Stock', source: 'AUC paper / Stock repo', date: '2026' },
   { number: '16', label: 'experimental trials (locked)', href: 'https://github.com/Parker-Fawcett/Stock', source: 'AUC provenance manifest', date: '2026' },

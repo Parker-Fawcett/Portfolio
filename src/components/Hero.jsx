@@ -6,7 +6,7 @@ const specRows = [
   { key: 'Base', value: 'Herriman, Utah' },
   { key: 'Focus', value: 'Agentic tooling, LLM migrations' },
   { key: 'Stack', value: 'Python · SQL · TypeScript · Next.js' },
-  { key: 'Now', value: 'Paper under review at EMSE' },
+  { key: 'Now', value: 'Rebuild Dossier paper on arXiv' },
 ]
 
 // Lab log — the "evidence behind the name" layer, dossier-flavored.
@@ -21,8 +21,8 @@ const leftFeed = [
   'ontology: 60+ engineers onboard',
 ]
 const rightFeed = [
-  '512 unit tests passing ✓',
-  '83 test files with enforced specs ✓',
+  '669 tool tests passing ✓',
+  '94 test files in tool suite ✓',
   '188 monthly decisions modeled',
   '5,000 bootstrap iterations',
   '370+ public commits',
@@ -30,7 +30,7 @@ const rightFeed = [
   '16 trials locked by SHA-256',
   'R² = 0.871 vs QuantConnect',
   '172 sets tracked',
-  'paper: under review @ EMSE',
+  'paper: arXiv 2608.23616',
   'outbound: 95% of $15k/mo stack',
   'ocr: $0 per scan, client-side',
   'careermd: manual → automated ✓',

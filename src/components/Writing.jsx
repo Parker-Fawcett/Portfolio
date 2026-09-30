@@ -20,7 +20,7 @@ const entries = [
 export default function Writing() {
   return (
     <section id="writing" className="section-container" style={{ borderTop: '1px solid var(--line)' }}>
-      <p className="section-label">03 · Writing</p>
+      <p className="section-label">04 · Writing</p>
       <Reveal><h2 className="section-title" style={{ marginBottom: 12 }}>Technical writing</h2></Reveal>
       <p style={{ color: 'var(--ink-secondary)', fontSize: '0.95rem', maxWidth: 650, lineHeight: 1.7, marginBottom: 42 }}>
         Field notes on building software and checking whether it works.

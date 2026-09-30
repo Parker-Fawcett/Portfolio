@@ -71,7 +71,7 @@ export default function DataSpotlight() {
 
   return (
     <section id="data-spotlight" ref={sectionRef} className="section-container" style={{ borderTop: '1px solid var(--line)' }}>
-      <p className="section-label">04 · How it works at CHG</p>
+      <p className="section-label">05 · How it works at CHG</p>
       <Reveal>
         <h2 className="section-title">The tooling flow</h2>
       </Reveal>
@@ -104,7 +104,7 @@ export default function DataSpotlight() {
           }}
           className="rail-label"
         >
-          04 · The tooling flow
+          05 · The tooling flow
         </span>
         <div style={{ display: 'flex', gap: 4, overflowX: 'auto' }}>
           {steps.map((step, i) => {
