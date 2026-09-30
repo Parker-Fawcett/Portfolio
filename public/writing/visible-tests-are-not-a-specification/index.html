@@ -61,7 +61,7 @@
 
           <h2 id="mechanism">How a measurement becomes a requirement</h2>
           <p>A generated test starts as a measurement of an existing app. During a rebuild, it becomes an instruction: make this test pass. If the measurement captured only visible text, the agent has no reason to infer every interaction that text was attached to. It may build exactly the narrow behavior the test rewards.</p>
-          <p>The same project surfaced a different version of that problem with an animated counter. A capture taken before the animation settled recorded an intermediate value. A blind rebuild hardcoded that intermediate value as permanent content and passed the available checks, while reproducing none of the animation. In that case the harness recorded the wrong moment; in the todo case it recorded too little behavior. Both failures are about the evidence supplied to the agent, not proof that the agent ignored a complete specification. <a href="https://arxiv.org/html/2608.23616v3">The report separates these mechanisms in §5.1 and Appendix C.5.</a></p>
+          <p>The same project surfaced a different version of that problem with an animated counter. A capture taken before the animation settled recorded an intermediate value. A blind rebuild hardcoded that intermediate value as permanent content and passed the available checks, while reproducing none of the animation. In that case the harness recorded the wrong moment; in the todo case it recorded too little behavior. The capture bug was later fixed with DOM-text-stability polling, as the findings log records. Both experiments show how the evidence supplied to an agent can shape the result. <a href="https://arxiv.org/html/2608.23616v3">The report separates the failure mechanisms in §5.1 and Appendix C.5.</a></p>
 
           <h2 id="held-out">Even a held-out test can give away its answer</h2>
           <p>A later experiment found another weak boundary. The held-out contract did not include a page’s required text, but a failing test printed that text in its assertion output. An agent could rerun the held-out suite against a wrong implementation and read the expected string without opening the test file. The paper reports that, in one ten-run batch, the reps that repeatedly ran held-out tests went green while the two that ran them once failed with placeholder content. That association does not establish what caused every earlier result, and the paper says so. It does identify a leakage path that was reproduced directly. <a href="https://arxiv.org/html/2608.23616v3">See §4.14 of the report.</a></p>
@@ -81,7 +81,7 @@
 
         <aside class="source-material" aria-labelledby="sources-heading">
           <h2 id="sources-heading">Source material</h2>
-          <p>The findings file is the living chronological record of experiments, fixes, and corrections. Later entries can supersede an earlier interpretation; the arXiv report is a versioned synthesis.</p>
+          <p>The findings file is the living chronological record of experiments, fixes, and corrections. Later entries can supersede an earlier interpretation. The cited arXiv version predates the September 27 requirements check, which appears in the log and archived evidence.</p>
           <ul>
             <li><a href="https://arxiv.org/abs/2608.23616">Rebuild Dossier technical report on arXiv ↗</a></li>
             <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier">Rebuild Dossier code and evaluation artifacts ↗</a></li>
