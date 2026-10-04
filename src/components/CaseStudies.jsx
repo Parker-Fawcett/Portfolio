@@ -371,16 +371,16 @@ const projects = [
   {
     name: 'CatchAndTrade',
     type: 'Marketplace',
-    statement: 'A public catalog. One schema.',
+    statement: 'I built a home for Pokémon card collectors.',
     accent: '#8a5a00',
     image: '/images/catch-and-trade.webp',
     description:
-      'Trading-card marketplace under Fawcett Capital, my holding company. A public catalog of collectibles on composite indexes and materialized views, plus client-side OCR scanning for grading physical cards.',
+      'Trading-card marketplace I built and run under Fawcett Capital, my holding company. Collectors search cards, track what their collection is worth, scan physical cards, and trade or sell with other collectors. Free to join.',
     stack: ['Next.js', 'React', 'Supabase PostgreSQL', 'Tesseract.js OCR', 'Google OAuth', 'TailwindCSS'],
     metrics: [
-      'Public catalog with pricing intelligence',
-      'Composite indexes plus denormalized price snapshots keep lookups fast',
-      'OCR runs client-side, so scanning physical cards costs nothing server-side',
+      'Collectors search a card database, track what their collection is worth, and trade or sell with other collectors.',
+      'Card scanning runs on the collector\'s own device, so it costs me nothing to operate.',
+      'Free to join. Built and run under my holding company, Fawcett Capital.',
     ],
     architecture: {
       summary: 'Monorepo: Next.js in front, Supabase underneath. Most of the work went into the schema, which models the TCG domain specifically.',
@@ -402,12 +402,12 @@ const projects = [
     accent: '#0e6e6e',
     image: '/images/mynexusai.webp',
     description:
-      'An AI receptionist that handles voice and text support channels automatically. Live in production with paying users.',
+      'An AI receptionist that answers a business\'s calls and texts automatically, using that business\'s own information. Live with paying users.',
     stack: ['Node.js', 'pgvector', 'ChromaDB', 'OpenRouter API', 'Twilio Voice/SMS', 'ElevenLabs', 'AssemblyAI'],
     metrics: [
-      'RAG pipeline grounds answers in domain knowledge instead of guessing',
-      'Multi-model fallback through OpenRouter keeps uptime at 100%',
-      'Tiered plans from $29 to $299/mo',
+      'Answers a business\'s customer calls and texts around the clock, using its own information instead of guessing.',
+      'Keeps answering even when one of the AI providers it relies on goes down.',
+      'Plans at $29, $99, and $299 a month.',
     ],
     architecture: {
       summary: 'Hybrid vector search feeds a routing layer that switches LLM providers instantly when one fails.',
@@ -424,17 +424,17 @@ const projects = [
   },
   {
     name: 'Alvien',
-    type: 'B2B BI SaaS',
-    statement: 'Point at a competitor. Get the brief.',
+    type: 'B2B SaaS',
+    statement: 'I built a tool that stress-tests any business and writes the report.',
     accent: '#6d2f7b',
     image: '/images/alvien.webp',
     description:
-      'Point it at a competitor site and get back a structured strategic brief. Scraping and summarization run automatically.',
+      'A tool that stress-tests a business from its website. One AI makes the strongest case for the company and another attacks it, then Alvien delivers a consulting-grade report on what held up and what to fix. Built for agencies, with white-label reports. $49 per report, $497 a month for up to 10 reports, $997 a month for up to 50.',
     stack: ['Python', 'FastAPI', 'Firecrawl API', 'Groq LLMs', 'TailwindCSS'],
     metrics: [
-      'Firecrawl pulls competitor pages even behind anti-scraping protections',
-      'Raw HTML comes back as structured JSON tokens for the LLM',
-      'Briefs generate in near real time',
+      'Submit a company\'s website and get a full report back in under 10 minutes.',
+      'Two AIs argue it out: one makes the strongest case for the business, the other attacks it, and the report shows what held up.',
+      'Built for agencies: $49 for a single report, $497 a month for up to 10, $997 a month for up to 50.',
     ],
     architecture: {
       summary: 'Small Python/FastAPI backend running a two-stage pipeline: Firecrawl scrapes, Groq writes the brief.',
