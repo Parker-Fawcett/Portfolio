@@ -384,7 +384,7 @@ export default function Hero() {
                 }}
               >
                 <img
-                  src="/images/parker.webp"
+                  src="/images/parker.webp?v=2"
                   alt="Parker Fawcett"
                   width="288"
                   height="288"
@@ -392,7 +392,7 @@ export default function Hero() {
                     width: '100%',
                     height: 190,
                     objectFit: 'cover',
-                    objectPosition: '38% 25%',
+                    objectPosition: '50% 22%',
                     borderRadius: 3,
                     border: '1px solid var(--line-strong)',
                     marginBottom: 16,
