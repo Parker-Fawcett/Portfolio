@@ -23,10 +23,11 @@
 }
 
 html {
-  scroll-behavior: smooth;
   overflow-x: clip;
-  /* Play-then-lock: chapters snap gently to place on arrival, but the
-     scroll is never hijacked — proximity only bites near a snap point. */
+  /* Play-then-lock: chapters snap gently to place on arrival. No global
+     smooth-scroll here — it fights the snap engine on every wheel/trackpad
+     tick and can stall the page mid-scroll. Nav buttons opt into smooth
+     scrolling per-click via scrollIntoView({ behavior: 'smooth' }) instead. */
   scroll-snap-type: y proximity;
   scroll-padding-top: 70px;
 }

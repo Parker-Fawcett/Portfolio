@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+import { motion as fm, useReducedMotion } from 'framer-motion'
 import Reveal from './Reveal'
+
+const EASE = [0.16, 1, 0.3, 1]
 
 const steps = [
   {
@@ -40,6 +43,7 @@ export default function DataSpotlight() {
   const [active, setActive] = useState(0)
   const sectionRef = useRef(null)
   const visibleRef = useRef(new Set())
+  const play = !useReducedMotion()
 
   useEffect(() => {
     const section = sectionRef.current
@@ -146,7 +150,7 @@ export default function DataSpotlight() {
         }}
         className="spotlight-grid"
       >
-        <div>
+        <Reveal variant="left">
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 12 }}>
             <h3 style={{ fontSize: '1.3rem', fontWeight: 600, letterSpacing: '-0.01em' }}>CHG Healthcare</h3>
             <span className="tag">Enterprise Data & AI</span>
@@ -186,7 +190,7 @@ export default function DataSpotlight() {
           >
             chghealthcare.com ↗
           </a>
-        </div>
+        </Reveal>
 
         <div>
           <h4
@@ -203,9 +207,15 @@ export default function DataSpotlight() {
             How a skill reaches an engineer
           </h4>
 
-          <ol style={{ listStyle: 'none', margin: 0 }}>
+          <fm.ol
+            style={{ listStyle: 'none', margin: 0 }}
+            initial={play ? 'hidden' : false}
+            whileInView={play ? 'show' : undefined}
+            viewport={{ once: true, margin: '-10% 0px' }}
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } } }}
+          >
             {steps.map((step, i) => (
-              <li
+              <fm.li
                 key={step.label}
                 data-step={i}
                 style={{
@@ -215,6 +225,7 @@ export default function DataSpotlight() {
                   paddingBottom: i < steps.length - 1 ? 26 : 0,
                   position: 'relative',
                 }}
+                variants={{ hidden: { opacity: 0, x: -16 }, show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE } } }}
               >
                 <span
                   aria-hidden="true"
@@ -234,9 +245,9 @@ export default function DataSpotlight() {
                   <p style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: 3 }}>{step.label}</p>
                   <p style={{ fontSize: '0.8rem', color: 'var(--ink-secondary)', lineHeight: 1.65 }}>{step.desc}</p>
                 </div>
-              </li>
+              </fm.li>
             ))}
-          </ol>
+          </fm.ol>
         </div>
       </div>
 

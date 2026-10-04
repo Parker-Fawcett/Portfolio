@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useReducedMotion } from 'framer-motion'
+import { motion as fm, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import ProjectModal from './ProjectModal'
 import Reveal from './Reveal'
 
@@ -11,6 +11,68 @@ import Reveal from './Reveal'
 // metrics live in the Details modal.
 const STMT_VARIANTS = ['center', 'wipe', 'left', 'zoom']
 const FIG_VARIANTS = ['right', 'zoom', 'center', 'wipe']
+
+// Once the figure has played its Reveal, it keeps a slow Hero-style
+// parallax drift tied to its own position in the chapter — a lighter
+// version of the giant-name scroll-link, scoped to one card.
+function ParallaxFigure({ play, children }) {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], [34, -34])
+  if (!play) return <div ref={ref}>{children}</div>
+  return (
+    <fm.div ref={ref} style={{ y }}>
+      {children}
+    </fm.div>
+  )
+}
+
+// Metrics proof-points stagger in one line after another, same ease as
+// the Hero name, instead of popping in all at once.
+function MetricsList({ metrics, accent, play }) {
+  const Ul = play ? fm.ul : 'ul'
+  const Li = play ? fm.li : 'li'
+  return (
+    <Ul
+      style={{ listStyle: 'none', display: 'grid', gap: 8, marginBottom: 20 }}
+      {...(play
+        ? {
+            initial: 'hidden',
+            whileInView: 'show',
+            viewport: { once: true, margin: '-10% 0px' },
+            variants: { hidden: {}, show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } },
+          }
+        : {})}
+    >
+      {metrics.slice(0, 3).map((m, i) => (
+        <Li
+          key={i}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 22px) minmax(0, 1fr)',
+            gap: 8,
+            fontSize: '0.84rem',
+            color: 'var(--ink-secondary)',
+            lineHeight: 1.55,
+          }}
+          {...(play
+            ? {
+                variants: {
+                  hidden: { opacity: 0, x: -14 },
+                  show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+                },
+              }
+            : {})}
+        >
+          <span aria-hidden="true" style={{ fontFamily: 'var(--font-mono)', color: accent, fontWeight: 600 }}>
+            ✓
+          </span>
+          <span>{m}</span>
+        </Li>
+      ))}
+    </Ul>
+  )
+}
 
 function SnapPhase({ project, index, flip, motion, onViewDetails }) {
   const marker = `0.${index + 1}`
@@ -72,122 +134,107 @@ function SnapPhase({ project, index, flip, motion, onViewDetails }) {
               {project.statement}
             </h3>
           </Reveal>
-          <ul style={{ listStyle: 'none', display: 'grid', gap: 8, marginBottom: 20 }}>
-            {project.metrics.slice(0, 3).map((m, i) => (
-              <li
-                key={i}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'minmax(0, 22px) minmax(0, 1fr)',
-                  gap: 8,
-                  fontSize: '0.84rem',
-                  color: 'var(--ink-secondary)',
-                  lineHeight: 1.55,
-                }}
-              >
-                <span aria-hidden="true" style={{ fontFamily: 'var(--font-mono)', color: accent, fontWeight: 600 }}>
-                  ✓
-                </span>
-                <span>{m}</span>
-              </li>
-            ))}
-          </ul>
-          {project.beforeAfter && (
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-                border: '1px solid var(--line-strong)',
-                borderRadius: 4,
-                overflow: 'hidden',
-                background: 'var(--paper-raised)',
-                marginBottom: 20,
-              }}
-              className="before-after"
-            >
-              {[
-                { tabLabel: project.beforeAfter.leftLabel, body: project.beforeAfter.leftBody },
-                { tabLabel: project.beforeAfter.rightLabel, body: project.beforeAfter.rightBody },
-              ].map((cell, ci) => (
-                <div
-                  key={cell.tabLabel}
-                  style={{
-                    padding: '14px 16px',
-                    borderLeft: ci === 1 ? '1px solid var(--line-strong)' : 'none',
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.62rem',
-                      fontWeight: 600,
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      color: ci === 1 ? accent : 'var(--ink-muted)',
-                      marginBottom: 6,
-                    }}
-                  >
-                    {cell.tabLabel}
-                  </p>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--ink-secondary)', lineHeight: 1.6 }}>
-                    {cell.body}
-                  </p>
-                </div>
-              ))}
-            </div>
-          )}
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-              Visit live site
-            </a>
-            <button
-              type="button"
-              onClick={() => onViewDetails(project)}
-              className="btn btn-secondary"
-              style={{ cursor: 'pointer' }}
-            >
-              Details +
-            </button>
-          </div>
-        </div>
-        {project.image && (
-          <Reveal delay={0.12} variant={FIG_VARIANTS[index % 4]} style={{ direction: 'ltr', minWidth: 0 }}>
-            <figure style={{ margin: 0 }}>
+          <MetricsList metrics={project.metrics} accent={accent} play={motion} />
+          <Reveal delay={0.2} variant="wipe">
+            {project.beforeAfter && (
               <div
                 style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
                   border: '1px solid var(--line-strong)',
                   borderRadius: 4,
                   overflow: 'hidden',
                   background: 'var(--paper-raised)',
+                  marginBottom: 20,
                 }}
+                className="before-after"
               >
-                <img
-                  src={project.image}
-                  alt={`${project.name} screenshot`}
-                  loading="lazy"
-                  style={{ width: '100%', maxHeight: '46vh', aspectRatio: '16 / 10', objectFit: 'cover', display: 'block' }}
-                />
-                <figcaption
+                {[
+                  { tabLabel: project.beforeAfter.leftLabel, body: project.beforeAfter.leftBody },
+                  { tabLabel: project.beforeAfter.rightLabel, body: project.beforeAfter.rightBody },
+                ].map((cell, ci) => (
+                  <div
+                    key={cell.tabLabel}
+                    style={{
+                      padding: '14px 16px',
+                      borderLeft: ci === 1 ? '1px solid var(--line-strong)' : 'none',
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.62rem',
+                        fontWeight: 600,
+                        letterSpacing: '0.12em',
+                        textTransform: 'uppercase',
+                        color: ci === 1 ? accent : 'var(--ink-muted)',
+                        marginBottom: 6,
+                      }}
+                    >
+                      {cell.tabLabel}
+                    </p>
+                    <p style={{ fontSize: '0.8rem', color: 'var(--ink-secondary)', lineHeight: 1.6 }}>
+                      {cell.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                Visit live site
+              </a>
+              <button
+                type="button"
+                onClick={() => onViewDetails(project)}
+                className="btn btn-secondary"
+                style={{ cursor: 'pointer' }}
+              >
+                Details +
+              </button>
+            </div>
+          </Reveal>
+        </div>
+        {project.image && (
+          <ParallaxFigure play={motion}>
+            <Reveal delay={0.12} variant={FIG_VARIANTS[index % 4]} style={{ direction: 'ltr', minWidth: 0 }}>
+              <figure style={{ margin: 0 }}>
+                <div
                   style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    gap: 12,
-                    padding: '10px 14px',
-                    borderTop: '1px solid var(--line)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.68rem',
-                    letterSpacing: '0.04em',
-                    color: 'var(--ink-muted)',
+                    border: '1px solid var(--line-strong)',
+                    borderRadius: 4,
+                    overflow: 'hidden',
+                    background: 'var(--paper-raised)',
                   }}
                 >
-                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {host} ↗
-                  </span>
-                  <span aria-hidden="true" style={{ color: accent }}>FIG. {marker}</span>
-                </figcaption>
-              </div>
-            </figure>
-          </Reveal>
+                  <img
+                    src={project.image}
+                    alt={`${project.name} screenshot`}
+                    loading="lazy"
+                    style={{ width: '100%', maxHeight: '46vh', aspectRatio: '16 / 10', objectFit: 'cover', display: 'block' }}
+                  />
+                  <figcaption
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      gap: 12,
+                      padding: '10px 14px',
+                      borderTop: '1px solid var(--line)',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.68rem',
+                      letterSpacing: '0.04em',
+                      color: 'var(--ink-muted)',
+                    }}
+                  >
+                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {host} ↗
+                    </span>
+                    <span aria-hidden="true" style={{ color: accent }}>FIG. {marker}</span>
+                  </figcaption>
+                </div>
+              </figure>
+            </Reveal>
+          </ParallaxFigure>
         )}
       </div>
     </article>

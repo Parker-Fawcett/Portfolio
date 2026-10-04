@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+import { motion as fm, useReducedMotion } from 'framer-motion'
 import Reveal from './Reveal'
+
+const EASE = [0.16, 1, 0.3, 1]
 
 const experiences = [
   {
@@ -83,6 +86,7 @@ const leadership = [
 export default function Experience() {
   const [active, setActive] = useState(0)
   const sectionRef = useRef(null)
+  const play = !useReducedMotion()
 
   useEffect(() => {
     const section = sectionRef.current
@@ -177,7 +181,7 @@ export default function Experience() {
 
       <div>
         {experiences.map((exp, i) => (
-          <article
+          <fm.article
             key={exp.org}
             data-exp={i}
             className="exp-chapter"
@@ -188,8 +192,12 @@ export default function Experience() {
               padding: '32px 0',
               borderTop: i === 0 ? 'none' : '1px solid var(--line)',
             }}
+            initial={play ? { opacity: 0, y: 24 } : false}
+            whileInView={play ? { opacity: 1, y: 0 } : undefined}
+            viewport={{ once: true, margin: '-10% 0px' }}
+            transition={{ duration: 0.6, ease: EASE }}
           >
-            <span
+            <fm.span
               aria-hidden="true"
               style={{
                 fontFamily: 'var(--font-mono)',
@@ -198,9 +206,13 @@ export default function Experience() {
                 color: 'var(--accent)',
                 paddingTop: 4,
               }}
+              initial={play ? { opacity: 0, scale: 0.6 } : false}
+              whileInView={play ? { opacity: 1, scale: 1 } : undefined}
+              viewport={{ once: true, margin: '-10% 0px' }}
+              transition={{ duration: 0.4, delay: 0.1, ease: EASE }}
             >
               {String(i + 1).padStart(2, '0')}
-            </span>
+            </fm.span>
 
             <div>
               <Reveal>
@@ -235,22 +247,29 @@ export default function Experience() {
                 </div>
               </Reveal>
 
-              <ul style={{ listStyle: 'disc', paddingLeft: 18, display: 'grid', gap: 8 }}>
+              <fm.ul
+                style={{ listStyle: 'disc', paddingLeft: 18, display: 'grid', gap: 8 }}
+                initial={play ? 'hidden' : false}
+                whileInView={play ? 'show' : undefined}
+                viewport={{ once: true, margin: '-10% 0px' }}
+                variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.15 } } }}
+              >
                 {exp.highlights.map((h, idx) => (
-                  <li
+                  <fm.li
                     key={idx}
                     style={{
                       fontSize: '0.88rem',
                       color: 'var(--ink-secondary)',
                       lineHeight: 1.65,
                     }}
+                    variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } } }}
                   >
                     {h}
-                  </li>
+                  </fm.li>
                 ))}
-              </ul>
+              </fm.ul>
             </div>
-          </article>
+          </fm.article>
         ))}
       </div>
 
@@ -259,7 +278,7 @@ export default function Experience() {
       </h3>
       <div>
         {leadership.map((item, i) => (
-          <div
+          <fm.div
             key={item.title}
             style={{
               display: 'grid',
@@ -270,6 +289,10 @@ export default function Experience() {
               alignItems: 'baseline',
             }}
             className="leadership-row"
+            initial={play ? { opacity: 0, y: 16 } : false}
+            whileInView={play ? { opacity: 1, y: 0 } : undefined}
+            viewport={{ once: true, margin: '-10% 0px' }}
+            transition={{ duration: 0.5, delay: i * 0.08, ease: EASE }}
           >
             <div>
               <p style={{ fontSize: '0.9rem', fontWeight: 600 }}>{item.title}</p>
@@ -289,11 +312,12 @@ export default function Experience() {
               </p>
             </div>
             <p style={{ fontSize: '0.86rem', color: 'var(--ink-secondary)', lineHeight: 1.65 }}>{item.desc}</p>
-          </div>
+          </fm.div>
         ))}
       </div>
 
-      <div
+      <Reveal
+        variant="zoom"
         style={{
           marginTop: 56,
           background: 'var(--paper-raised)',
@@ -377,7 +401,7 @@ export default function Experience() {
             </p>
           </div>
         </div>
-      </div>
+      </Reveal>
 
       <style>{`
         .exp-chapter { scroll-margin-top: 140px; }
