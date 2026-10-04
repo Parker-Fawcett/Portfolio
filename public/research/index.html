@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f6f6f4" />
-    <meta name="description" content="Research by Parker Fawcett on coding-agent evaluation, Rebuild Dossier, mechanically enforced rebuild specs, and behavioral verification. Read the paper, code, findings, and technical writing." />
+    <meta name="description" content="Research by Parker Fawcett: Rebuild Dossier on coding-agent evaluation and mechanically enforced rebuild specs, and a quantitative finance paper on predictive multiplicity and portfolio selection instability. Read the papers, code, findings, and technical writing." />
     <link rel="canonical" href="https://www.parkerfawcett.com/research/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="/research/research.css" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.parkerfawcett.com/research/" />
-    <meta property="og:title" content="Research on Coding-Agent Verification | Parker Fawcett" />
-    <meta property="og:description" content="Rebuild Dossier: the paper, code, evaluation evidence, and practical writing on testing coding-agent rebuilds." />
+    <meta property="og:title" content="Research | Parker Fawcett" />
+    <meta property="og:description" content="Two papers: Rebuild Dossier on coding-agent rebuild verification, and a quantitative finance audit of predictive multiplicity in machine-learning equity selection." />
     <meta property="og:image" content="https://www.parkerfawcett.com/images/og.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>Research on Coding-Agent Verification | Parker Fawcett</title>
+    <title>Research | Parker Fawcett</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -26,14 +26,23 @@
         "name": "Research on Coding-Agent Verification | Parker Fawcett",
         "url": "https://www.parkerfawcett.com/research/",
         "about": { "@type": "Person", "@id": "https://www.parkerfawcett.com/#parker", "name": "Parker Fawcett" },
-        "mainEntity": {
-          "@type": "ScholarlyArticle",
-          "name": "Rebuild Dossier: Mechanically-Enforced Specs for Agentic App Rebuilds, and What Model-Tier Failures Reveal",
-          "author": { "@type": "Person", "@id": "https://www.parkerfawcett.com/#parker", "name": "Parker Fawcett" },
-          "url": "https://arxiv.org/abs/2608.23616",
-          "identifier": "https://doi.org/10.48550/arXiv.2608.23616",
-          "datePublished": "2026-08-22"
-        }
+        "mainEntity": [
+          {
+            "@type": "ScholarlyArticle",
+            "name": "Rebuild Dossier: Mechanically-Enforced Specs for Agentic App Rebuilds, and What Model-Tier Failures Reveal",
+            "author": { "@type": "Person", "@id": "https://www.parkerfawcett.com/#parker", "name": "Parker Fawcett" },
+            "url": "https://arxiv.org/abs/2608.23616",
+            "identifier": "https://doi.org/10.48550/arXiv.2608.23616",
+            "datePublished": "2026-08-22"
+          },
+          {
+            "@type": "ScholarlyArticle",
+            "name": "When AUC Survives but Portfolios Do Not: Leakage, Accounting Errors, and Selection Instability in a Retail-Scale Machine-Learning Equity Study",
+            "author": { "@type": "Person", "@id": "https://www.parkerfawcett.com/#parker", "name": "Parker Fawcett" },
+            "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682",
+            "datePublished": "2026-09-15"
+          }
+        ]
       }
     </script>
   </head>
@@ -47,7 +56,7 @@
     <main class="research-page">
       <p class="eyebrow">Research / index 001</p>
       <h1>Research<span class="period">.</span></h1>
-      <p class="research-intro">I study how to verify the software coding agents produce. My work starts with the behavior of a real application, then checks what survives when an agent rebuilds it.</p>
+      <p class="research-intro">Two lines of work: verifying what coding agents actually produce, and auditing where standard machine-learning evaluation hides unstable decisions. Profiles: <a href="https://orcid.org/0009-0003-9699-7422">ORCID</a> · <a href="https://scholar.google.com/citations?hl=en&amp;user=y4WhQAIAAAAJ">Google Scholar</a>.</p>
 
       <article class="research-paper" aria-labelledby="paper-heading">
         <p class="paper-meta">R.001 / Software engineering · Agentic systems · 2026</p>
@@ -57,6 +66,16 @@
           <a href="https://arxiv.org/abs/2608.23616">Read the paper ↗</a>
           <a href="https://github.com/Parker-Fawcett/rebuild-dossier">Explore code and evidence ↗</a>
           <a href="https://doi.org/10.5281/zenodo.22036800">Archived software DOI ↗</a>
+        </div>
+      </article>
+
+      <article class="research-paper" aria-labelledby="paper2-heading">
+        <p class="paper-meta">R.002 / Quantitative finance · Machine learning · 2026</p>
+        <h2 id="paper2-heading">When AUC Survives but Portfolios Do Not: Leakage, Accounting Errors, and Selection Instability in a Retail-Scale Machine-Learning Equity Study</h2>
+        <p>An audit of a tree classifier ranking stocks by probability of beating a market benchmark, across 188 monthly cross-sectional decisions over a 200-stock U.S. equity universe. Correcting validation-label leakage and return-aggregation errors left test AUC nearly unchanged (0.553 → 0.551), but replaced 61.1% of the selected portfolio (mean Jaccard overlap 0.389) — aggregate accuracy survived while the actual decisions did not. A frozen 12-minus-1-month momentum rule outperformed the corrected model and a fixed ensemble once the ledger was fixed.</p>
+        <div class="paper-actions">
+          <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682">Read the paper ↗</a>
+          <a href="https://github.com/Parker-Fawcett/Stock">Explore code and evidence ↗</a>
         </div>
       </article>
 
