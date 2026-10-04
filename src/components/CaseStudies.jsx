@@ -284,6 +284,42 @@ const projects = [
     ],
   },
   {
+    name: 'Skora',
+    type: 'B2B SaaS',
+    statement: 'Enterprise outbound at zero marginal cost.',
+    accent: '#8c2f2f',
+    image: '/images/skora.webp',
+    description:
+      'College-counseling software I co-founded (CEO): free admissions tools for students, paid workflow and white-label infrastructure for counselors. 80+ API endpoints over Postgres, admissions analysis on College Scorecard/IPEDS data. Project Hermes, the outbound engine, covers about 95% of what $3K to $15K/mo enterprise platforms do at zero marginal cost. Incubated at JATC after a blind pitch.',
+    stack: ['Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM', 'Clerk Auth', 'Redis', 'Groq AI', 'Stripe'],
+    metrics: [
+      '80+ API endpoints with counselor workflows, usage controls, and end-to-end Stripe billing ($49–$199/mo tiers)',
+      'Hermes validates every contact through a 4-provider waterfall and rotates 26 outreach angles, CAN-SPAM compliant',
+      'Counselor-in-the-loop essay review grounded in federal admissions data, not vibes',
+    ],
+    beforeAfter: {
+      leftLabel: 'Enterprise outbound',
+      leftBody: '$3K–$15K/mo platforms: enrichment, sequencing, and compliance sold back to you as a subscription.',
+      rightLabel: 'Hermes',
+      rightBody: '~95% of that surface at $0 marginal cost — 4-provider waterfall, 26 outreach angles, CAN-SPAM compliant.',
+    },
+    architecture: {
+      summary: 'Next.js on serverless Postgres, Redis for hot paths, Groq for fast drafting. Hermes handles outbound: enrichment waterfall, angle rotation, compliance.',
+      highlights: [
+        'Drizzle ORM against Neon Postgres, typed queries end to end',
+        'Clerk handles multi-tenant auth with org-level access control',
+        'Redis caches counselor-student data',
+        'Groq powers low-latency message drafting',
+        'Three Stripe tiers ($49/$99/$199) with per-plan feature gating',
+      ],
+    },
+    liveUrl: 'https://skoraadmit.com',
+    githubUrl: null, // repo private by design
+    links: [
+      { label: 'hermes-agent', href: 'https://github.com/Parker-Fawcett/hermes-agent' },
+    ],
+  },
+  {
     name: 'Fawcett Capital LLC',
     type: 'Holding company / Venture entity',
     statement: 'One holding company. Five ventures.',
@@ -347,42 +383,6 @@ const projects = [
       { label: 'Mutators', href: 'https://github.com/Parker-Fawcett/rebuild-dossier/tree/main/src/mutation/mutators' },
       { label: 'arXiv paper', href: 'https://arxiv.org/abs/2608.23616' },
       { label: 'DOI', href: 'https://doi.org/10.5281/zenodo.22036801' },
-    ],
-  },
-  {
-    name: 'Skora',
-    type: 'B2B SaaS',
-    statement: 'Enterprise outbound at zero marginal cost.',
-    accent: '#8c2f2f',
-    image: '/images/skora.webp',
-    description:
-      'College-counseling software I co-founded (CEO): free admissions tools for students, paid workflow and white-label infrastructure for counselors. 80+ API endpoints over Postgres, admissions analysis on College Scorecard/IPEDS data. Project Hermes, the outbound engine, covers about 95% of what $3K to $15K/mo enterprise platforms do at zero marginal cost. Incubated at JATC after a blind pitch.',
-    stack: ['Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM', 'Clerk Auth', 'Redis', 'Groq AI', 'Stripe'],
-    metrics: [
-      '80+ API endpoints with counselor workflows, usage controls, and end-to-end Stripe billing ($49–$199/mo tiers)',
-      'Hermes validates every contact through a 4-provider waterfall and rotates 26 outreach angles, CAN-SPAM compliant',
-      'Counselor-in-the-loop essay review grounded in federal admissions data, not vibes',
-    ],
-    beforeAfter: {
-      leftLabel: 'Enterprise outbound',
-      leftBody: '$3K–$15K/mo platforms: enrichment, sequencing, and compliance sold back to you as a subscription.',
-      rightLabel: 'Hermes',
-      rightBody: '~95% of that surface at $0 marginal cost — 4-provider waterfall, 26 outreach angles, CAN-SPAM compliant.',
-    },
-    architecture: {
-      summary: 'Next.js on serverless Postgres, Redis for hot paths, Groq for fast drafting. Hermes handles outbound: enrichment waterfall, angle rotation, compliance.',
-      highlights: [
-        'Drizzle ORM against Neon Postgres, typed queries end to end',
-        'Clerk handles multi-tenant auth with org-level access control',
-        'Redis caches counselor-student data',
-        'Groq powers low-latency message drafting',
-        'Three Stripe tiers ($49/$99/$199) with per-plan feature gating',
-      ],
-    },
-    liveUrl: 'https://skoraadmit.com',
-    githubUrl: null, // repo private by design
-    links: [
-      { label: 'hermes-agent', href: 'https://github.com/Parker-Fawcett/hermes-agent' },
     ],
   },
   {
