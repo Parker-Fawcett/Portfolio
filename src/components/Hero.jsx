@@ -11,30 +11,30 @@ const specRows = [
 
 // Lab log — the "evidence behind the name" layer, dossier-flavored.
 const leftFeed = [
-  'skill: snowflake-ingest → v14 ✓',
-  'propagated → 12 daughter repos',
-  'hook: taxonomy-inject ✓ active',
-  'sub-agent: review-bypass · live',
-  'claude suggests skill: dbt-model ✓',
-  'drift: 0 files across division',
-  'manual PR review: dropped ✓',
-  'ontology: 60+ engineers onboard',
+  'tools used by 60+ engineers',
+  'one update → 12 repos',
+  'files out of sync: 0',
+  'manual code review: gone ✓',
+  'Claude picks the tool ✓',
+  'standards automatic ✓',
+  'data tool: version 14 ✓',
+  'AI Skills Engineer · CHG',
 ]
 const rightFeed = [
-  '669 tool tests passing ✓',
-  '94 test files in tool suite ✓',
-  '188 monthly decisions modeled',
-  '5,000 bootstrap iterations',
+  '669 automated tests passing ✓',
+  '94 test files ✓',
+  '188 months of investment decisions studied',
+  '5,000 re-runs to stress-test the results',
   '370+ public commits',
-  '80+ API endpoints live',
-  '16 trials locked by SHA-256',
-  'R² = 0.871 vs QuantConnect',
-  '172 sets tracked',
+  "16 experiments sealed so results can't change",
+  'results confirmed on a second platform',
+  'Rebuild Dossier: open source (MIT)',
   'paper: arXiv 2608.23616',
+  'paper: SSRN 7468682',
   'skora: live, free for students',
-  'ocr: $0 per scan, client-side',
-  'careermd: manual → automated ✓',
-  'margin: $0 operating cost ✓',
+  'card scanning: $0 to run',
+  'CareerMD lead research: manual → automated ✓',
+  'Fawcett Capital LLC · holding company',
   'status: still in high school',
 ]
 
@@ -251,6 +251,20 @@ export default function Hero() {
             <br />
             Fawcett<span style={{ color: periodColor }}>.</span>
           </h1>
+          <p
+            style={{
+              marginTop: 'clamp(18px, 3vw, 32px)',
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(1.05rem, 2.2vw, 1.7rem)',
+              fontWeight: 500,
+              lineHeight: 1.4,
+              letterSpacing: '-0.01em',
+              color: still ? 'var(--ink-secondary)' : 'rgba(242, 243, 241, 0.82)',
+              maxWidth: '30ch',
+            }}
+          >
+            High school student. AI engineer at CHG Healthcare. Founder of Skora.
+          </p>
           </motion.div>
         </motion.div>
 
