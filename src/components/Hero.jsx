@@ -35,7 +35,7 @@ const rightFeed = [
   'card scanning: $0 to run',
   'CareerMD lead research: manual → automated ✓',
   'Fawcett Capital LLC · holding company',
-  'status: still in high school',
+  'research papers: 2 published',
 ]
 
 export default function Hero() {
@@ -263,7 +263,7 @@ export default function Hero() {
               maxWidth: '30ch',
             }}
           >
-            High school student. AI engineer at CHG Healthcare. Founder of Skora.
+            AI engineer at CHG Healthcare. Founder of Skora. Published researcher.
           </p>
           </motion.div>
         </motion.div>
@@ -369,7 +369,7 @@ export default function Hero() {
                     color: 'var(--ink-muted)',
                   }}
                 >
-                  Herriman, Utah · still in high school
+                  Herriman, Utah
                 </p>
               </div>
 
