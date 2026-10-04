@@ -3,6 +3,7 @@ import Hero from './components/Hero'
 import StatsBand from './components/StatsBand'
 import Experience from './components/Experience'
 import CaseStudies from './components/CaseStudies'
+import Testimonial from './components/Testimonial'
 import Research from './components/Research'
 import Writing from './components/Writing'
 import DataSpotlight from './components/DataSpotlight'
@@ -18,6 +19,7 @@ function App() {
       <StatsBand />
       <Experience />
       <CaseStudies />
+      <Testimonial />
       <Research />
       <Writing />
       <DataSpotlight />
