@@ -269,25 +269,25 @@ const projects = [
   {
     name: 'Skora',
     type: 'B2B SaaS · Co-founder, CEO',
-    statement: 'Enterprise outbound at zero marginal cost.',
+    statement: 'I started a company that tells students where they actually stand.',
     accent: '#8c2f2f',
     image: '/images/skora.webp',
     description:
-      'College-counseling software I co-founded (CEO): free admissions tools for students, paid workflow and white-label infrastructure for counselors. 80+ API endpoints over Postgres, admissions analysis on College Scorecard/IPEDS data. Project Hermes, the outbound engine, covers about 95% of what $3K to $15K/mo enterprise platforms do at zero marginal cost. Incubated at JATC after a blind pitch.',
+      'College-admissions company I co-founded and run as CEO. Students get free tools to see their real admission chances, match with colleges, and improve their essays. Counselors pay for tools to manage their students and offer Skora under their own brand. Admissions estimates are built on U.S. Department of Education data. Incubated at JATC after a blind pitch.',
     stack: ['Next.js', 'React', 'Neon PostgreSQL', 'Drizzle ORM', 'Clerk Auth', 'Redis', 'Groq AI', 'Stripe'],
     metrics: [
-      '80+ API endpoints with counselor workflows, usage controls, and end-to-end Stripe billing ($49–$199/mo tiers)',
-      'Hermes validates every contact through a 4-provider waterfall and rotates 26 outreach angles, CAN-SPAM compliant',
-      'Counselor-in-the-loop essay review grounded in federal admissions data, not vibes',
+      'Free for students: real admission chances, college matches, and essay feedback. Pro is $19 a month.',
+      'Counselors pay $49, $99, or $199 a month to manage their students and offer Skora under their own brand.',
+      'Co-founded and run as CEO. Incubated at JATC after a blind pitch.',
     ],
     beforeAfter: {
-      leftLabel: 'Enterprise outbound',
-      leftBody: '$3K–$15K/mo platforms: enrichment, sequencing, and compliance sold back to you as a subscription.',
-      rightLabel: 'Hermes',
-      rightBody: '~95% of that surface at $0 marginal cost — 4-provider waterfall, 26 outreach angles, CAN-SPAM compliant.',
+      leftLabel: 'For students',
+      leftBody: 'Free to start. See your real chances at each college, get matched to schools, and make your essays stronger.',
+      rightLabel: 'For counselors',
+      rightBody: 'Plans from $49 to $199 a month to manage students and run Skora under your own brand.',
     },
     architecture: {
-      summary: 'Next.js on serverless Postgres, Redis for hot paths, Groq for fast drafting. Hermes handles outbound: enrichment waterfall, angle rotation, compliance.',
+      summary: 'Next.js on serverless Postgres, Redis for hot paths, Groq for fast drafting, Stripe for billing.',
       highlights: [
         'Drizzle ORM against Neon Postgres, typed queries end to end',
         'Clerk handles multi-tenant auth with org-level access control',
