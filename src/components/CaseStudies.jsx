@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion as fm, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { motion as fm, useReducedMotion } from 'framer-motion'
 import ProjectModal from './ProjectModal'
 import Reveal from './Reveal'
 
@@ -11,21 +11,6 @@ import Reveal from './Reveal'
 // metrics live in the Details modal.
 const STMT_VARIANTS = ['center', 'wipe', 'left', 'zoom']
 const FIG_VARIANTS = ['right', 'zoom', 'center', 'wipe']
-
-// Once the figure has played its Reveal, it keeps a slow Hero-style
-// parallax drift tied to its own position in the chapter — a lighter
-// version of the giant-name scroll-link, scoped to one card.
-function ParallaxFigure({ play, children }) {
-  const ref = useRef(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], [34, -34])
-  if (!play) return <div ref={ref}>{children}</div>
-  return (
-    <fm.div ref={ref} style={{ y }}>
-      {children}
-    </fm.div>
-  )
-}
 
 // Metrics proof-points stagger in one line after another, same ease as
 // the Hero name, instead of popping in all at once.
@@ -196,45 +181,43 @@ function SnapPhase({ project, index, flip, motion, onViewDetails }) {
           </Reveal>
         </div>
         {project.image && (
-          <ParallaxFigure play={motion}>
-            <Reveal delay={0.12} variant={FIG_VARIANTS[index % 4]} style={{ direction: 'ltr', minWidth: 0 }}>
-              <figure style={{ margin: 0 }}>
-                <div
+          <Reveal delay={0.12} variant={FIG_VARIANTS[index % 4]} style={{ direction: 'ltr', minWidth: 0 }}>
+            <figure style={{ margin: 0 }}>
+              <div
+                style={{
+                  border: '1px solid var(--line-strong)',
+                  borderRadius: 4,
+                  overflow: 'hidden',
+                  background: 'var(--paper-raised)',
+                }}
+              >
+                <img
+                  src={project.image}
+                  alt={`${project.name} screenshot`}
+                  loading="lazy"
+                  style={{ width: '100%', maxHeight: '46vh', aspectRatio: '16 / 10', objectFit: 'cover', display: 'block' }}
+                />
+                <figcaption
                   style={{
-                    border: '1px solid var(--line-strong)',
-                    borderRadius: 4,
-                    overflow: 'hidden',
-                    background: 'var(--paper-raised)',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    gap: 12,
+                    padding: '10px 14px',
+                    borderTop: '1px solid var(--line)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.68rem',
+                    letterSpacing: '0.04em',
+                    color: 'var(--ink-muted)',
                   }}
                 >
-                  <img
-                    src={project.image}
-                    alt={`${project.name} screenshot`}
-                    loading="lazy"
-                    style={{ width: '100%', maxHeight: '46vh', aspectRatio: '16 / 10', objectFit: 'cover', display: 'block' }}
-                  />
-                  <figcaption
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      gap: 12,
-                      padding: '10px 14px',
-                      borderTop: '1px solid var(--line)',
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.68rem',
-                      letterSpacing: '0.04em',
-                      color: 'var(--ink-muted)',
-                    }}
-                  >
-                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {host} ↗
-                    </span>
-                    <span aria-hidden="true" style={{ color: accent }}>FIG. {marker}</span>
-                  </figcaption>
-                </div>
-              </figure>
-            </Reveal>
-          </ParallaxFigure>
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {host} ↗
+                  </span>
+                  <span aria-hidden="true" style={{ color: accent }}>FIG. {marker}</span>
+                </figcaption>
+              </div>
+            </figure>
+          </Reveal>
         )}
       </div>
     </article>
