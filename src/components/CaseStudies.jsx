@@ -268,7 +268,7 @@ const projects = [
   },
   {
     name: 'Skora',
-    type: 'B2B SaaS',
+    type: 'B2B SaaS · Co-founder, CEO',
     statement: 'Enterprise outbound at zero marginal cost.',
     accent: '#8c2f2f',
     image: '/images/skora.webp',
