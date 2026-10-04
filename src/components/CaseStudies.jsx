@@ -298,9 +298,6 @@ const projects = [
     },
     liveUrl: 'https://skoraadmit.com',
     githubUrl: null, // repo private by design
-    links: [
-      { label: 'hermes-agent', href: 'https://github.com/Parker-Fawcett/hermes-agent' },
-    ],
   },
   {
     name: 'Fawcett Capital LLC',
@@ -336,16 +333,16 @@ const projects = [
   {
     name: 'Rebuild Dossier',
     type: 'Open-source developer tooling',
-    statement: 'Lock the contract before the model.',
+    statement: 'Record what the app does before the AI rebuilds it.',
     accent: '#1f44c8',
     image: '/images/rebuild-dossier.webp',
     description:
-      'An MCP server that extracts interface contracts and mutation-checked tests from an existing app before a coding agent rebuilds it. The tool suite has 669 tests across 94 files. The paper and evaluation artifacts are public on arXiv and GitHub, including cases where passing tests missed important behavior.',
+      'An open-source tool that records how an existing app behaves, then gives a coding agent a spec and tests to rebuild from. The tool itself has 669 tests across 94 files. The paper and evaluation artifacts are public on arXiv and GitHub, including cases where passing tests missed important behavior.',
     stack: ['TypeScript', 'ts-morph AST', 'Playwright', 'Mutation testing', 'Vitest', 'MCP'],
     metrics: [
-      'Extracts and locks route contracts before the rebuild agent writes code',
-      '669 tests across 94 files verify the tool itself; generated tests are separately mutation-checked',
-      'Negative results and later corrections are public in the chronological findings log',
+      'Open-source tool that records how an existing app behaves, so an AI coding agent has a spec to rebuild from.',
+      '669 tests across 94 files check the tool itself, and the tests it generates are checked by deliberately breaking the code.',
+      'Published as a research paper on arXiv, including the cases where passing tests still missed real problems.',
     ],
     architecture: {
       summary: 'Ships as an MCP server: point it at an Express or Next.js app and it creates a locked specification, tool configuration, and tests for a separate coding agent to use. The paper evaluates where that workflow helps and where generated tests fail to establish behavioral fidelity.',

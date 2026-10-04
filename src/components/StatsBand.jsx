@@ -16,7 +16,6 @@ const rows = [
 // Baseline vs result, both sourced — never a lone claim.
 const comparisons = [
   { metric: 'Portfolio on ΔAUC 0.002', baseline: 'AUC 0.553', result: 'AUC 0.551 → 61.1% replaced (Jaccard 0.389)', href: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682', source: 'SSRN 7468682', date: '2026' },
-  { metric: 'Outbound stack cost', baseline: '$3–15K/mo enterprise', result: '~95% coverage at $0 marginal (Hermes)', href: 'https://skoraadmit.com', source: 'skoraadmit.com', date: '2026' },
   { metric: 'CareerMD lead-gen', baseline: 'Manual Python research', result: 'Automated n8n + dry-run → Salesforce', href: 'https://www.chghealthcare.com', source: 'CHG Healthcare', date: '2026' },
   { metric: 'Card OCR cost', baseline: 'Hosted OCR per-scan fees', result: '$0 — client-side Tesseract.js', href: 'https://catchandtrade.com', source: 'catchandtrade.com', date: 'live' },
   { metric: 'Agentic rebuild eval', baseline: 'Single-prompt baseline', result: 'Spec + enforcement (negatives published)', href: 'https://github.com/Parker-Fawcett/rebuild-dossier', source: 'rebuild-dossier', date: '2026' },

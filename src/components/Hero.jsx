@@ -31,7 +31,7 @@ const rightFeed = [
   'R² = 0.871 vs QuantConnect',
   '172 sets tracked',
   'paper: arXiv 2608.23616',
-  'outbound: 95% of $15k/mo stack',
+  'skora: live, free for students',
   'ocr: $0 per scan, client-side',
   'careermd: manual → automated ✓',
   'margin: $0 operating cost ✓',
