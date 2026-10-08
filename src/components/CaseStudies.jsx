@@ -418,7 +418,7 @@ const projects = [
       ],
     },
     liveUrl: 'https://mynexusai.org',
-    githubUrl: 'https://github.com/Parker-Fawcett/mynexusai-support',
+    githubUrl: null, // repo private
   },
   {
     name: 'Alvien',
