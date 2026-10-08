@@ -88,9 +88,9 @@ export default function StatsBand() {
         }
         .stat-row:hover .stat-row-source { color: var(--accent-deep); }
         @media (max-width: 720px) {
-          .stat-row { grid-template-columns: minmax(0, 1fr) auto; row-gap: 6px; }
+          .stat-row { grid-template-columns: minmax(0, 1fr); row-gap: 6px; }
           .stat-row-label { grid-column: 1; grid-row: 2; }
-          .stat-row-source { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+          .stat-row-source { grid-column: 1; grid-row: 3; white-space: normal; }
         }
       `}</style>
     </section>

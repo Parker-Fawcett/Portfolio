@@ -79,6 +79,7 @@ function SnapPhase({ project, index, flip, motion, onViewDetails }) {
       }}
     >
       <div
+        className="chapter-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: project.image
@@ -230,7 +231,7 @@ const projects = [
     type: 'Quantitative finance research',
     statement: 'Aggregate accuracy ≠ decision stability.',
     accent: '#16307f',
-    image: '/images/Auc.png',
+    image: '/images/auc.webp',
     description:
       'Independent quantitative research auditing predictive multiplicity and the mathematical disconnect between aggregate classification accuracy and decision-level portfolio stability. Modeled cross-sectional equity probability distributions across 188 monthly decisions spanning a dynamic 200-stock U.S. equity universe. A controlled validation-leakage ablation demonstrated that a marginal 0.002 shift in test AUC (0.553 to 0.551) destabilized the investment boundary, replacing 61.1% of the portfolio (mean Jaccard overlap 0.389).',
     stack: ['Python', 'Fama-French 5-factor + Carhart', 'Newey-West', 'Moving-block bootstrap', 'Deflated Sharpe', 'QuantConnect'],

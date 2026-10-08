@@ -190,6 +190,27 @@ h1, h2, h3, h4 {
   }
 }
 
+@media (max-width: 720px) {
+  .chapter {
+    padding: 64px 0 48px !important;
+  }
+  .chapter-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+    direction: ltr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .before-after {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .before-after > div + div {
+    border-left: none !important;
+    border-top: 1px solid var(--line-strong);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
