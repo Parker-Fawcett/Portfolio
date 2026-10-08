@@ -1,0 +1,92 @@
+<!doctype html>
+<!--
+  Source for public/resume.pdf. Rebuild with:
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu \
+    --no-pdf-header-footer --virtual-time-budget=10000 \
+    --print-to-pdf=public/resume.pdf file://$PWD/resume/resume.html
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Parker Fawcett - Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: Letter; margin: 0.38in 0.5in; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 9.2pt; line-height: 1.3; color: #1a1c20; }
+  h1 { font-size: 22pt; font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; }
+  .contact { margin-top: 4px; font-size: 8pt; color: #46494f; white-space: nowrap; }
+  .contact span + span::before { content: "  |  "; color: #a0a3a8; }
+  .summary { margin-top: 8px; font-size: 9.4pt; color: #2b2e33; }
+  h2 { margin-top: 8px; padding-bottom: 2px; border-bottom: 1px solid #1a1c20; font-size: 8.6pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #1f44c8; }
+  .role { margin-top: 6px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .role b { font-weight: 600; font-size: 9.8pt; }
+  .role .sub { color: #46494f; font-weight: 400; }
+  .role .when { font-size: 8.6pt; color: #46494f; white-space: nowrap; }
+  ul { margin: 2px 0 0 14px; }
+  li { margin-top: 1.5px; padding-left: 1px; }
+  .skills { margin-top: 4px; display: grid; grid-template-columns: 104px 1fr; row-gap: 1.5px; }
+  .skills dt { font-weight: 600; color: #46494f; }
+  .skills dd { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+</style>
+</head>
+<body>
+  <h1>Parker Fawcett</h1>
+  <p class="contact"><span>Herriman, UT</span><span>Parkerscottfawcett@gmail.com</span><span>linkedin.com/in/parker-fawcett-0713a7407</span><span>parkerfawcett.com</span><span>github.com/Parker-Fawcett</span></p>
+  <p class="summary">AI engineer at CHG Healthcare building agent tooling and data workflows for a 60+ person division. Founder of Skora, a college-admissions software company, and author of research on verifying AI coding agents and on how model-evaluation metrics hide unstable decisions.</p>
+
+  <h2>Experience</h2>
+  <div class="role"><span><b>AI Skills Engineer</b> <span class="sub">| CHG Healthcare, Enterprise Data &amp; AI</span></span><span class="when">June 2026 - Present</span></div>
+  <ul>
+    <li>Built reusable AI-agent skills infrastructure on MCP, Python and GitHub, with automated tests and security scanning in CI, used across a 60+ engineer division. Converted from summer intern to full-time engineer.</li>
+    <li>Centralized shared tooling in one repository that pushes updates to downstream repos automatically, removing cross-repo drift and manual review steps.</li>
+    <li>Built a CareerMD lead-generation pipeline (n8n, web extraction, multi-source enrichment, AI-assisted entity resolution, rule-based validation, duplicate detection) that routes qualified records into Salesforce behind a dry-run approval step.</li>
+    <li>Wrote Python and SQL workflows with Snowflake integrations, turning business requirements into production tools.</li>
+  </ul>
+
+  <div class="role"><span><b>Co-Founder &amp; CEO</b> <span class="sub">| Skora (skoraadmit.com)</span></span><span class="when">2025 - Present</span></div>
+  <ul>
+    <li>Co-founded and built a college-admissions platform: free tools for students (admission chances, college matches, essay feedback) and paid client-management and white-label tools for counselors on $49 to $199 monthly plans.</li>
+    <li>Engineered the full product in Next.js, TypeScript, Postgres, Stripe and Clerk: 80+ API endpoints, AI essay review, and admissions estimates built on U.S. Department of Education data (College Scorecard, IPEDS). Accepted into the JATC business incubator after a pitch.</li>
+  </ul>
+
+  <h2>Research &amp; Open Source</h2>
+  <div class="role"><span><b>Rebuild Dossier</b> <span class="sub">| Sole author and maintainer, arXiv:2608.23616 (cs.SE)</span></span><span class="when">2026</span></div>
+  <ul>
+    <li>Wrote a 48-page paper on verifying AI coding agents and released the tool as MIT-licensed open source (256 commits, installable with npx), backed by 660+ automated tests.</li>
+    <li>Showed that passing tests do not prove an agent rebuilt an app correctly: in one comparison, the agent that followed the rules failed a held-back test while the rule-breaking agent passed everything. Generated tests are checked by deliberately breaking the original code.</li>
+  </ul>
+  <div class="role"><span><b>When AUC Survives but Portfolios Do Not</b> <span class="sub">| Author, SSRN 7468682</span></span><span class="when">Sept 2026</span></div>
+  <ul>
+    <li>Audited a machine-learning stock-selection study (188 monthly decisions, 200-stock universe): test AUC moved from 0.553 to 0.551 while 61.1% of the portfolio changed. Sealed 16 experiments behind a provenance manifest so every result reproduces.</li>
+  </ul>
+
+  <h2>Products</h2>
+  <ul>
+    <li>Founded Fawcett Capital LLC (May 2026) and operate three live products: <b>CatchAndTrade</b>, a trading-card marketplace with in-browser card scanning (374 commits); <b>MyNexusAI</b>, an AI receptionist for calls and texts ($29 to $299 monthly plans); and <b>Alvien</b>, an AI tool that stress-tests a business and writes the report for agencies.</li>
+  </ul>
+
+  <h2>Leadership</h2>
+  <div class="role"><span><b>Founder &amp; Executive Director</b> <span class="sub">| Code Elevation</span></span><span class="when">2025 - 2026</span></div>
+  <ul>
+    <li>Ran a regional youth coding competition for 30+ participants; won Pluralsight and CHG Healthcare sponsorships through cold outreach and managed a $1,650 prize pool.</li>
+  </ul>
+  <div class="role"><span><b>Lead Event Coordinator</b> <span class="sub">| JATC and Cypress Credit Union Entrepreneurship Summit</span></span><span class="when">2026 - Present</span></div>
+  <ul>
+    <li>Leading a district-wide entrepreneurship conference for hundreds of students: logistics, branding and budget.</li>
+  </ul>
+
+  <h2>Education</h2>
+  <div class="role"><span><b>Herriman High School &amp; Jordan Applied Technology Center</b></span><span class="when">Expected June 2028</span></div>
+  <ul><li>GPA 3.8 unweighted. Concurrent enrollment at SLCC; AP Language, AP World History, AP Human Geography.</li></ul>
+
+  <h2>Skills</h2>
+  <dl class="skills">
+    <dt>Languages</dt><dd>Python, TypeScript, JavaScript, SQL</dd>
+    <dt>AI &amp; agents</dt><dd>MCP, agent skills, RAG, agent evaluation, Claude Code, LLM APIs (Groq, OpenRouter)</dd>
+    <dt>Data &amp; backend</dt><dd>Snowflake, PostgreSQL, Redis, Drizzle ORM, Node.js, FastAPI, n8n, Salesforce integration</dd>
+    <dt>Web &amp; quality</dt><dd>Next.js, React, Tailwind, pytest, Vitest, Playwright, GitHub Actions, CodeQL, Docker, Stripe, Clerk</dd>
+  </dl>
+</body>
+</html>

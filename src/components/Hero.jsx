@@ -356,7 +356,7 @@ export default function Hero() {
                   <a href="#contact" className="btn btn-secondary">
                     Get in touch
                   </a>
-                  <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                  <a href="/resume.pdf?v=2" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
                     Résumé
                   </a>
                 </div>

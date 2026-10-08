@@ -3,7 +3,7 @@ const links = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/parker-fawcett-0713a7407/', display: 'linkedin.com/in/parker-fawcett' },
   { label: 'GitHub', href: 'https://github.com/Parker-Fawcett', display: 'github.com/Parker-Fawcett' },
   { label: 'Website', href: 'https://www.parkerfawcett.com', display: 'parkerfawcett.com' },
-  { label: 'Résumé', href: '/resume.pdf', display: 'resume.pdf' },
+  { label: 'Résumé', href: '/resume.pdf?v=2', display: 'resume.pdf' },
   { label: 'ORCID', href: 'https://orcid.org/0009-0003-9699-7422', display: '0009-0003-9699-7422' },
   { label: 'Google Scholar', href: 'https://scholar.google.com/citations?hl=en&user=y4WhQAIAAAAJ', display: 'scholar.google.com/citations?user=y4WhQAIAAAAJ' },
 ]
