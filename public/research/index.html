@@ -69,8 +69,17 @@
         </div>
       </article>
 
+      <article class="research-paper" aria-labelledby="paper-icse-heading">
+        <p class="paper-meta">R.002 / Software engineering · Agentic systems · Under review, ICSE 2027 SEIP</p>
+        <h2 id="paper-icse-heading">Rebuild Dossier: Shared Blind Spots in Co-Generated Specifications and Acceptance Tests for Agent Rebuilds</h2>
+        <p>A separate paper on the same tool, submitted to ICSE 2027 (Software Engineering in Practice track) and currently under review. When one pipeline derives both a rebuild's specification and its acceptance tests from the same extraction, the two can share a blind spot. In a pre-registered study of 30 frozen rebuilds, a do-nothing stub passed every generated visible and held-out test, while a requirements oracle frozen before scoring, and 59 checks written independently by an external researcher, showed the weaker-model rebuilds answering every authentication-rejection check incorrectly. The paper proposes a three-step audit to run before trusting a green rebuild.</p>
+        <div class="paper-actions">
+          <a href="https://github.com/Parker-Fawcett/rebuild-dossier">Explore code and evidence ↗</a>
+        </div>
+      </article>
+
       <article class="research-paper" aria-labelledby="paper2-heading">
-        <p class="paper-meta">R.002 / Quantitative finance · Machine learning · 2026</p>
+        <p class="paper-meta">R.003 / Quantitative finance · Machine learning · 2026</p>
         <h2 id="paper2-heading">When AUC Survives but Portfolios Do Not: Leakage, Accounting Errors, and Selection Instability in a Retail-Scale Machine-Learning Equity Study</h2>
         <p>An audit of a tree classifier ranking stocks by probability of beating a market benchmark, across 188 monthly cross-sectional decisions over a 200-stock U.S. equity universe. Correcting validation-label leakage and return-aggregation errors left test AUC nearly unchanged (0.553 → 0.551), but replaced 61.1% of the selected portfolio (mean Jaccard overlap 0.389) — aggregate accuracy survived while the actual decisions did not. A frozen 12-minus-1-month momentum rule outperformed the corrected model and a fixed ensemble once the ledger was fixed.</p>
         <div class="paper-actions">

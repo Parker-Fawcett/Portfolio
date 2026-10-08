@@ -23,6 +23,15 @@ const papers = [
     ],
   },
   {
+    meta: '2026   /   Software engineering · under review at ICSE 2027 SEIP',
+    title: 'Rebuild Dossier: Shared Blind Spots in Co-Generated Specifications and Acceptance Tests',
+    summary:
+      'A separate paper on the same tool, submitted to ICSE 2027. When one pipeline writes both a rebuild’s specification and its acceptance tests, they can share a blind spot: a do-nothing stub passed every generated test, while independent checks showed weaker-model rebuilds failing authentication. The paper proposes a three-step audit to run before trusting a green rebuild.',
+    links: [
+      { label: 'Code and evidence ↗', href: 'https://github.com/Parker-Fawcett/rebuild-dossier' },
+    ],
+  },
+  {
     meta: '2026   /   Quantitative finance · machine learning',
     title: 'When AUC Survives but Portfolios Do Not',
     summary:
