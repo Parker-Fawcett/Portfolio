@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f6f4" />
+    <meta name="description" content="Case study: the Luau systems behind Nightmart, a published Roblox horror game. Server-owned rounds, seeded evidence across live, license and CCTV views, staged rewards, and save-data integration." />
+    <link rel="canonical" href="https://www.parkerfawcett.com/roblox/nightmart/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/roblox/roblox.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.parkerfawcett.com/roblox/nightmart/" />
+    <meta property="og:title" content="Nightmart: Roblox Gameplay Systems Case Study | Parker Fawcett" />
+    <meta property="og:description" content="How server-owned rounds, seeded evidence, and staged rewards work in a published Roblox horror game." />
+    <meta property="og:image" content="https://www.parkerfawcett.com/images/og-roblox.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Nightmart: Roblox Gameplay Systems Case Study | Parker Fawcett</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="/">Parker Fawcett</a>
+        <nav aria-label="Main navigation"><a href="/roblox/">Roblox portfolio</a><a href="/">Main portfolio</a></nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <a class="crumb" href="/roblox/">← Roblox portfolio</a>
+      <p class="eyebrow">Case study / Roblox gameplay systems</p>
+      <h1>Nightmart</h1>
+      <p class="lede">A published Roblox horror game built around one question: is the person at your window who their license says they are? This page explains the systems I wrote so the server can own the answer and the player can still check it for themselves.</p>
+      <div class="actions">
+        <a class="btn" href="https://www.roblox.com/games/123840336518508">Play Nightmart ↗</a>
+        <a class="btn secondary" href="#contact">Hire me for Roblox work</a>
+      </div>
+
+      <dl class="facts">
+        <div><dt>Game</dt><dd>Nightmart, published on Roblox by @Jetvak009</dd></div>
+        <div><dt>Developer</dt><dd>Parker Fawcett</dd></div>
+        <div><dt>Scope</dt><dd>27 Luau scripts, about 5,300 lines, plus the open-source ProfileStore library</dd></div>
+        <div><dt>Stack</dt><dd>Luau, Roblox Studio, RemoteEvents, ViewportFrame and WorldModel rendering, ProfileStore</dd></div>
+        <div><dt>Credits</dt><dd>ProfileStore (MAD STUDIO, Apache-2.0) provides session locking and autosave. Base customer and store meshes were generated with Roblox Studio's AI tools. Sound effects come from Roblox's Creator Store audio library.</dd></div>
+      </dl>
+
+      <section class="section" aria-labelledby="game-heading">
+        <p class="label">01 / The game</p>
+        <h2 id="game-heading">An observation-horror loop</h2>
+        <p>You work alone at a night window. Each round a customer arrives with a license. You compare their face with the license, review the entry camera tape, serve the people who are who they say they are, and close the window on anything that is not. You rise from trainee to keeper, take on stranger closing duties, and try to keep your mistakes low. The first round is untimed so new players can learn the rules, and gear is earned through play.</p>
+        <figure>
+          <img src="/images/roblox/nightmart-compare.webp" alt="Nightmart inspection screen showing a customer's live face next to the still photo on their license" width="1318" height="1080" loading="lazy" />
+          <figcaption class="caption">The core interaction: the live customer on the left, the license photo on the right. A still photo cannot show movement, so some tells are only visible live.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" aria-labelledby="problem-heading">
+        <p class="label">02 / The engineering problem</p>
+        <h2 id="problem-heading">One customer, several kinds of evidence</h2>
+        <p>The game only works if a customer is the same person everywhere the player looks: moving at the window, in the still license photo, on the entry camera, and again in the review shown after a mistake. At the same time, each anomaly has to be visible in the right place. A twitching neck cannot show up in a still photo, and a printed-sideways eye cannot show up in live movement. And none of it can be decided by the client: the server has to own the answer, the progression, and the money.</p>
+      </section>
+
+      <section class="section" aria-labelledby="s1-heading">
+        <p class="label">03 / System one</p>
+        <h2 id="s1-heading">Server-owned rounds and staged rewards</h2>
+        <p>Every player gets a server-side session that owns the current customer, which clues are real, the round phase, and the rewards earned so far. The client sends small, constrained actions; the server checks them against the round state and the player's position before changing anything, then publishes a snapshot that drives what the player sees.</p>
+        <p>Rewards are escrowed. Money earned during a round sits in a pending balance and is only committed to the player's saved cash when the round succeeds and the required store work is finished. A failed round discards what was never committed. Saved cash, gear and captures are kept separate from pending round rewards, and the schedule of rounds, work duties and closing encounters is generated from a saved seed.</p>
+        <figure>
+          <img src="/images/roblox/nightmart-payday.webp" alt="Nightmart payday screen listing orders, captures, store work and bonuses, with paid and saved cash totals" width="1318" height="1080" loading="lazy" />
+          <figcaption class="caption">Payday: pending rewards are tallied from the round, then committed to saved cash once the round is complete.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" aria-labelledby="s2-heading">
+        <p class="label">04 / System two</p>
+        <h2 id="s2-heading">Evidence that stays consistent across views</h2>
+        <p>A customer's identity and movement come from a seed. The same seeded pose plan is used for ordinary customers and anomalous ones, so posing alone does not give an anomaly away, and each of the 12 anomaly types is only drawn in the channel where it belongs. The license is a frozen still. The entry camera replays the customer's arrival from fixed camera geometry. After a wrong decision, the review screen reuses the same identity and the same clue channel to show the player exactly what they missed, including an ordinary reference when the customer was fine.</p>
+        <div class="figs">
+          <figure>
+            <img src="/images/roblox/nightmart-cctv.webp" alt="Nightmart security camera view of a customer entering the store, with camera selection and replay controls" width="1318" height="1080" loading="lazy" />
+            <figcaption class="caption">Entry tape: the arrival is reconstructed from game state and can be replayed, zoomed, and switched between cameras.</figcaption>
+          </figure>
+          <figure>
+            <img src="/images/roblox/nightmart-review.webp" alt="Nightmart review screen comparing the player's customer with an ordinary reference after a mistaken decision" width="1318" height="1080" loading="lazy" />
+            <figcaption class="caption">Mistake review: the same customer is shown beside an ordinary reference so the player can see what was and was not a tell.</figcaption>
+          </figure>
+        </div>
+        <div class="note"><p><strong>A deliberate tradeoff.</strong> The entry tape is a reconstruction, not recorded footage. Rebuilding the arrival from the seed keeps replays identical and per-player, and avoids storing frames. The cost is that the client receives enough information to draw the clue, which is a design choice I made knowingly.</p></div>
+      </section>
+
+      <section class="section" aria-labelledby="s3-heading">
+        <p class="label">05 / System three</p>
+        <h2 id="s3-heading">Data-driven anomalies and a repeat-free schedule</h2>
+        <p>The 12 anomaly types live in one data table, each with a visual style, the clue text shown in review, and the number of completed rounds needed to unlock it, so new tells are added by data rather than by rewriting the round logic. Contracts and ranks unlock the same way.</p>
+        <p>Work duties are scheduled from the seed like a shuffled deck: every option is used before any repeats, and the boundary between two shuffles is swapped when needed so the last night of one group never repeats as the first of the next.</p>
+        <pre><code>-- Each saved schedule uses every option before reshuffling. Boundary swaps keep
+-- the last night of one group from immediately repeating in the next group.
+local function workDeck(count,block,seed,salt)
+ local function shuffled(index)
+  local rng=Random.new(((seed or 0)+index*104729+salt)%2147483647)
+  local deck={};for i=1,count do deck[i]=i end
+  for i=count,2,-1 do local j=rng:NextInteger(1,i);deck[i],deck[j]=deck[j],deck[i] end
+  return deck
+ end
+ local deck=shuffled(block)
+ if block>0 and deck[1]==shuffled(block-1)[count] then deck[1],deck[2]=deck[2],deck[1] end
+ return deck
+end</code></pre>
+        <p class="caption">Shared.luau: seeded shuffled-deck scheduling. The same seed always produces the same schedule.</p>
+      </section>
+
+      <section class="section" aria-labelledby="s4-heading">
+        <p class="label">06 / Supporting systems</p>
+        <h2 id="s4-heading">Saving, audio and testing</h2>
+        <h3>Save data</h3>
+        <p>Player data is defined by a normalized schema with defaults and validation, loaded through ProfileStore for session locking and autosave. If saved data fails validation, the load fails closed instead of accepting a corrupted profile, and captures are synced append-only. The locking engine is ProfileStore's work; the schema, validation and integration are mine.</p>
+        <h3>Audio</h3>
+        <p>A small audio module handles bounded one-shot sounds, bus mixing, preloading guarded by an epoch so stale loads are ignored, and cues driven by game state.</p>
+        <h3>Testing</h3>
+        <p>Game logic is covered by isolated Luau fixtures that run with simulated time and fake player data: server rule checks, a seeded 20-round campaign simulation, and the review screen exercised across all 12 anomaly types and an ordinary reference in four layouts. These tests cover game logic. They are not a substitute for live multiplayer or cloud-save testing.</p>
+      </section>
+
+      <section class="section" id="contact" aria-labelledby="contact-heading">
+        <p class="label">07 / Work with me</p>
+        <h2 id="contact-heading">Need Luau gameplay systems?</h2>
+        <p>I am open to well-scoped Roblox scripting contracts: round and state logic, progression and economy, UI and camera systems, and save-data integration.</p>
+        <div class="actions">
+          <a class="btn" href="mailto:Parkerscottfawcett@gmail.com?subject=Roblox%20scripting%20work">Email me</a>
+          <a class="btn secondary" href="/roblox/">Back to Roblox portfolio</a>
+          <a class="btn secondary" href="https://www.roblox.com/games/123840336518508">Play Nightmart ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>© 2026 Parker Fawcett</span><a href="/">Back to main portfolio ↗</a></footer>
+  </body>
+</html>

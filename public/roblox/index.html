@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f6f4" />
+    <meta name="description" content="Parker Fawcett writes Luau for Roblox: server-owned game rules, evidence and camera systems, progression, and save-data integration. Featured work: the published horror game Nightmart." />
+    <link rel="canonical" href="https://www.parkerfawcett.com/roblox/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/roblox/roblox.css" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.parkerfawcett.com/roblox/" />
+    <meta property="og:title" content="Roblox Gameplay & Systems Developer | Parker Fawcett" />
+    <meta property="og:description" content="Luau gameplay systems for Roblox: server-owned rules, evidence and camera systems, progression, and save data. Featured: Nightmart." />
+    <meta property="og:image" content="https://www.parkerfawcett.com/images/og-roblox.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Roblox Gameplay & Systems Developer | Parker Fawcett</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="/">Parker Fawcett</a>
+        <nav aria-label="Main navigation"><a href="#work">Work</a><a href="#contact">Contact</a><a href="/">Main portfolio</a></nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <p class="eyebrow">Roblox / gameplay systems</p>
+      <h1>Roblox gameplay &amp; systems developer.</h1>
+      <p class="lede">I write Luau for Roblox: server-owned game rules, camera and UI systems, progression, and save-data integration. Nightmart, my published horror game, is the working example.</p>
+      <div class="actions">
+        <a class="btn" href="/roblox/nightmart/">Read the Nightmart case study</a>
+        <a class="btn secondary" href="https://www.roblox.com/games/123840336518508">Play Nightmart ↗</a>
+        <a class="btn secondary" href="#contact">Get in touch</a>
+      </div>
+
+      <section class="section" id="work" aria-labelledby="work-heading">
+        <p class="label">01 / Selected work</p>
+        <div class="card">
+          <a href="/roblox/nightmart/"><img src="/images/roblox/nightmart-compare.webp" alt="Nightmart inspection screen comparing a customer's live face with the face on their license, side by side" width="1318" height="1080" loading="lazy" /></a>
+          <div>
+            <p class="meta">Published game · Roblox horror · Luau</p>
+            <h2 id="work-heading">Nightmart</h2>
+            <p>You are the night clerk. Customers arrive at your window; you compare their faces with their licenses, review the entry tape, and close the window on anything that is not who it claims to be.</p>
+            <ul class="ticks">
+              <li>Per-player server sessions that own the round, the clues, and the pending rewards.</li>
+              <li>12 anomaly types, each visible only in the evidence channel where it belongs: live movement, license, or entry tape.</li>
+              <li>One seeded customer identity reused across live view, still license, CCTV reconstruction, and mistake review.</li>
+            </ul>
+            <div class="actions">
+              <a class="btn" href="/roblox/nightmart/">Case study →</a>
+              <a class="btn secondary" href="https://www.roblox.com/games/123840336518508">Play on Roblox ↗</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="build-heading">
+        <p class="label">02 / What I build</p>
+        <h2 id="build-heading">Systems I have shipped in a live game</h2>
+        <div class="caps">
+          <div class="cap"><h3>Server-owned game state</h3><p>Each player has a server session that owns the current customer, the clue truth, the phase, and pending rewards. Player actions are checked against round state and position before anything changes.</p></div>
+          <div class="cap"><h3>Progression and economy</h3><p>Rewards are staged during a round and only paid after a successful one. Ranks, contracts and gear unlock as rounds are completed, and a cosmetic game pass is wired in.</p></div>
+          <div class="cap"><h3>Seeded, consistent presentation</h3><p>Deterministic seeds drive customer poses and the work schedule, so the same person looks the same across every view, and schedules avoid back-to-back repeats.</p></div>
+          <div class="cap"><h3>Camera, UI and audio</h3><p>ViewportFrame evidence panels, a CCTV-style camera feed with replay, and a state-driven audio system with mixing buses and preloading.</p></div>
+          <div class="cap"><h3>Save-data integration</h3><p>A validated data schema over the open-source ProfileStore library, with fail-closed loading and append-only capture syncing.</p></div>
+          <div class="cap"><h3>Automated test fixtures</h3><p>Isolated Luau fixtures that simulate a full 20-round campaign and exercise the review screen for all 12 anomaly types, so game logic can be checked without playing it.</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="contact" aria-labelledby="contact-heading">
+        <p class="label">03 / Contact</p>
+        <h2 id="contact-heading">Open to Roblox scripting work.</h2>
+        <p>I am also an AI engineer at CHG Healthcare, so I am looking for well-scoped contracts. The fastest way to reach me is email.</p>
+        <dl class="facts">
+          <div><dt>Email</dt><dd><a href="mailto:Parkerscottfawcett@gmail.com">Parkerscottfawcett@gmail.com</a></dd></div>
+          <div><dt>Roblox</dt><dd>@Jetvak009 · <a href="https://www.roblox.com/games/123840336518508">Nightmart</a></dd></div>
+          <div><dt>GitHub</dt><dd><a href="https://github.com/Parker-Fawcett">github.com/Parker-Fawcett</a></dd></div>
+          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/parker-fawcett-0713a7407/">linkedin.com/in/parker-fawcett-0713a7407</a></dd></div>
+          <div><dt>Résumé</dt><dd><a href="/resume.pdf?v=2">resume.pdf</a></dd></div>
+        </dl>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>© 2026 Parker Fawcett</span><a href="/">Back to main portfolio ↗</a></footer>
+  </body>
+</html>

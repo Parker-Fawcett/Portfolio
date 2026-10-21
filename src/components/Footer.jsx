@@ -39,6 +39,9 @@ export default function Footer() {
           <a href="/writing/" className="footer-link" style={footerLinkStyle}>
             Writing
           </a>
+          <a href="/roblox/" className="footer-link" style={footerLinkStyle}>
+            Roblox
+          </a>
           <a href="/press/" className="footer-link" style={footerLinkStyle}>
             Press / media
           </a>
