@@ -69,3 +69,5 @@ pre { margin: 22px 0 6px; padding: 18px 20px; overflow-x: auto; background: #141
   .facts div { grid-template-columns: 96px minmax(0, 1fr); gap: 10px; }
   nav { gap: 16px; }
 }
+.video { margin: 28px 0 8px; max-width: 960px; }
+.video video { display: block; width: 100%; height: auto; border: 1px solid var(--line-strong); border-radius: 3px; background: #000; }
