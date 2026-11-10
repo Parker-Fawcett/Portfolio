@@ -1,16 +1,26 @@
-# React + Vite
+# parkerfawcett.com
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Static site with no runtime dependencies. `build.mjs` turns the data in `content/` into plain HTML in `dist/`.
 
-Currently, two official plugins are available:
+```bash
+npm run dev     # build, serve on http://localhost:4173, rebuild on change
+npm run build   # write dist/
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Where things live
 
-## React Compiler
+- `content/data.mjs`: site info, papers, projects, talks, timeline, bios. Edit text here.
+- `content/writing/*.html`: one file per post. Front matter (title, description, deck, date, category, read) then the body. Put `<!--sources-->` before the source list.
+- `lib/pages.mjs`: page templates. `lib/layout.mjs`: head, header, footer, JSON-LD.
+- `src/site.css`: all styles. Light and dark follow the system setting.
+- `public/`: copied into `dist/` as is (images, `resume.pdf`, the hand-written `/roblox/` pages).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The build also writes `sitemap.xml`, `robots.txt`, `feed.xml` and `llms.txt`.
 
-## Expanding the Oxlint configuration
+## Adding a post
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Copy an existing file in `content/writing/`, change the front matter and body, run `npm run build`. The index, home page, feed and sitemap update from the file.
+
+## Status wording
+
+Papers, talks and projects carry a status label. Use the exact stage: preprint, submitted or under review, accepted (upcoming), delivered. Move an item only when the stage has changed.
