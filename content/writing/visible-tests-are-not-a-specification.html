@@ -1,55 +1,12 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f6f6f4" />
-    <meta name="description" content="A generated check passed on a todo page that could not add, edit, or delete tasks. Here is what the test missed and how to check the real user path." />
-    <link rel="canonical" href="https://www.parkerfawcett.com/writing/visible-tests-are-not-a-specification/" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/writing/writing.css" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://www.parkerfawcett.com/writing/visible-tests-are-not-a-specification/" />
-    <meta property="og:title" content="Visible Tests Are Not a Specification | Parker Fawcett" />
-    <meta property="og:description" content="A generated check passed on a todo page that could not manage todos. Here is the user path the test missed." />
-    <meta property="og:image" content="https://www.parkerfawcett.com/images/og.jpg?v=2" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>Visible Tests Are Not a Specification | Parker Fawcett</title>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Visible Tests Are Not a Specification",
-        "description": "A generated check passed on a todo page that could not add, edit, or delete tasks. What the test missed and how to check the real user path.",
-        "datePublished": "2026-09-29",
-        "dateModified": "2026-09-29",
-        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.parkerfawcett.com/writing/visible-tests-are-not-a-specification/" },
-        "author": { "@type": "Person", "@id": "https://www.parkerfawcett.com/#parker", "name": "Parker Fawcett", "url": "https://www.parkerfawcett.com/" },
-        "image": "https://www.parkerfawcett.com/images/og.jpg?v=2"
-      }
-    </script>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="header-inner">
-        <a class="wordmark" href="/">Parker Fawcett</a>
-        <nav aria-label="Main navigation"><a href="/writing/">All writing</a><a href="/">Portfolio</a></nav>
-      </div>
-    </header>
-    <main class="article-page">
-      <article>
-        <header class="article-header">
-          <p class="eyebrow">W.001 / Software testing</p>
-          <h1>Visible Tests Are Not a Specification<span class="period">.</span></h1>
-          <p class="article-deck">The generated test found three strings. A coding agent returned a page with those strings—and no usable todo list.</p>
-          <div class="byline"><span>Parker Fawcett</span><time datetime="2026-09-29">September 29, 2026</time><span>4 min read</span></div>
-        </header>
-
-        <div class="article-body">
-          <p>The original todo app had a working list. You could add an item, change it, and remove it. The rebuilt page could do none of those things. Its visible page test still passed.</p>
+---
+title: Visible Tests Are Not a Specification
+description: A generated check passed on a todo page that could not add, edit, or delete tasks. Here is what the test missed and how to check the real user path.
+deck: The generated test found three strings. A coding agent returned a page with those strings and no usable todo list.
+date: 2026-09-29
+category: Software testing
+read: 4
+---
+<p>The original todo app had a working list. You could add an item, change it, and remove it. The rebuilt page could do none of those things. Its visible page test still passed.</p>
           <p>I found this while testing <a href="https://github.com/Parker-Fawcett/rebuild-dossier">Rebuild Dossier</a>, a tool that extracts contracts and tests from an existing application before a coding agent rebuilds it. For this run, the agent received the generated material without the original source. The generated page test checked that three fixed strings appeared on screen. The agent returned a page displaying those strings.</p>
 
           <h2 id="todo-case">What the test actually proved</h2>
@@ -86,27 +43,11 @@
             <li><strong>State the claim at the test’s level.</strong> If the check only proves three strings are present, report that. Save “the feature works” for a check that actually exercises the feature.</li>
           </ol>
           <p>This was one blind rebuild of one third-party app, so it does not tell us how often the failure happens. It does show where the check stopped: three strings rendered. A passing test is useful only when you can say what behavior it actually exercised.</p>
-        </div>
-
-        <aside class="source-material" aria-labelledby="sources-heading">
-          <h2 id="sources-heading">Source material</h2>
-          <p>The findings file is the living chronological record of experiments, fixes, and corrections. Later entries can supersede an earlier interpretation. The cited arXiv version predates the September 27 requirements check, which appears in the log and archived evidence.</p>
+<!--sources-->
+<p>The findings file is the living chronological record of experiments, fixes, and corrections. Later entries can supersede an earlier interpretation. The cited arXiv version predates the September 27 requirements check, which appears in the log and archived evidence.</p>
           <ul>
             <li><a href="https://arxiv.org/abs/2608.23616">Rebuild Dossier technical report on arXiv ↗</a></li>
             <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier">Rebuild Dossier code and evaluation artifacts ↗</a></li>
             <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/main/docs/v0-findings.md">Chronological findings log, including corrections ↗</a></li>
             <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier/tree/main/evidence/fidelity-oracle">Requirements check and archived evidence ↗</a></li>
           </ul>
-        </aside>
-        <aside class="author-box" aria-label="About the author">
-          <p class="eyebrow">About the author</p>
-          <h2>Parker Fawcett</h2>
-          <p>AI Skills Engineer. I build tools for coding agents and write about how to check the software they produce.</p>
-          <div><a href="/research/">Research →</a><a href="https://github.com/Parker-Fawcett/rebuild-dossier">Rebuild Dossier ↗</a><a href="https://github.com/Parker-Fawcett">GitHub ↗</a><a href="mailto:Parkerscottfawcett@gmail.com">Contact ↗</a></div>
-        </aside>
-        <nav class="article-end-nav" aria-label="Article navigation"><a href="/writing/">← All writing</a><a href="/writing/api-tests-passed-existing-clients-broke/">Next entry →</a></nav>
-      </article>
-    </main>
-    <footer class="site-footer"><span>© 2026 Parker Fawcett</span><a href="/press/">Press / media ↗</a></footer>
-  </body>
-</html>

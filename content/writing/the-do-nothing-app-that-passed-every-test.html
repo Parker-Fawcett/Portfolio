@@ -1,0 +1,43 @@
+---
+title: The Do-Nothing App That Passed Every Test
+description: A stub that only returns HTTP 200 passed 20 of 20 visible tests and 12 of 12 held-out test files, then matched none of 77 behavioral checks. What that says about trusting a green run.
+deck: I wrote a program that does nothing. The test suite generated to check an app rebuild gave it a perfect score.
+date: 2026-11-10
+category: AI-generated software
+read: 4
+---
+<p>I wrote a program that does nothing. Whatever you ask it, it answers HTTP 200 and stops. It has no login, no data and no features.</p>
+<p>Then I ran it against the test suite that Rebuild Dossier generated for a real application. It passed 20 of 20 visible tests and 12 of 12 held-out test files. A held-out test is one the coding agent never saw while building.</p>
+<p>Then I ran it against a separate set of checks I wrote by hand, each one describing something the original app actually does. The stub matched 0 of 77.</p>
+
+<h2 id="why">Why a stub can pass</h2>
+<p>This was a deliberately constructed control, so the stub was built to find the weakest point in the suite. It found one. Many generated checks ask whether the server answers without crashing, not whether it answers correctly. A response that is not a server error satisfies that question, and so does a response that does nothing.</p>
+<p>The tests also came from the same extraction as the spec. If the extraction missed a behavior, the spec does not mention it and no test checks it. Both artifacts share the gap, so the suite agrees with the spec and still disagrees with the original app.</p>
+<p>In the study under review at ICSE 2027, the clearest shared gap was authentication. Rebuilds from the weaker model tier answered every authentication-rejection check incorrectly, and the generated tests did not notice. I wrote about a smaller version of this in <a href="/writing/api-tests-passed-existing-clients-broke/">The API Tests Passed. Existing Clients Broke</a>.</p>
+
+<h2 id="limits">What this does not show</h2>
+<p>The limits matter as much as the number:</p>
+<ul>
+  <li>The 77 checks cover database-independent requirements from 132 written checks.</li>
+  <li>I wrote them, so they reflect what I thought to ask. An outside check could find more gaps or fewer.</li>
+  <li>They compare responses by key, which is coarse.</li>
+  <li>It is one application. The result is not a failure rate for coding agents, and it does not say the agents are bad at rebuilding apps.</li>
+</ul>
+<p>The claim is narrow. A green generated suite can be satisfied by software that does nothing, so green alone does not show a rebuild is correct.</p>
+
+<h2 id="practice">Four checks to run before trusting a green run</h2>
+<ol>
+  <li><strong>Run the dumbest program that could pass.</strong> Write a stub that returns the same success response to everything and point your tests at it. If it passes, the suite measures less than you thought.</li>
+  <li><strong>Take at least some checks from the original, not the extraction.</strong> Write requirements from how the existing app behaves and score the rebuild against them separately.</li>
+  <li><strong>Test the rejections.</strong> Wrong password, missing token, bad input. A suite that only exercises the happy path cannot tell a working login from no login.</li>
+  <li><strong>Report the claim at the size of the test.</strong> "The server answered without a 5xx error" is a different sentence from "the feature works."</li>
+</ol>
+<p>The baseline is in the repository, so you can run the stub yourself and read the scoring protocol, including its limits.</p>
+<!--sources-->
+<p>The stub control, the scoring protocol and the later findings are all public. The log is the living record and may supersede earlier interpretations.</p>
+<ul>
+  <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier/tree/main/evidence/baselines/constant-200">Reproduce the HTTP 200 stub baseline ↗</a></li>
+  <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/main/evidence/fidelity-oracle/PROTOCOL.md">Behavioral check scoring protocol and limits ↗</a></li>
+  <li><a href="https://github.com/Parker-Fawcett/rebuild-dossier/blob/main/docs/v0-findings.md">Chronological findings log ↗</a></li>
+  <li><a href="https://arxiv.org/abs/2608.23616">Rebuild Dossier on arXiv ↗</a></li>
+</ul>
