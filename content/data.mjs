@@ -6,9 +6,9 @@ export const site = {
   url: 'https://www.parkerfawcett.com',
   name: 'Parker Fawcett',
   email: 'Parkerscottfawcett@gmail.com',
-  tagline: 'Researcher on the reliability of AI-written software',
+  tagline: 'AI researcher and builder',
   description:
-    'Parker Fawcett is an independent researcher and engineer who studies why AI-written software passes its tests and still does not work. AI Skills Engineer at CHG Healthcare, CEO of Skora, author of the Rebuild Dossier papers.',
+    'Parker Fawcett is an AI researcher and builder. He studies how AI systems fail, publishes the results, and builds products, agents and open-source tools with them. AI Skills Engineer at CHG Healthcare and CEO of Skora.',
   ogImage: '/images/og.jpg?v=2',
   built: new Date().toISOString().slice(0, 10),
 }
@@ -300,9 +300,9 @@ export const now = [
 
 export const bios = {
   short:
-    'Parker Fawcett is an independent researcher and engineer who studies why AI-written software passes its tests and still does not work. He is an AI Skills Engineer at CHG Healthcare, the CEO of the college admissions platform Skora, and the author of the Rebuild Dossier papers on [coding-agent verification](https://arxiv.org/abs/2608.23616) and a paper on [machine-learning evaluation in finance](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682). He is a high school student in Utah.',
+    'Parker Fawcett is an AI researcher and builder in Utah. He studies how AI systems fail, publishes the results, and builds products, agents and open-source tools with them. He is an AI Skills Engineer at CHG Healthcare, the CEO of the college admissions platform Skora, and the author of the Rebuild Dossier papers on [coding-agent verification](https://arxiv.org/abs/2608.23616) and a paper on [machine-learning evaluation in finance](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682). He is a high school student in Utah.',
   long: [
-    'Parker Fawcett is a software engineer and independent researcher in Utah. He is in high school, with concurrent enrollment at the Jordan Applied Technology Center and Salt Lake Community College. At CHG Healthcare he works in Enterprise Data & AI on AI-assisted automation and agent tooling, a role he moved into after a summer internship.',
+    'Parker Fawcett is an AI researcher and builder in Utah. He is in high school, with concurrent enrollment at the Jordan Applied Technology Center and Salt Lake Community College. At CHG Healthcare he works in Enterprise Data & AI on AI-assisted automation and agent tooling, a role he moved into after a summer internship.',
     'His research asks how to tell whether a coding agent built the software it was asked to build. Rebuild Dossier is an open-source MCP server that extracts an existing app’s interface contracts and produces a test-backed spec for an agent to rebuild from. His 2026 arXiv preprint reports the successful and failed evaluations of that process, and a second paper on the same tool is under review at ICSE 2027. A separate 2026 SSRN paper, *When AUC Survives but Portfolios Do Not*, shows how a standard accuracy metric can barely move while a model’s actual stock picks change.',
     'He is the CEO of Skora, a college admissions platform, and builds other products under his holding company, Fawcett Capital LLC. He founded Code Elevation, a youth coding competition sponsored by CHG Healthcare and Pluralsight, and is writing a book, *Experience Without Permission*, about how AI is changing the way beginners become experts.',
   ],
