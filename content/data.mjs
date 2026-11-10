@@ -68,15 +68,15 @@ export const papers = [
     id: 'R.003',
     blurb:
       'A model’s accuracy score barely moved (0.553 to 0.551), yet 61.1% of the stocks it picked changed. An audit of how a stable metric can sit on top of unstable decisions.',
-    status: 'Preprint on SSRN',
+    status: 'Under review at the Journal of Financial Data Science',
     field: 'Quantitative finance, machine learning',
     year: '2026',
-    title: 'When AUC Survives but Portfolios Do Not: Leakage, Accounting Errors, and Selection Instability in a Retail-Scale Machine-Learning Equity Study',
+    title: 'When AUC Survives but Portfolios Do Not: Leakage-Repair Effects on Predictive-Metric Stability versus Investment-Decision Stability in a Cross-Sectional Equity Classifier',
     short: 'When AUC Survives but Portfolios Do Not',
     summary:
-      'An audit of a tree classifier that ranks stocks by their probability of beating a market benchmark, across 188 monthly decisions over a 200-stock U.S. universe. Fixing validation-label leakage and return-aggregation errors left test AUC nearly unchanged (0.553 to 0.551) but replaced 61.1% of the selected portfolio (mean Jaccard overlap 0.389). Aggregate accuracy survived and the actual decisions did not. Once the ledger was fixed, a frozen 12-minus-1-month momentum rule beat the corrected model.',
+      'An audit of a tree classifier that ranks 99 U.S. small-cap stocks by their probability of beating a market benchmark. Repairing a validation-label leak left test AUC nearly unchanged (0.553 to 0.551) but replaced most of the selected portfolio (mean Jaccard overlap 0.389). Three variants that each change one factor, including a switch to logistic regression, reproduce the pattern, and the size of the gap depends on the model. A machine-learning-only portfolio does not beat a frozen momentum benchmark under corrected accounting. The paper does not claim a trading strategy. The stock list uses current constituents, so returns are provisional. The SSRN preprint is an earlier version of this paper.',
     links: [
-      { label: 'Read on SSRN', href: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682' },
+      { label: 'Earlier version on SSRN', href: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682' },
       { label: 'Code and evidence', href: 'https://github.com/Parker-Fawcett/Stock' },
     ],
     ld: { url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682', datePublished: '2026' },
@@ -292,7 +292,7 @@ export const timeline = [
 ]
 
 export const now = [
-  'The ICSE 2027 submission is under review.',
+  'The ICSE 2027 submission and a finance paper on model evaluation (Journal of Financial Data Science) are under review.',
   'Extending the rebuild study from one application to several, with independent behavioral checks and explicit false-positive and false-negative counts. This is in progress and has no results yet.',
   'Giving a lightning talk at the University of Utah AI symposium on November 19.',
   'Writing *Experience Without Permission*, a book about how AI changes the way beginners become experts.',
@@ -303,7 +303,7 @@ export const bios = {
     'Parker Fawcett is an AI researcher and builder in Utah. He studies how AI systems fail, publishes the results, and builds products, agents and open-source tools with them. He is an AI Skills Engineer at CHG Healthcare, the CEO of the college admissions platform Skora, and the author of the Rebuild Dossier papers on [coding-agent verification](https://arxiv.org/abs/2608.23616) and a paper on [machine-learning evaluation in finance](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7468682). He is a high school student in Utah.',
   long: [
     'Parker Fawcett is an AI researcher and builder in Utah. He is in high school, with concurrent enrollment at the Jordan Applied Technology Center and Salt Lake Community College. At CHG Healthcare he works in Enterprise Data & AI on AI-assisted automation and agent tooling, a role he moved into after a summer internship.',
-    'His research asks how to tell whether a coding agent built the software it was asked to build. Rebuild Dossier is an open-source MCP server that extracts an existing app’s interface contracts and produces a test-backed spec for an agent to rebuild from. His 2026 arXiv preprint reports the successful and failed evaluations of that process, and a second paper on the same tool is under review at ICSE 2027. A separate 2026 SSRN paper, *When AUC Survives but Portfolios Do Not*, shows how a standard accuracy metric can barely move while a model’s actual stock picks change.',
+    'His research asks how to tell whether a coding agent built the software it was asked to build. Rebuild Dossier is an open-source MCP server that extracts an existing app’s interface contracts and produces a test-backed spec for an agent to rebuild from. His 2026 arXiv preprint reports the successful and failed evaluations of that process, and a second paper on the same tool is under review at ICSE 2027. A separate 2026 finance paper, under review at the Journal of Financial Data Science, *When AUC Survives but Portfolios Do Not*, shows how a standard accuracy metric can barely move while a model’s actual stock picks change.',
     'He is the CEO of Skora, a college admissions platform, and builds other products under his holding company, Fawcett Capital LLC. He founded Code Elevation, a youth coding competition sponsored by CHG Healthcare and Pluralsight, and is writing a book, *Experience Without Permission*, about how AI is changing the way beginners become experts.',
   ],
 }
